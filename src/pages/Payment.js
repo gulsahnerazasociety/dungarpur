@@ -23,10 +23,11 @@ export default function Payment() {
         <h3>📌 कृपया नीचे दिए गए QR Code से भुगतान करें</h3>
 
         <img 
-          src="/qr.webp" 
+          src={process.env.PUBLIC_URL + "/qr.webp"} 
           alt="UPI QR" 
           style={{width:"250px", margin:"20px auto", display:"block"}} 
         />
+
 
         <p>✔️ Payment करने के बाद Status “Pending” रहेगा</p>
         <p>✔️ Event Team Bank Statement से Verify करेगी</p>

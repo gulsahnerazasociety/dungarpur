@@ -69,6 +69,7 @@ export default function Participants() {
                   <th>Age</th>
                   <th>Group</th>
                   <th>Competition</th>
+                  <th>Fees</th>
                   <th>Status</th>
                 </tr>
               </thead>
@@ -85,6 +86,7 @@ export default function Participants() {
                     <td className={row.status === "Paid" ? "paid" : "pending"}>
                       {row.status}
                     </td>
+                    <td>Pending</td>
                   </tr>
                 ))}
               </tbody>

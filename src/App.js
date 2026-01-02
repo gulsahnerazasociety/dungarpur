@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { HashRouter, Routes, Route, Link } from "react-router-dom";
+
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Payment from "./pages/Payment";
@@ -10,7 +11,7 @@ import AdmitCard from "./pages/AdmitCard";
 
 function App() {
   return (
-    <BrowserRouter>
+   <HashRouter basename="/">
 
       {/* 🔥 GLOBAL NAVBAR (हर Page पर दिखेगा) */}
       <nav className="navbar">
@@ -46,8 +47,7 @@ function App() {
 
 
       </Routes>
-
-    </BrowserRouter>
+  </HashRouter>
   );
 }
 

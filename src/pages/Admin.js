@@ -6,67 +6,95 @@ export default function Admin() {
   const [password, setPassword] = useState("");
   const [data, setData] = useState(null);
   const [msg, setMsg] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [verifying, setVerifying] = useState(false);
 
-  const scriptURL = "https://script.google.com/macros/s/AKfycbwG49ITACXn2-nCo1OAXuY1jjqiY-6BwJeV7kB9M1ArDMvXlcnBE3zFGF3JdezTt-Ko/exec";
+  const scriptURL =
+    "https://script.google.com/macros/s/AKfycbwNpFdyasM93VN5kMUbCZ1L9Y_qpB76GqfZyJQf-GOyNUI8evVRvBhRUrNEPRYYcW46/exec";
 
   const fetchData = async () => {
 
-    if(password !== "admin123"){
-      alert("गलत Admin Password ❌");
+    if (password !== "admin123") {
+      setMsg("❌ गलत Admin Password");
       return;
     }
 
-    const res = await fetch(`${scriptURL}?formNo=${formNo}`);
-    const result = await res.json();
-
-    if(result.success){
-      setData(result);
-      setMsg("");
-    } else {
-      setMsg("Form नहीं मिला ❗");
-      setData(null);
+    if (!formNo) {
+      setMsg("❗ Form Number दर्ज करें");
+      return;
     }
+
+    setLoading(true);
+    setMsg("");
+    setData(null);
+
+    try {
+     const res = await fetch(`${scriptURL}?action=getAdmit&formNo=${formNo}`);
+
+      const result = await res.json();
+
+      if (result.success) {
+        setData(result);
+      } else {
+        setMsg("❌ Form नहीं मिला");
+      }
+
+    } catch (err) {
+      setMsg("❌ Server Error");
+    }
+
+    setLoading(false);
   };
 
   const verifyPayment = async () => {
-    
-    const res = await fetch(scriptURL,{
-      method:"POST",
-      body: JSON.stringify({
-        action:"verify",
-        formNo: formNo
-      })
-    });
+    setVerifying(true);
 
-    const result = await res.json();
+    try {
+      const res = await fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify({
+          action: "verify",
+          formNo: formNo
+        })
+      });
 
-    if(result.success){
-      alert("Payment Verified ✔️");
-      window.location.reload();
-    } else {
-      alert("Form नहीं मिला ❌");
+      const result = await res.json();
+
+      if (result.success) {
+        alert("✔ Payment Verified");
+        window.location.reload();
+      } else {
+        alert("❌ Form नहीं मिला");
+      }
+    } catch (err) {
+      alert("❌ Server Error");
     }
+
+    setVerifying(false);
   };
 
   return (
     <div className="registration-box">
 
-      <h1>Admin Panel</h1>
-      <h2>Payment Verify System</h2>
+      <h1>🔐 Admin Panel</h1>
+      <h2>Payment Verification</h2>
 
-      <input placeholder="Admin Password"
+      <input
+        placeholder="Admin Password"
         type="password"
-        onChange={(e)=>setPassword(e.target.value)}
+        onChange={(e) => setPassword(e.target.value)}
       />
 
-      <input 
-        placeholder="Form Number डालें"
-        onChange={(e)=>setFormNo(e.target.value)}
+      <input
+        placeholder="Form Number"
+        onChange={(e) => setFormNo(e.target.value)}
       />
 
-      <button onClick={fetchData}>Search</button>
+      <button onClick={fetchData} disabled={loading}>
+        {loading ? "⏳ Searching..." : "Search"}
+      </button>
 
-      {msg && <p style={{color:"red"}}>{msg}</p>}
+      {msg && <p style={{ color: "red", fontWeight: "bold" }}>{msg}</p>}
 
       {data && (
         <div className="receipt">
@@ -75,20 +103,37 @@ export default function Admin() {
 
           <p><b>Name:</b> {data.name}</p>
           <p><b>Competition:</b> {data.competition}</p>
-          <p><b>Status:</b> {data.status}</p>
 
-         {data.status && data.status.toString().trim().toLowerCase() !== "paid" ? (
-            <button onClick={verifyPayment} style={{background:"green"}}>
-                Verify Payment ✔️
+          <p>
+            <b>Status:</b>{" "}
+            <span
+              style={{
+                color:
+                  data.status.toLowerCase() === "Paid"
+                    ? "green"
+                    : "red",
+                fontWeight: "bold"
+              }}
+            >
+              {data.status}
+            </span>
+          </p>
+          <p><b>TXN ID:</b> {data.txnId}</p>
+
+
+          {data.status.toLowerCase() !== "Paid" ? (
+            <button
+              onClick={verifyPayment}
+              style={{ background: "green" }}
+              disabled={verifying}
+            >
+              {verifying ? "⏳ Verifying..." : "Verify Payment ✔"}
             </button>
-            ) : (
-            <h3 style={{color:"green"}}>Already Paid ✔️</h3>
-         )}
-
-
+          ) : (
+            <h3 style={{ color: "green" }}>✔ Already Paid</h3>
+          )}
         </div>
       )}
-
     </div>
   );
 }

@@ -160,9 +160,7 @@ const calculateAgeAndGroup = (dob) => {
         <label>प्रतियोगिता चयन</label>
         <select name="competition" required onChange={handleChange}>
           <option value="">चुनें</option>
-          <option>नात / तिलावत</option>
-          <option>जनरल नॉलेज</option>
-          <option>कुरान प्रश्नोत्तरी</option>
+          <option>कुरान, हदीस व दीनी मालुमात प्रश्नोत्तरी</option>
         </select>
 <label>पंजीकरण शुल्क (Fees)</label>
 <input value={formData.fees} readOnly />

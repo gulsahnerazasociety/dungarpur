@@ -6,6 +6,17 @@ export default function Home() {
   
       {/* HERO SECTION */}
       <section className="hero-section">
+
+        <img 
+          src={process.env.PUBLIC_URL + "/logo.webp"} 
+          alt="Society Logo" 
+          style={{
+            width: "140px",
+            marginBottom: "10px",
+            borderRadius:"50%"
+          }}
+        />
+
         <h1>गुलशन-ए-रज़ा सोसाइटी</h1>
         <h2>Quiz & Islamic Competition 2026</h2>
 

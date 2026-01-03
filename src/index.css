@@ -187,7 +187,7 @@ code {
 
 .card{
   background:#4682b4;
-  color:white;
+  color:#24020c;
   padding:15px;
   border-radius:8px;
 }
@@ -338,6 +338,178 @@ footer{
   display:inline-block;
   margin-bottom:12px;
   box-shadow:0 3px 8px rgba(0,0,0,.2);
+}
+.admit-box{
+  max-width:600px;
+  margin:auto;
+  text-align:center;
+}
+
+.admit-box input{
+  padding:10px;
+  width:80%;
+  margin:10px 0;
+}
+
+.admit-box button{
+  padding:10px 20px;
+  cursor:pointer;
+}
+
+.admit-card{
+  margin-top:20px;
+  padding:20px;
+  border:2px solid #2c7a7b;
+  border-radius:10px;
+  background:#f9ffff;
+}
+
+.admit-logo{
+  width:90px;
+  margin-bottom:10px;
+}
+
+.admit-card h2{
+  margin:5px 0;
+}
+
+.admit-card h3{
+  margin:5px 0;
+  color:#2c7a7b;
+}
+
+.admit-grid{
+  text-align:left;
+  margin-top:15px;
+}
+
+.admit-grid p{
+  margin:6px 0;
+}
+
+.paid{
+  color:green;
+  font-weight:bold;
+  margin-left:5px;
+}
+
+.pending{
+  color:orange;
+  font-weight:bold;
+  margin-left:5px;
+}
+
+.note{
+  margin-top:15px;
+  font-size:14px;
+  color:#555;
+}
+
+.print-btn{
+  margin-top:15px;
+  background:#2c7a7b;
+  color:#fff;
+  border:none;
+  padding:10px 20px;
+  border-radius:5px;
+}
+
+/* PRINT ONLY ADMIT CARD */
+@media print{
+  body *{
+    visibility:hidden;
+  }
+  #printArea, #printArea *{
+    visibility:visible;
+  }
+  #printArea{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+  }
+}
+
+.competition-container{
+  max-width:900px;
+  margin:auto;
+  padding:15px;
+  font-family:system-ui;
+}
+
+.header-card{
+  text-align:center;
+  background:linear-gradient(135deg,#0f766e,#115e59);
+  color:#fff;
+  padding:25px;
+  border-radius:14px;
+}
+
+.highlight{
+  margin-top:10px;
+  font-size:15px;
+}
+
+.card{
+  background:#fff;
+  margin-top:18px;
+  padding:20px;
+  border-radius:14px;
+  box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.card h2, .card h3{
+  margin-bottom:12px;
+  color:#0f766e;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:10px;
+}
+
+ul{
+  padding-left:18px;
+}
+
+ul li{
+  margin-bottom:6px;
+}
+
+.prize{
+  background:#fef3c7;
+}
+
+.date-card{
+  background:#ecfeff;
+}
+
+.admit-date{
+  margin-top:12px;
+  background:#dcfce7;
+  padding:12px;
+  border-radius:10px;
+  text-align:center;
+}
+
+.admit-date span{
+  color:#15803d;
+  font-size:18px;
+}
+
+.sponsor{
+  background:#f1f5f9;
+}
+
+.note{
+  margin-top:20px;
+  padding:12px;
+  background:#0f766e;
+  color:white;
+  text-align:center;
+  border-radius:10px;
+  font-weight:600;
 }
 
 /* ------------ MOBILE RESPONSIVE ------------ */

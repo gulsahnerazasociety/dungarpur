@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/dungarpur/static/css/main.965c2c9f.css",
+    "main.js": "/dungarpur/static/js/main.e36071cd.js",
+    "index.html": "/dungarpur/index.html",
+    "main.965c2c9f.css.map": "/dungarpur/static/css/main.965c2c9f.css.map",
+    "main.e36071cd.js.map": "/dungarpur/static/js/main.e36071cd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.965c2c9f.css",
+    "static/js/main.e36071cd.js"
+  ]
+}

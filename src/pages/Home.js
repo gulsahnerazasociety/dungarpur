@@ -8,7 +8,7 @@ export default function Home() {
       <section className="hero-section">
 
         <img 
-          src={process.env.PUBLIC_URL + "/logo.webp"} 
+          src={"/logo.webp"} 
           alt="Society Logo" 
           style={{
             width: "140px",

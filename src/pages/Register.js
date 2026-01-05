@@ -2,22 +2,23 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function Register() {
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
-const [formData, setFormData] = useState({
-  name: "",
-  father: "",
-  aadhaar: "",
-  dob: "",
-  age: "",
-  ageGroup: "",
-  phone: "",
-  address: "",
-  competition: "",
-  paymentStatus: "Pending",
-  fees: ""
-});
+  const [formData, setFormData] = useState({
+    name: "",
+    father: "",
+    aadhaar: "",
+    dob: "",
+    age: "",
+    ageGroup: "",
+    phone: "",
+    address: "",
+    competition: "",
+    paymentStatus: "Pending",
+    fees: ""
+  });
 
+  const [ageError, setAgeError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,58 +33,75 @@ const [formData, setFormData] = useState({
     }
   };
 
-const calculateAgeAndGroup = (dob) => {
-  const birthDate = new Date(dob);
-  const today = new Date();
+  const calculateAgeAndGroup = (dob) => {
+    const birthDate = new Date(dob);
+    const today = new Date();
 
-  let age = today.getFullYear() - birthDate.getFullYear();
-  const month = today.getMonth() - birthDate.getMonth();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const month = today.getMonth() - birthDate.getMonth();
 
-  if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
-    age--;
-  }
+    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
 
-  let group = "";
+    let group = "";
+    let fees = "";
 
-  if (age <= 22) group = "Group A";
-  else if (age <= 45) group = "Group B";
-  else if (age <= 20) group = "Group C";
-  else group = "Group D";
+    // ✅ AGE VALIDATION
+    if (age >= 8 && age <= 12) {
+      group = "Group A";
+      fees = 350;
+    } else if (age >= 13 && age <= 17) {
+      group = "Group B";
+      fees = 350;
+    } else if (age >= 18 && age <= 22) {
+      group = "Group C";
+      fees = 350;
+    } else if (age >= 23 && age <= 45) {
+      group = "Group D";
+      fees = 500;
+    } else {
+      // ❌ INVALID AGE
+      setAgeError("❌ Not Participating in this Competition");
+      setFormData(prev => ({
+        ...prev,
+        age: age,
+        ageGroup: "",
+        fees: ""
+      }));
+      return;
+    }
 
-  // -------- Fees Logic ----------
-  let fees = 0;
-  if (age <= 22) fees = 350;
-  else fees = 500;
-
-  setFormData(prev => ({
-    ...prev,
-    age: age,
-    ageGroup: group,
-    fees: fees
-  }));
-};
-
-  
+    // ✅ VALID AGE
+    setAgeError("");
+    setFormData(prev => ({
+      ...prev,
+      age: age,
+      ageGroup: group,
+      fees: fees
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
+    // ❌ AGE ERROR BLOCK
+    if (ageError) {
+      alert("यह आयु इस प्रतियोगिता के लिए मान्य नहीं है ❌");
+      return;
+    }
 
-      // ---- Aadhaar Validation ----
+    try {
+      // Aadhaar Validation
       const aadhaar = formData.aadhaar.trim();
 
-      if (aadhaar.length !== 12) {
-        alert("आधार नंबर 12 अंकों का होना जरूरी है ❗");
+      if (aadhaar.length !== 12 || !/^[0-9]+$/.test(aadhaar)) {
+        alert("आधार नंबर 12 अंकों का होना चाहिए ❗");
         return;
       }
 
-      if (!/^[0-9]+$/.test(aadhaar)) {
-        alert("आधार नंबर में केवल अंक (0-9) ही होने चाहिए ❗");
-        return;
-      }
-
-      const scriptURL = "https://script.google.com/macros/s/AKfycbzVOFcgoFN6aRIG9iv_7VObJVtrZrj2wuMmrC2azUWvd21cNuy91J2pSPuZbjU2hHe5/exec";
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbzVOFcgoFN6aRIG9iv_7VObJVtrZrj2wuMmrC2azUWvd21cNuy91J2pSPuZbjU2hHe5/exec";
 
       const response = await fetch(scriptURL, {
         method: "POST",
@@ -91,7 +109,6 @@ const calculateAgeAndGroup = (dob) => {
       });
 
       const result = await response.json();
-      console.log("SERVER RESPONSE 👉", result);
 
       if (result.success) {
         alert("पंजीकरण सफल 🎉 आपका फॉर्म नंबर है: " + result.formNo);
@@ -103,24 +120,19 @@ const calculateAgeAndGroup = (dob) => {
           }
         });
       } else {
-        alert(result.message || "Server Error! Try Again ❗");
+        alert(result.message || "Server Error ❗");
       }
-
     } catch (err) {
-      console.log("NETWORK ERROR 👉", err);
-      alert("Network Error ❗ कृपया फिर कोशिश करें");
+      alert("Network Error ❗");
     }
   };
 
-
   return (
     <div className="registration-box">
-
       <h1>गुलशन-ए-रज़ा सोसाइटी</h1>
       <h2>प्रतियोगिता पंजीकरण फॉर्म</h2>
 
       <form onSubmit={handleSubmit}>
-
         <label>विद्यार्थी का नाम</label>
         <input name="name" required onChange={handleChange} />
 
@@ -132,45 +144,43 @@ const calculateAgeAndGroup = (dob) => {
           name="aadhaar"
           required
           maxLength="12"
-          minLength="12"
           pattern="[0-9]{12}"
           onChange={handleChange}
         />
 
         <label>जन्म तिथि (DOB)</label>
-        <input
-          type="date"
-          name="dob"
-          required
-          onChange={handleChange}
-        />
+        <input type="date" name="dob" required onChange={handleChange} />
 
         <label>आयु</label>
         <input value={formData.age} readOnly />
 
-        <label>आयु के आधार पर समूह</label>
+        <label>आयु समूह</label>
         <input value={formData.ageGroup} readOnly />
+
+        {ageError && (
+          <p style={{ color: "red", fontWeight: "bold" }}>
+            {ageError}
+          </p>
+        )}
 
         <label>मोबाइल नंबर</label>
         <input name="phone" required onChange={handleChange} />
 
         <label>पता</label>
-        <textarea name="address" rows="3" required onChange={handleChange}></textarea>
+        <textarea name="address" rows="3" required onChange={handleChange} />
 
-        <label>प्रतियोगिता चयन</label>
+        <label>प्रतियोगिता</label>
         <select name="competition" required onChange={handleChange}>
           <option value="">चुनें</option>
-          <option>नात / तिलावत</option>
-          <option>जनरल नॉलेज</option>
-          <option>कुरान प्रश्नोत्तरी</option>
+          <option>कुरान, हदीस व दीनी मालुमात प्रश्नोत्तरी</option>
         </select>
-<label>पंजीकरण शुल्क (Fees)</label>
-<input value={formData.fees} readOnly />
+
+        <label>पंजीकरण शुल्क</label>
+        <input value={formData.fees} readOnly />
 
         <button type="submit" className="register-btn">
           पंजीकरण जमा करें
         </button>
-
       </form>
     </div>
   );

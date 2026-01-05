@@ -6,6 +6,17 @@ export default function Home() {
   
       {/* HERO SECTION */}
       <section className="hero-section">
+
+        <img 
+          src={process.env.PUBLIC_URL + "/logo.webp"} 
+          alt="Society Logo" 
+          style={{
+            width: "140px",
+            marginBottom: "10px",
+            borderRadius:"50%"
+          }}
+        />
+
         <h1>गुलशन-ए-रज़ा सोसाइटी</h1>
         <h2>Quiz & Islamic Competition 2026</h2>
 
@@ -19,6 +30,33 @@ export default function Home() {
           <Link to="/receipt" className="btn secondary">Check Receipt</Link>
         </div>
       </section>
+      {/* PRIZE SECTION */}
+      <section className="info">
+        <h2>🎯 प्रतियोगिता के 🏆 पुरस्कार व इनआमात</h2>
+
+        <div className="info-grid">
+          <div className="card">
+            <span style={{fontSize:"50px"}}>🥇</span> FREE UMRAH (शर्तों के साथ)
+          </div>
+          <div className="card">
+            <span style={{fontSize:"50px"}}>🥈</span> Laptop
+          </div>
+          <div className="card">
+             <span style={{fontSize:"50px"}}>🥉</span> Tablet
+          </div>
+          <div className="card">
+             <span style={{fontSize:"50px"}}>🏅</span> Bicycle
+          </div><div className="card">
+             <span style={{fontSize:"50px"}}>💵</span> ₹3100
+          </div><div className="card">
+             <span style={{fontSize:"50px"}}>🎁</span> ₹1100
+          </div>
+        </div>
+
+        <p className="note">
+          आप सभी ज्‍यादा से ज्‍यादा हिस्‍सा लेकर दीन की मालुमात में इजाफा करेा
+        </p>
+      </section>
 
       {/* INFO SECTION */}
       <section className="info">
@@ -26,13 +64,13 @@ export default function Home() {
 
         <div className="info-grid">
           <div className="card">
-            📘 General Knowledge Quiz
-          </div>
-          <div className="card">
             📖 कुरआन प्रश्नोत्तरी
           </div>
           <div className="card">
-            🎤 नात / तिलावत प्रतियोगिता
+            📖 हदीस प्रश्नोत्तरी
+          </div>
+          <div className="card">
+            🎤 दीनी मालुमात प्रतियोगिता
           </div>
         </div>
 

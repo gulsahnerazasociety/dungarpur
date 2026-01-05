@@ -6,31 +6,51 @@ export default function Participants() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [filterGroup, setFilterGroup] = useState("");
+  const [filterStatus, setFilterStatus] = useState("");
 
   const sheetURL =
-    "https://script.google.com/macros/s/AKfycbzWCl0rVamP8RsuCBr_dyW02735dbMMTlFinEcpgeZ5Oy2TP0lyigS6d8nv6GCjK10P/exec?action=getAll";
+    "https://script.google.com/macros/s/AKfycbwNpFdyasM93VN5kMUbCZ1L9Y_qpB76GqfZyJQf-GOyNUI8evVRvBhRUrNEPRYYcW46/exec?action=getAll";
 
   useEffect(() => {
     fetch(sheetURL)
       .then((res) => res.json())
       .then((result) => {
-        if (result.success) {
-          setData(result.data);
-        }
+        if (result.success) setData(result.data);
         setLoading(false);
       })
       .catch(() => setLoading(false));
   }, []);
 
-
+  // ========= FILTER =========
   const filtered = data.filter((item) => {
-    return (
-      (item.name.toLowerCase().includes(search.toLowerCase()) ||
-        item.formNo.toLowerCase().includes(search.toLowerCase()) ||
-        item.phone.includes(search)) &&
-      (filterGroup === "" || item.ageGroup === filterGroup)
-    );
-  });
+  return (
+    (item.name.toLowerCase().includes(search.toLowerCase()) ||
+      item.formNo.toLowerCase().includes(search.toLowerCase()) ||
+      String(item.phone || "").includes(search) ||
+      String(item.aadhaar || "").includes(search)) &&
+    (filterGroup === "" || item.ageGroup === filterGroup) &&
+    (filterStatus === "" || item.status === filterStatus)
+  );
+});
+
+
+  // ========= EXCEL EXPORT =========
+  const exportExcel = () => {
+    const table = document.getElementById("participantsTable").outerHTML;
+    const blob = new Blob([table], { type: "application/vnd.ms-excel" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "participants.xls";
+    a.click();
+  };
+
+  // ========= PDF EXPORT =========
+  const exportPDF = () => {
+    window.print();
+  };
+
 
   return (
     <div className="participant-box">
@@ -45,11 +65,11 @@ export default function Participants() {
           {/* Search */}
           <input
             className="search"
-            placeholder="Search by Name / Form No / Phone"
+            placeholder="Search by Name / Form No / Phone / Aadhaar"
             onChange={(e) => setSearch(e.target.value)}
           />
 
-          {/* Filter */}
+          {/* Group Filter */}
           <select className="search" onChange={(e) => setFilterGroup(e.target.value)}>
             <option value="">All Groups</option>
             <option value="Group A">Group A</option>
@@ -58,17 +78,35 @@ export default function Participants() {
             <option value="Group D">Group D</option>
           </select>
 
+          {/* Status Filter */}
+          <select className="search" onChange={(e) => setFilterStatus(e.target.value)}>
+            <option value="">All Status</option>
+            <option value="Paid">Paid</option>
+            <option value="Pending">Pending</option>
+          </select>
+
+          {/* Export Buttons */}
+          <div style={{ marginTop: "10px" }}>
+            <button onClick={exportExcel}>⬇️ Export Excel</button>
+            <button onClick={exportPDF} style={{ marginLeft: "10px" }}>
+              ⬇️ Export PDF
+            </button>
+          </div>
+
           {/* Table */}
           <div className="table-area">
-            <table>
+            <table id="participantsTable">
               <thead>
                 <tr>
                   <th>Form No</th>
                   <th>Name</th>
                   <th>Father</th>
+                  <th>Aadhaar</th>
+                  <th>Phone</th>
                   <th>Age</th>
                   <th>Group</th>
                   <th>Competition</th>
+                  <th>Fees</th>
                   <th>Status</th>
                 </tr>
               </thead>
@@ -79,10 +117,24 @@ export default function Participants() {
                     <td>{row.formNo}</td>
                     <td>{row.name}</td>
                     <td>{row.father}</td>
+                    <td>{row.aadhaar}</td>
+                    <td>{row.phone}</td>
                     <td>{row.age}</td>
                     <td>{row.ageGroup}</td>
                     <td>{row.competition}</td>
-                    <td className={row.status === "Paid" ? "paid" : "pending"}>
+                    <td>₹{row.fees}</td>
+
+                    <td
+                      style={{
+                        color: "white",
+                        fontWeight: "bold",
+                        background:
+                          row.status === "Paid" ? "green" : "red",
+                        padding: "5px",
+                        borderRadius: "5px",
+                        textAlign: "center"
+                      }}
+                    >
                       {row.status}
                     </td>
                   </tr>

@@ -11,6 +11,7 @@ export default function Participants() {
   const sheetURL =
     "https://script.google.com/macros/s/AKfycbwNpFdyasM93VN5kMUbCZ1L9Y_qpB76GqfZyJQf-GOyNUI8evVRvBhRUrNEPRYYcW46/exec?action=getAll";
 
+  // ================= FETCH DATA =================
   useEffect(() => {
     fetch(sheetURL)
       .then((res) => res.json())
@@ -21,20 +22,34 @@ export default function Participants() {
       .catch(() => setLoading(false));
   }, []);
 
-  // ========= FILTER =========
+  // ================= MASK HELPERS =================
+  const maskPhone = (phone) => {
+    if (!phone) return "";
+    const str = phone.toString();
+    if (str.length < 4) return str;
+    return "XXXXXX" + str.slice(-4);
+  };
+
+  const maskAadhaar = (aadhaar) => {
+    if (!aadhaar) return "";
+    const str = aadhaar.toString();
+    if (str.length < 4) return str;
+    return "XXXXXXXX" + str.slice(-4);
+  };
+
+  // ================= FILTER =================
   const filtered = data.filter((item) => {
-  return (
-    (item.name.toLowerCase().includes(search.toLowerCase()) ||
-      item.formNo.toLowerCase().includes(search.toLowerCase()) ||
-      String(item.phone || "").includes(search) ||
-      String(item.aadhaar || "").includes(search)) &&
-    (filterGroup === "" || item.ageGroup === filterGroup) &&
-    (filterStatus === "" || item.status === filterStatus)
-  );
-});
+    return (
+      (item.name?.toLowerCase().includes(search.toLowerCase()) ||
+        item.formNo?.toLowerCase().includes(search.toLowerCase()) ||
+        String(item.phone || "").includes(search) ||
+        String(item.aadhaar || "").includes(search)) &&
+      (filterGroup === "" || item.ageGroup === filterGroup) &&
+      (filterStatus === "" || item.status === filterStatus)
+    );
+  });
 
-
-  // ========= EXCEL EXPORT =========
+  // ================= EXCEL EXPORT =================
   const exportExcel = () => {
     const table = document.getElementById("participantsTable").outerHTML;
     const blob = new Blob([table], { type: "application/vnd.ms-excel" });
@@ -46,11 +61,10 @@ export default function Participants() {
     a.click();
   };
 
-  // ========= PDF EXPORT =========
+  // ================= PDF EXPORT =================
   const exportPDF = () => {
     window.print();
   };
-
 
   return (
     <div className="participant-box">
@@ -117,8 +131,8 @@ export default function Participants() {
                     <td>{row.formNo}</td>
                     <td>{row.name}</td>
                     <td>{row.father}</td>
-                    <td>{row.aadhaar}</td>
-                    <td>{row.phone}</td>
+                    <td>{maskAadhaar(row.aadhaar)}</td>
+                    <td>{maskPhone(row.phone)}</td>
                     <td>{row.age}</td>
                     <td>{row.ageGroup}</td>
                     <td>{row.competition}</td>

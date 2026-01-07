@@ -19,20 +19,27 @@ export default function Register() {
   });
 
   const [ageError, setAgeError] = useState("");
+  const [loading, setLoading] = useState(false); // 🔒 submit lock
 
+  // ---------------------------
+  // Handle Input Change
+  // ---------------------------
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [name]: value
-    });
+    }));
 
     if (name === "dob") {
       calculateAgeAndGroup(value);
     }
   };
 
+  // ---------------------------
+  // Age Calculation
+  // ---------------------------
   const calculateAgeAndGroup = (dob) => {
     const birthDate = new Date(dob);
     const today = new Date();
@@ -47,7 +54,6 @@ export default function Register() {
     let group = "";
     let fees = "";
 
-    // ✅ AGE VALIDATION
     if (age >= 8 && age <= 12) {
       group = "Group A";
       fees = 350;
@@ -57,13 +63,12 @@ export default function Register() {
     } else if (age >= 18 && age <= 22) {
       group = "Group C";
       fees = 350;
-    } else if (age >= 23 && age <= 45) {
+    } else if (age >= 23 && age <= 70) {
       group = "Group D";
       fees = 500;
     } else {
-      // ❌ INVALID AGE
       setAgeError("❌ Not Participating in this Competition");
-      setFormData(prev => ({
+      setFormData((prev) => ({
         ...prev,
         age: age,
         ageGroup: "",
@@ -72,9 +77,8 @@ export default function Register() {
       return;
     }
 
-    // ✅ VALID AGE
     setAgeError("");
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       age: age,
       ageGroup: group,
@@ -82,36 +86,41 @@ export default function Register() {
     }));
   };
 
+  // ---------------------------
+  // Submit Form
+  // ---------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // ❌ AGE ERROR BLOCK
+    if (loading) return; // 🚫 double click block
+
     if (ageError) {
       alert("यह आयु इस प्रतियोगिता के लिए मान्य नहीं है ❌");
       return;
     }
 
+    const aadhaar = formData.aadhaar.trim();
+    if (aadhaar.length !== 12 || !/^[0-9]{12}$/.test(aadhaar)) {
+      alert("आधार नंबर 12 अंकों का होना चाहिए ❗");
+      return;
+    }
+
     try {
-      // Aadhaar Validation
-      const aadhaar = formData.aadhaar.trim();
+      setLoading(true); // 🔒 button disable
 
-      if (aadhaar.length !== 12 || !/^[0-9]+$/.test(aadhaar)) {
-        alert("आधार नंबर 12 अंकों का होना चाहिए ❗");
-        return;
-      }
-
-      const scriptURL =
-        "https://script.google.com/macros/s/AKfycbzVOFcgoFN6aRIG9iv_7VObJVtrZrj2wuMmrC2azUWvd21cNuy91J2pSPuZbjU2hHe5/exec";
-
-      const response = await fetch(scriptURL, {
-        method: "POST",
-        body: JSON.stringify(formData)
-      });
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbybdpcSfdkxIjPVtRlNAyMPoPg4DQ_XTCTdZ-VvzNdURKCWMyrdGvCFHOwegZAz2_zu/exec",
+        {
+          method: "POST",
+          body: JSON.stringify(formData)
+        }
+      );
 
       const result = await response.json();
 
       if (result.success) {
         alert("पंजीकरण सफल 🎉 आपका फॉर्म नंबर है: " + result.formNo);
+
         navigate("/payment", {
           state: {
             formNo: result.formNo,
@@ -124,9 +133,14 @@ export default function Register() {
       }
     } catch (err) {
       alert("Network Error ❗");
+    } finally {
+      setLoading(false); // 🔓 unlock after response
     }
   };
 
+  // ---------------------------
+  // JSX
+  // ---------------------------
   return (
     <div className="registration-box">
       <h1>गुलशन-ए-रज़ा सोसाइटी</h1>
@@ -142,9 +156,9 @@ export default function Register() {
         <label>आधार कार्ड नंबर</label>
         <input
           name="aadhaar"
-          required
           maxLength="12"
           pattern="[0-9]{12}"
+          required
           onChange={handleChange}
         />
 
@@ -152,7 +166,10 @@ export default function Register() {
         <input type="date" name="dob" required onChange={handleChange} />
 
         <label>आयु</label>
-        <input value={formData.age} readOnly />
+        <input
+          value={formData.age ? `${formData.age} Years` : ""}
+          readOnly
+        />
 
         <label>आयु समूह</label>
         <input value={formData.ageGroup} readOnly />
@@ -178,8 +195,16 @@ export default function Register() {
         <label>पंजीकरण शुल्क</label>
         <input value={formData.fees} readOnly />
 
-        <button type="submit" className="register-btn">
-          पंजीकरण जमा करें
+        <button
+          type="submit"
+          className="register-btn"
+          disabled={loading}
+          style={{
+            opacity: loading ? 0.6 : 1,
+            cursor: loading ? "not-allowed" : "pointer"
+          }}
+        >
+          {loading ? "Submitting..." : "पंजीकरण जमा करें"}
         </button>
       </form>
     </div>

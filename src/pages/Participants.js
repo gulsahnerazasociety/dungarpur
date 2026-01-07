@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
+import { Link } from "react-router-dom";
 
 export default function Participants() {
-
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -25,29 +25,36 @@ export default function Participants() {
   // ================= MASK HELPERS =================
   const maskPhone = (phone) => {
     if (!phone) return "";
-    const str = phone.toString();
-    return "XXXXXX" + str.slice(-4);
+    return "XXXXXX" + phone.toString().slice(-4);
   };
 
   const maskAadhaar = (aadhaar) => {
     if (!aadhaar) return "";
-    const str = aadhaar.toString();
-    return "XXXXXXXX" + str.slice(-4);
+    return "XXXXXXXX" + aadhaar.toString().slice(-4);
   };
 
-  // ================= FILTER =================
-  const filtered = data.filter((item) => {
-    return (
-      (item.name?.toLowerCase().includes(search.toLowerCase()) ||
-        item.formNo?.toLowerCase().includes(search.toLowerCase()) ||
-        String(item.phone || "").includes(search) ||
-        String(item.aadhaar || "").includes(search)) &&
-      (filterGroup === "" || item.ageGroup === filterGroup) &&
-      (filterStatus === "" || item.status === filterStatus)
-    );
-  });
+  // ================= FILTERED DATA (useMemo) =================
+  const filtered = useMemo(() => {
+    return data.filter((item) => {
+      const searchText = search.toLowerCase();
 
-  // ================= EXCEL EXPORT =================
+      const searchMatch =
+        item.name?.toLowerCase().includes(searchText) ||
+        item.formNo?.toLowerCase().includes(searchText) ||
+        String(item.phone || "").includes(searchText) ||
+        String(item.aadhaar || "").includes(searchText);
+
+      const groupMatch =
+        filterGroup === "" || item.ageGroup === filterGroup;
+
+      const statusMatch =
+        filterStatus === "" || item.status === filterStatus;
+
+      return searchMatch && groupMatch && statusMatch;
+    });
+  }, [data, search, filterGroup, filterStatus]);
+
+  // ================= EXPORT =================
   const exportExcel = () => {
     const table = document.getElementById("participantsTable").outerHTML;
     const blob = new Blob([table], { type: "application/vnd.ms-excel" });
@@ -59,12 +66,10 @@ export default function Participants() {
     a.click();
   };
 
-  // ================= PDF EXPORT =================
   const exportPDF = () => window.print();
 
   return (
     <div className="participant-box">
-
       <h1>Registered Participants</h1>
       <p>गुलशन-ए-रज़ा सोसाइटी – Quiz / Islamic Competition</p>
 
@@ -127,53 +132,50 @@ export default function Participants() {
               </thead>
 
               <tbody>
-                {filtered.map((row, i) => (
-                  <tr key={i}>
-                    <td>{row.formNo}</td>
-                    <td>{row.name}</td>
-                    <td>{row.father}</td>
-                    <td>{maskAadhaar(row.aadhaar)}</td>
-                    <td>{maskPhone(row.phone)}</td>
-                    <td>{row.age}</td>
-                    <td>{row.ageGroup}</td>
-                    <td>{row.competition}</td>
-                    <td>₹{row.fees}</td>
+                {filtered.map((row, i) => {
+                  const photoUploaded =
+                    row.photoURL && row.photoURL.trim() !== "";
 
-                    <td
-                      style={{
-                        color: "white",
-                        fontWeight: "bold",
-                        background: row.status === "Paid" ? "green" : "red",
-                        borderRadius: 5,
-                        textAlign: "center"
-                      }}
-                    >
-                      {row.status}
-                    </td>
+                  return (
+                    <tr key={i}>
+                      <td>{row.formNo}</td>
+                      <td>{row.name}</td>
+                      <td>{row.father}</td>
+                      <td>{maskAadhaar(row.aadhaar)}</td>
+                      <td>{maskPhone(row.phone)}</td>
+                      <td>{row.age}</td>
+                      <td>{row.ageGroup}</td>
+                      <td>{row.competition}</td>
+                      <td>₹{row.fees}</td>
 
-                    {/* ✅ PHOTO STATUS */}
-                    <td
-                      style={{
-                        fontWeight: "bold",
-                        color: row.photo ? "green" : "red",
-                        textAlign: "center"
-                      }}
-                    >
-                      {row.photo ? (
-                        <a
-                          href={row.photo}
-                          target="_blank"
-                          rel="noreferrer"
-                          style={{ color: "green" }}
-                        >
-                          Photo Uploaded ✅
-                        </a>
-                      ) : (
-                        "Not Uploaded ❌"
-                      )}
-                    </td>
-                  </tr>
-                ))}
+                      <td
+                        style={{
+                          color: "white",
+                          fontWeight: "bold",
+                          background:
+                            row.status === "Paid" ? "green" : "red",
+                          borderRadius: 5,
+                          textAlign: "center"
+                        }}
+                      >
+                        {row.status}
+                      </td>
+
+                      {/* PHOTO STATUS */}
+                      <td style={{ fontWeight: "bold", textAlign: "center" }}>
+                        {photoUploaded ? (
+                          <span style={{ color: "green" }}>
+                            Photo Uploaded ✅
+                          </span>
+                        ) : (
+                          <Link to="/admit-card" style={{ color: "red" }}>
+                            Not Uploaded ❌
+                          </Link>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>

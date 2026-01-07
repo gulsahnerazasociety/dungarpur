@@ -71,6 +71,7 @@ export default function Participants() {
 
       <h1>Registered Participants</h1>
       <p>गुलशन-ए-रज़ा सोसाइटी – Quiz / Islamic Competition</p>
+      <p style={{color:"red"}}>नोट :- यदि किसी का पेमेन्‍ट स्‍टेटस गलत है तो वो अपनी रसीद व्‍हाटस नम्‍बर 94147 23722 पर भेज सकता है</p>
 
       {loading ? (
         <h3>Loading...</h3>

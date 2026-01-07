@@ -7,7 +7,7 @@ export default function AdmitCard(){
   const [message, setMessage] = useState("");
 
   const scriptURL =
-    "https://script.google.com/macros/s/AKfycbwxYHIUhx1Z8az8vSXPKUCqJ05d4863oFJQie2UplkryYiKywYxy0jIMHYQijjUVvvo/exec";
+    "https://script.google.com/macros/s/AKfycbwjnwHZHGT0uOLlMwBM3BOQ1PpBU74StwdPeju2jqhGDKjlKcwM-8K939s1-HhA5xE8/exec";
 
   // 🔒 Admit Card Open Date (CHANGE HERE)
   const ADMIT_OPEN_DATE = new Date("2026-01-16"); // YYYY-MM-DD
@@ -93,7 +93,7 @@ export default function AdmitCard(){
             <p><b>Group:</b> {data.ageGroup}</p>
             <p><b>Competition:</b> {data.competition}</p>
             <p className="paid">Status: PAID ✔️</p>
-            <p className="paid"><b>Exam Center :</b> Dungarpur </p>
+            <p className="paid"><b>Exam Center :</b> {data.examcent}</p>
           </div>
 
           <button onClick={()=>window.print()}>

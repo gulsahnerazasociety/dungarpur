@@ -1,5 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+const SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbwS370s2D55qZLrJDLHoDCCrIEeT39NwMKbnRnLDOD1n7ZEMFBA9futVbg35vdf52fD/exec";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -19,6 +22,54 @@ export default function Register() {
   });
 
   const [ageError, setAgeError] = useState("");
+  const [regAllowed, setRegAllowed] = useState(false);
+  const [regMsg, setRegMsg] = useState("Checking registration status...");
+
+  // 🔹 CHECK REGISTRATION DATE FROM GOOGLE SHEET
+useEffect(() => {
+  const checkRegistrationDate = async () => {
+    try {
+      const res = await fetch(
+        `${SCRIPT_URL}?action=registrationDates`
+      );
+
+      const data = await res.json();
+
+      if (!data.success) {
+        setRegMsg("Registration information unavailable ❌");
+        return;
+      }
+
+      const today = new Date();
+      const start = new Date(data.startDate);
+      const end = new Date(data.endDate);
+
+      if (isNaN(start) || isNaN(end)) {
+        setRegMsg("Registration dates invalid ❌");
+        return;
+      }
+
+      if (today >= start && today <= end) {
+        setRegAllowed(true);
+        setRegMsg("");
+      } else {
+        setRegAllowed(false);
+        setRegMsg(
+          `पंजीकरण बंद है ❌  
+पंजीकरण की तिथि: 
+${start.toLocaleDateString("hi-IN")} से ${end.toLocaleDateString("hi-IN")}`
+        );
+      }
+    } catch (err) {
+      setRegAllowed(false);
+      setRegMsg("Server error ❌ कृपया बाद में प्रयास करें");
+    }
+  };
+
+  checkRegistrationDate();
+}, []);
+
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,7 +98,6 @@ export default function Register() {
     let group = "";
     let fees = "";
 
-    // ✅ AGE VALIDATION
     if (age >= 8 && age <= 12) {
       group = "Group A";
       fees = 350;
@@ -61,49 +111,46 @@ export default function Register() {
       group = "Group D";
       fees = 500;
     } else {
-      // ❌ INVALID AGE
       setAgeError("❌ Not Participating in this Competition");
       setFormData(prev => ({
         ...prev,
-        age: age,
+        age,
         ageGroup: "",
         fees: ""
       }));
       return;
     }
 
-    // ✅ VALID AGE
     setAgeError("");
     setFormData(prev => ({
       ...prev,
-      age: age,
+      age,
       ageGroup: group,
-      fees: fees
+      fees
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // ❌ AGE ERROR BLOCK
+    if (!regAllowed) {
+      alert("पंजीकरण की अवधि समाप्त हो चुकी है ❌");
+      return;
+    }
+
     if (ageError) {
       alert("यह आयु इस प्रतियोगिता के लिए मान्य नहीं है ❌");
       return;
     }
 
+    const aadhaar = formData.aadhaar.trim();
+    if (aadhaar.length !== 12 || !/^[0-9]+$/.test(aadhaar)) {
+      alert("आधार नंबर 12 अंकों का होना चाहिए ❗");
+      return;
+    }
+
     try {
-      // Aadhaar Validation
-      const aadhaar = formData.aadhaar.trim();
-
-      if (aadhaar.length !== 12 || !/^[0-9]+$/.test(aadhaar)) {
-        alert("आधार नंबर 12 अंकों का होना चाहिए ❗");
-        return;
-      }
-
-      const scriptURL =
-        "https://script.google.com/macros/s/AKfycbzVOFcgoFN6aRIG9iv_7VObJVtrZrj2wuMmrC2azUWvd21cNuy91J2pSPuZbjU2hHe5/exec";
-
-      const response = await fetch(scriptURL, {
+      const response = await fetch(SCRIPT_URL, {
         method: "POST",
         body: JSON.stringify(formData)
       });
@@ -132,55 +179,60 @@ export default function Register() {
       <h1>गुलशन-ए-रज़ा सोसाइटी</h1>
       <h2>प्रतियोगिता पंजीकरण फॉर्म</h2>
 
+      {!regAllowed && (
+        <p style={{ color: "red", fontWeight: "bold" }}>{regMsg}</p>
+      )}
+
       <form onSubmit={handleSubmit}>
-        <label>विद्यार्थी का नाम</label>
-        <input name="name" required onChange={handleChange} />
+        <fieldset disabled={!regAllowed} style={{ border: "none", padding: 0 }}>
+          
+          <label>विद्यार्थी का नाम</label>
+          <input name="name" required onChange={handleChange} />
 
-        <label>पिता / अभिभावक का नाम</label>
-        <input name="father" required onChange={handleChange} />
+          <label>पिता / अभिभावक का नाम</label>
+          <input name="father" required onChange={handleChange} />
 
-        <label>आधार कार्ड नंबर</label>
-        <input
-          name="aadhaar"
-          required
-          maxLength="12"
-          pattern="[0-9]{12}"
-          onChange={handleChange}
-        />
+          <label>आधार कार्ड नंबर</label>
+          <input
+            name="aadhaar"
+            required
+            maxLength="12"
+            pattern="[0-9]{12}"
+            onChange={handleChange}
+          />
 
-        <label>जन्म तिथि (DOB)</label>
-        <input type="date" name="dob" required onChange={handleChange} />
+          <label>जन्म तिथि (DOB)</label>
+          <input type="date" name="dob" required onChange={handleChange} />
 
-        <label>आयु</label>
-        <input value={formData.age} readOnly />
+          <label>आयु</label>
+          <input value={formData.age} readOnly />
 
-        <label>आयु समूह</label>
-        <input value={formData.ageGroup} readOnly />
+          <label>आयु समूह</label>
+          <input value={formData.ageGroup} readOnly />
 
-        {ageError && (
-          <p style={{ color: "red", fontWeight: "bold" }}>
-            {ageError}
-          </p>
-        )}
+          {ageError && (
+            <p style={{ color: "red", fontWeight: "bold" }}>{ageError}</p>
+          )}
 
-        <label>मोबाइल नंबर</label>
-        <input name="phone" required onChange={handleChange} />
+          <label>मोबाइल नंबर</label>
+          <input name="phone" required onChange={handleChange} />
 
-        <label>पता</label>
-        <textarea name="address" rows="3" required onChange={handleChange} />
+          <label>पता</label>
+          <textarea name="address" rows="3" required onChange={handleChange} />
 
-        <label>प्रतियोगिता</label>
-        <select name="competition" required onChange={handleChange}>
-          <option value="">चुनें</option>
-          <option>कुरान, हदीस व दीनी मालुमात प्रश्नोत्तरी</option>
-        </select>
+          <label>प्रतियोगिता</label>
+          <select name="competition" required onChange={handleChange}>
+            <option value="">चुनें</option>
+            <option>कुरान, हदीस व दीनी मालुमात प्रश्नोत्तरी</option>
+          </select>
 
-        <label>पंजीकरण शुल्क</label>
-        <input value={formData.fees} readOnly />
+          <label>पंजीकरण शुल्क</label>
+          <input value={formData.fees} readOnly />
 
-        <button type="submit" className="register-btn">
-          पंजीकरण जमा करें
-        </button>
+          <button type="submit" className="register-btn">
+            पंजीकरण जमा करें
+          </button>
+        </fieldset>
       </form>
     </div>
   );

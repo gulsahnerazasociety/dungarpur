@@ -8,6 +8,7 @@ import CompetitionInfo from "./pages/CompetitionInfo";
 import Admin from "./pages/Admin";
 import Participants from "./pages/Participants";
 import AdmitCard from "./pages/AdmitCard";
+import UploadDocuments from "./pages/UploadDocuments"
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <li><Link to="/register">Register</Link></li>
           <li><Link to="/payment">Payment</Link></li>
           <li><Link to="/receipt">Receipt</Link></li>
+          <li><Link to="/upload-documents">Photo & Docs Upload</Link></li>
           <li><Link to="/admin">Admin</Link></li>
         </ul>
       </nav>
@@ -44,6 +46,7 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/participants" element={<Participants />} />
         <Route path="/admit-card" element={<AdmitCard />} />
+        <Route path="/upload-documents" element={<UploadDocuments />} />
 
 
       </Routes>

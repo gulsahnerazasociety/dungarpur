@@ -2,6 +2,7 @@ import { useEffect, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 
 export default function Participants() {
+
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -14,8 +15,8 @@ export default function Participants() {
   // ================= FETCH DATA =================
   useEffect(() => {
     fetch(sheetURL)
-      .then((res) => res.json())
-      .then((result) => {
+      .then(res => res.json())
+      .then(result => {
         if (result.success) setData(result.data);
         setLoading(false);
       })
@@ -25,24 +26,25 @@ export default function Participants() {
   // ================= MASK HELPERS =================
   const maskPhone = (phone) => {
     if (!phone) return "";
-    return "XXXXXX" + phone.toString().slice(-4);
+    const str = phone.toString();
+    return "XXXXXX" + str.slice(-4);
   };
 
   const maskAadhaar = (aadhaar) => {
     if (!aadhaar) return "";
-    return "XXXXXXXX" + aadhaar.toString().slice(-4);
+    const str = aadhaar.toString();
+    return "XXXXXXXX" + str.slice(-4);
   };
 
-  // ================= FILTERED DATA (useMemo) =================
+  // ================= FILTER (useMemo) =================
   const filtered = useMemo(() => {
     return data.filter((item) => {
-      const searchText = search.toLowerCase();
 
-      const searchMatch =
-        item.name?.toLowerCase().includes(searchText) ||
-        item.formNo?.toLowerCase().includes(searchText) ||
-        String(item.phone || "").includes(searchText) ||
-        String(item.aadhaar || "").includes(searchText);
+      const textMatch =
+        item.name?.toLowerCase().includes(search.toLowerCase()) ||
+        item.formNo?.toLowerCase().includes(search.toLowerCase()) ||
+        String(item.phone || "").includes(search) ||
+        String(item.aadhaar || "").includes(search);
 
       const groupMatch =
         filterGroup === "" || item.ageGroup === filterGroup;
@@ -50,7 +52,7 @@ export default function Participants() {
       const statusMatch =
         filterStatus === "" || item.status === filterStatus;
 
-      return searchMatch && groupMatch && statusMatch;
+      return textMatch && groupMatch && statusMatch;
     });
   }, [data, search, filterGroup, filterStatus]);
 
@@ -59,7 +61,6 @@ export default function Participants() {
     const table = document.getElementById("participantsTable").outerHTML;
     const blob = new Blob([table], { type: "application/vnd.ms-excel" });
     const url = URL.createObjectURL(blob);
-
     const a = document.createElement("a");
     a.href = url;
     a.download = "participants.xls";
@@ -70,6 +71,7 @@ export default function Participants() {
 
   return (
     <div className="participant-box">
+
       <h1>Registered Participants</h1>
       <p>गुलशन-ए-रज़ा सोसाइटी – Quiz / Islamic Competition</p>
 
@@ -133,8 +135,11 @@ export default function Participants() {
 
               <tbody>
                 {filtered.map((row, i) => {
+
+                  // ✅ PHOTO LOGIC (FINAL)
                   const photoUploaded =
-                    row.photoURL && row.photoURL.trim() !== "";
+                    (row.photo && row.photo.toString().trim() !== "") ||
+                    row.DocsUploaded === "YES";
 
                   return (
                     <tr key={i}>
@@ -152,8 +157,7 @@ export default function Participants() {
                         style={{
                           color: "white",
                           fontWeight: "bold",
-                          background:
-                            row.status === "Paid" ? "green" : "red",
+                          background: row.status === "Paid" ? "green" : "red",
                           borderRadius: 5,
                           textAlign: "center"
                         }}
@@ -161,7 +165,6 @@ export default function Participants() {
                         {row.status}
                       </td>
 
-                      {/* PHOTO STATUS */}
                       <td style={{ fontWeight: "bold", textAlign: "center" }}>
                         {photoUploaded ? (
                           <span style={{ color: "green" }}>

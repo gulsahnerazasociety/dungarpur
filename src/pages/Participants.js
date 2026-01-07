@@ -171,7 +171,7 @@ export default function Participants() {
                             Photo Uploaded ✅
                           </span>
                         ) : (
-                          <Link to="/admit-card" style={{ color: "red" }}>
+                          <Link to="/upload-documents" style={{ color: "red" }}>
                             Not Uploaded ❌
                           </Link>
                         )}

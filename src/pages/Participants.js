@@ -9,7 +9,7 @@ export default function Participants() {
   const [filterStatus, setFilterStatus] = useState("");
 
   const sheetURL =
-    "https://script.google.com/macros/s/AKfycbwNpFdyasM93VN5kMUbCZ1L9Y_qpB76GqfZyJQf-GOyNUI8evVRvBhRUrNEPRYYcW46/exec?action=getAll";
+    "https://script.google.com/macros/s/AKfycbwXcIMjOOhmX2VtIKFQFNZQiXU_ZiwQ10qhd315BPDzo4j8wP3O2uyqfzM4cxNTbxye/exec?action=getAll";
 
   // ================= FETCH DATA =================
   useEffect(() => {
@@ -26,14 +26,12 @@ export default function Participants() {
   const maskPhone = (phone) => {
     if (!phone) return "";
     const str = phone.toString();
-    if (str.length < 4) return str;
     return "XXXXXX" + str.slice(-4);
   };
 
   const maskAadhaar = (aadhaar) => {
     if (!aadhaar) return "";
     const str = aadhaar.toString();
-    if (str.length < 4) return str;
     return "XXXXXXXX" + str.slice(-4);
   };
 
@@ -62,29 +60,31 @@ export default function Participants() {
   };
 
   // ================= PDF EXPORT =================
-  const exportPDF = () => {
-    window.print();
-  };
+  const exportPDF = () => window.print();
 
   return (
     <div className="participant-box">
 
       <h1>Registered Participants</h1>
       <p>गुलशन-ए-रज़ा सोसाइटी – Quiz / Islamic Competition</p>
-      <p style={{color:"red"}}>नोट :- यदि किसी का पेमेन्‍ट स्‍टेटस गलत है तो वो अपनी रसीद व्‍हाटस नम्‍बर 94147 23722 पर भेज सकता है</p>
+
+      <p style={{ color: "red" }}>
+        नोट :- यदि किसी का पेमेन्‍ट स्‍टेटस गलत है तो रसीद WhatsApp करें:
+        <b> 94147 23722</b>
+      </p>
 
       {loading ? (
         <h3>Loading...</h3>
       ) : (
         <>
-          {/* Search */}
+          {/* SEARCH */}
           <input
             className="search"
             placeholder="Search by Name / Form No / Phone / Aadhaar"
             onChange={(e) => setSearch(e.target.value)}
           />
 
-          {/* Group Filter */}
+          {/* FILTERS */}
           <select className="search" onChange={(e) => setFilterGroup(e.target.value)}>
             <option value="">All Groups</option>
             <option value="Group A">Group A</option>
@@ -93,22 +93,21 @@ export default function Participants() {
             <option value="Group D">Group D</option>
           </select>
 
-          {/* Status Filter */}
           <select className="search" onChange={(e) => setFilterStatus(e.target.value)}>
             <option value="">All Status</option>
             <option value="Paid">Paid</option>
             <option value="Pending">Pending</option>
           </select>
 
-          {/* Export Buttons */}
-          <div style={{ marginTop: "10px" }}>
+          {/* EXPORT */}
+          <div style={{ marginTop: 10 }}>
             <button onClick={exportExcel}>⬇️ Export Excel</button>
-            <button onClick={exportPDF} style={{ marginLeft: "10px" }}>
+            <button onClick={exportPDF} style={{ marginLeft: 10 }}>
               ⬇️ Export PDF
             </button>
           </div>
 
-          {/* Table */}
+          {/* TABLE */}
           <div className="table-area">
             <table id="participantsTable">
               <thead>
@@ -123,6 +122,7 @@ export default function Participants() {
                   <th>Competition</th>
                   <th>Fees</th>
                   <th>Status</th>
+                  <th>Photo</th>
                 </tr>
               </thead>
 
@@ -143,14 +143,34 @@ export default function Participants() {
                       style={{
                         color: "white",
                         fontWeight: "bold",
-                        background:
-                          row.status === "Paid" ? "green" : "red",
-                        padding: "5px",
-                        borderRadius: "5px",
+                        background: row.status === "Paid" ? "green" : "red",
+                        borderRadius: 5,
                         textAlign: "center"
                       }}
                     >
                       {row.status}
+                    </td>
+
+                    {/* ✅ PHOTO STATUS */}
+                    <td
+                      style={{
+                        fontWeight: "bold",
+                        color: row.photo ? "green" : "red",
+                        textAlign: "center"
+                      }}
+                    >
+                      {row.photo ? (
+                        <a
+                          href={row.photo}
+                          target="_blank"
+                          rel="noreferrer"
+                          style={{ color: "green" }}
+                        >
+                          Photo Uploaded ✅
+                        </a>
+                      ) : (
+                        "Not Uploaded ❌"
+                      )}
                     </td>
                   </tr>
                 ))}

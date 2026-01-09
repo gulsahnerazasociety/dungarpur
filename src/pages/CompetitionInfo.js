@@ -15,10 +15,10 @@ export default function CompetitionInfo() {
       <section className="card">
         <h2>📚 आयु वर्ग (Age Group)</h2>
         <div className="grid">
-          <span>🟢 08 – 12 वर्ष</span>
-          <span>🟢 13 – 17 वर्ष</span>
-          <span>🟢 18 – 22 वर्ष</span>
-          <span>🟠 23 – 70 वर्ष</span>
+          <span>Part A : 🟢 08 – 12 वर्ष</span>
+          <span>Part B : 🟢 13 – 17 वर्ष</span>
+          <span>Part C : 🟢 18 – 22 वर्ष</span>
+          <span>Part D : 🟠 23 – 70 वर्ष</span>
         </div>
       </section>
 
@@ -35,31 +35,39 @@ export default function CompetitionInfo() {
       <section className="card">
         <h2>📝 इम्तिहान पैटर्न</h2>
         <ul>
-          <li>100 प्रश्न (हर प्रश्न 1 अंक)</li>
-          <li>Syllabus आधारित प्रश्नपत्र</li>
-          <li>15 दिन की तैयारी का समय</li>
-          <li>बेहतर वातावरण और Proper Management</li>
-          <li>Exam Dungarpur शहर में आयोजित</li>
+          <li>100 Objective प्रश्न (हर प्रश्न 1 अंक)</li>
+          <li>Question Paper केवल हिंदी भाषा में</li>
+          <li>4 Options होंगे – A, B, C, D</li>
+          <li>15–20 दिन पहले Syllabus/Book दी जाएगी</li>
+          <li>Paper उसी Book/Syllabus से आएगा</li>
+          <li>Transparency हेतु YouTube Live की कोशिश</li>
+          <li>Exam केवल Dungarpur District Level</li>
         </ul>
       </section>
 
       {/* PRIZES */}
       <section className="card prize">
         <h2>🏆 पुरस्कार</h2>
+        <h4>🔹 Part A (7 – 22 साल)</h4>
         <ul>
-          <li>🥇 FREE UMRAH (शर्तों के साथ)</li>
+          <li>🥇 Umrah – 3 Members (बच्चे के साथ वाल्देन)</li>
           <li>🥈 Laptop</li>
           <li>🥉 Tablet</li>
-          <li>🏅 Bicycle</li>
-          <li>💵 ₹3100</li>
-          <li>🎁 ₹1100</li>
+          <li>🏅 Cycle</li>
+          <li>💰 ₹3,100</li>
+          <li>💰 6th–10th: ₹1,100</li>
+        </ul>
+
+        <h4>🔹 Part B (22 साल + 1 महीना)</h4>
+        <ul>
+          <li>🥇 Umrah – 2 Members (1 के साथ 1 Free)</li>
         </ul>
       </section>
 
       {/* DATES */}
       <section className="card date-card">
         <h2>📅 प्रतियोगिता अवधि</h2>
-        <p>🗓 Sunday 28 December 2025 से 15 January 2026 तक</p>
+        <p>🗓 Sunday 28 December 2025 से 31 January 2026 तक</p>
 
         <div className="admit-date">
           🎫 <b>Exam and Admit Card जारी होने की तिथि आपको इस वेबसाईट पर जारी कर दी जाएगी</b><br/>
@@ -71,9 +79,10 @@ export default function CompetitionInfo() {
       <section className="card">
         <h2>📌 महत्वपूर्ण नियम</h2>
         <ul>
-          <li>Registration के बाद फीस Refund नहीं होगी</li>
-          <li>उम्र के अनुसार Group तय होगा</li>
-          <li>23 – 45 Group के लिए Special Umrah Draw</li>
+          <li>Registration Fee Refund नहीं होगी</li>
+          <li>Age Group अनुसार अलग-अलग Exam होगा</li>
+          <li>बराबर अंक आने पर 20 Marks का Extra Test (20 मिनट)</li>
+          <li>Extra Test से Final 1st Position तय होगी</li>
         </ul>
       </section>
 

@@ -40,51 +40,69 @@ export default function Register() {
   // ---------------------------
   // Age Calculation
   // ---------------------------
-  const calculateAgeAndGroup = (dob) => {
-    const birthDate = new Date(dob);
-    const today = new Date();
+ const calculateAgeAndGroup = (dob) => {
+  const birthDate = new Date(dob);
+  const today = new Date();
 
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const month = today.getMonth() - birthDate.getMonth();
+  let years = today.getFullYear() - birthDate.getFullYear();
+  let months = today.getMonth() - birthDate.getMonth();
+  let days = today.getDate() - birthDate.getDate();
 
-    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
+  // 🔧 दिन adjust
+  if (days < 0) {
+    months--;
+    const prevMonth = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      0
+    ).getDate();
+    days += prevMonth;
+  }
 
-    let group = "";
-    let fees = "";
+  // 🔧 महीना adjust
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
 
-    if (age >= 8 && age <= 12) {
-      group = "Group A";
-      fees = 350;
-    } else if (age >= 13 && age <= 17) {
-      group = "Group B";
-      fees = 350;
-    } else if (age >= 18 && age <= 22) {
-      group = "Group C";
-      fees = 350;
-    } else if (age >= 23 && age <= 70) {
-      group = "Group D";
-      fees = 500;
-    } else {
-      setAgeError("❌ Not Participating in this Competition");
-      setFormData((prev) => ({
-        ...prev,
-        age: age,
-        ageGroup: "",
-        fees: ""
-      }));
-      return;
-    }
+  // 🔹 Running age (Indian rule)
+  const runningAge = years + 1;
 
-    setAgeError("");
+  let group = "";
+  let fees = "";
+
+  if (runningAge >= 8 && runningAge <= 12) {
+  group = "Group A (8–12 वर्ष)";
+  fees = 350;
+} else if (runningAge >= 13 && runningAge <= 17) {
+  group = "Group B (13–17 वर्ष)";
+  fees = 350;
+} else if (runningAge >= 18 && runningAge <= 22) {
+  group = "Group C (18–22 वर्ष)";
+  fees = 350;
+} else if (runningAge >= 23 && runningAge <= 70) {
+  group = "Group D (23–70 वर्ष)";
+  fees = 500;
+} else {
+    setAgeError("❌ Not Participating in this Competition");
     setFormData((prev) => ({
       ...prev,
-      age: age,
-      ageGroup: group,
-      fees: fees
+      age: "",
+      ageGroup: "",
+      fees: ""
     }));
-  };
+    return;
+  }
+
+  setAgeError("");
+  setFormData((prev) => ({
+    ...prev,
+    age: `${years} वर्ष ${months} महीने ${days} दिन`,
+    ageGroup: group,
+    fees: fees
+  }));
+};
+
 
   // ---------------------------
   // Submit Form
@@ -167,9 +185,12 @@ export default function Register() {
 
         <label>आयु</label>
         <input
-          value={formData.age ? `${formData.age} Years` : ""}
+          value={formData.age ? `${formData.age}` : ""}
           readOnly
         />
+        <p style={{ fontSize: "12px", color: "gray" }}>
+          *आयु गणना चल रहे वर्ष के अनुसार की गई है
+        </p>
 
         <label>आयु समूह</label>
         <input value={formData.ageGroup} readOnly />

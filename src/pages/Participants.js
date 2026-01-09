@@ -122,9 +122,10 @@ export default function Participants() {
                   <th>Form No</th>
                   <th>Name</th>
                   <th>Father</th>
+                  <th>Age</th>
+                  <th>Address</th>
                   <th>Aadhaar</th>
                   <th>Phone</th>
-                  <th>Age</th>
                   <th>Group</th>
                   <th>Competition</th>
                   <th>Fees</th>
@@ -146,9 +147,10 @@ export default function Participants() {
                       <td>{row.formNo}</td>
                       <td>{row.name}</td>
                       <td>{row.father}</td>
+                      <td>{row.age}</td>
+                      <td>{row.address}</td>
                       <td>{maskAadhaar(row.aadhaar)}</td>
                       <td>{maskPhone(row.phone)}</td>
-                      <td>{row.age}</td>
                       <td>{row.ageGroup}</td>
                       <td>{row.competition}</td>
                       <td>₹{row.fees}</td>

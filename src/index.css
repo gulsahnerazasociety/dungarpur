@@ -694,3 +694,289 @@ ul li{
   }
 }
 
+/* this is admit card css */
+/* ====== GENERAL ====== */
+.admit-box {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 15px;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  color: #111;
+}
+
+.admit-box h1 {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.admit-box p {
+  text-align: center;
+  color: #555;
+}
+
+/* ====== INPUT AREA ====== */
+.admit-box input {
+  width: 100%;
+  max-width: 350px;
+  display: block;
+  margin: 15px auto;
+  padding: 10px;
+  font-size: 15px;
+}
+
+.admit-box button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 18px;
+  background: #0b5ed7;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.admit-box button:hover {
+  background: #084298;
+}
+
+.error {
+  text-align: center;
+  color: red;
+  font-weight: 600;
+}
+
+/* ====== ADMIT CARD ====== */
+.admit-wrapper {
+  margin-top: 20px;
+  border: 2px solid #000;
+  padding: 12px;
+  background: #fff;
+}
+
+/* ====== HEADER ====== */
+.admit-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #000;
+  padding-bottom: 10px;
+}
+
+.logos {
+  width: 80px;
+}
+
+.title {
+  text-align: center;
+  flex: 1;
+}
+
+.title h1 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.title h3 {
+  font-size: 15px;
+  margin: 4px 0;
+}
+
+.sub {
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.qr-box {
+  text-align: center;
+}
+
+.qr-text {
+  font-size: 11px;
+  margin-top: 3px;
+}
+
+/* ====== INFO BAR ====== */
+.info-bar {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #000;
+  padding: 6px 0;
+  font-size: 14px;
+}
+
+/* ====== BODY ====== */
+.admit-body {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+/* LEFT */
+.left {
+  flex: 2;
+  font-size: 14px;
+}
+
+.left p {
+  margin: 5px 0;
+}
+
+.paid {
+  margin-top: 10px;
+  color: green;
+  font-weight: bold;
+}
+
+/* RIGHT */
+.right {
+  flex: 1;
+  text-align: center;
+}
+
+.photo {
+  width: 120px;
+  height: 150px;
+  object-fit: cover;
+  border: 1px solid #000;
+}
+
+.sign-box {
+  margin-top: 30px;
+  border-top: 1px solid #000;
+  padding-top: 5px;
+  font-size: 13px;
+}
+
+/* ====== FOOTER ====== */
+.admit-footer {
+  margin-top: 10px;
+  border-top: 1px solid #000;
+  padding-top: 6px;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* ====== PRINT BUTTON ====== */
+.print-btn {
+  margin-top: 15px;
+  background: #198754;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 600px) {
+  .admit-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .info-bar {
+    flex-direction: column;
+    gap: 4px;
+    font-size: 13px;
+  }
+
+  .admit-body {
+    flex-direction: column;
+  }
+
+  .photo {
+    margin-top: 10px;
+  }
+}
+
+/* ====== PRINT SETTINGS ====== */
+@media print {
+  body {
+    margin: 0;
+  }
+
+  .admit-box input,
+  .admit-box button,
+  .error {
+    display: none !important;
+  }
+
+  .admit-wrapper {
+    border: 2px solid #000;
+    page-break-inside: avoid;
+  }
+}
+
+
+/* ====== BASE for very qr code css====== */
+.verify-box {
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 15px;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  text-align: center;
+  color: #111;
+}
+
+.verify-box h1 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+/* ====== STATUS MESSAGE ====== */
+.verify-box p {
+  font-size: 15px;
+  margin: 10px 0;
+}
+
+.verify-box .fake {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+/* ====== VERIFY CARD ====== */
+.verify-card {
+  margin-top: 15px;
+  padding: 15px;
+  border: 2px solid #198754;
+  border-radius: 6px;
+  background: #f8fff9;
+}
+
+.verify-card p {
+  text-align: left;
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+/* ====== VALID TEXT ====== */
+.real {
+  color: #198754;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* ====== PHOTO ====== */
+.verify-photo {
+  width: 120px;
+  height: 150px;
+  object-fit: cover;
+  border: 1px solid #000;
+  margin: 8px auto 12px;
+  display: block;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 480px) {
+  .verify-box {
+    padding: 10px;
+  }
+
+  .verify-box h1 {
+    font-size: 20px;
+  }
+
+  .verify-card p {
+    font-size: 13px;
+  }
+
+  .verify-photo {
+    width: 100px;
+    height: 130px;
+  }
+}

@@ -1,31 +1,37 @@
 import { useState } from "react";
+import { QRCodeSVG } from "qrcode.react";
 
-export default function AdmitCard(){
+
+export default function AdmitCard() {
 
   const [formNo, setFormNo] = useState("");
   const [data, setData] = useState(null);
   const [message, setMessage] = useState("");
 
   const scriptURL =
-    "https://script.google.com/macros/s/AKfycbwjnwHZHGT0uOLlMwBM3BOQ1PpBU74StwdPeju2jqhGDKjlKcwM-8K939s1-HhA5xE8/exec";
+    "https://script.google.com/macros/s/AKfycbwy0SyeywJvofF294F3iSdwEsJaZM3LsnFa_ETCLpuwYoiBejHmMkHK7xm2D-9FnvE/exec";
 
-  // 🔒 Admit Card Open Date (CHANGE HERE)
-  const ADMIT_OPEN_DATE = new Date("2026-01-16"); // YYYY-MM-DD
+  // 🔒 Admit Card Open Date
+  const ADMIT_OPEN_DATE = new Date("2026-02-05");
+
+  // 🔲 QR Value
+  const getQRValue = (data) =>
+    `https://gulshanerazasociety.aetmyweb.com/verify?formNo=${data.formNo}`;
 
   const getAdmit = async () => {
 
-    if(!formNo){
+    if (!formNo) {
       setMessage("❌ कृपया Form Number दर्ज करें");
       return;
     }
 
-    try{
+    try {
       const res = await fetch(
         `${scriptURL}?action=getAdmit&formNo=${formNo}`
       );
       const result = await res.json();
 
-      if(!result.success){
+      if (!result.success) {
         setMessage("❌ रिकॉर्ड नहीं मिला");
         setData(null);
         return;
@@ -33,14 +39,14 @@ export default function AdmitCard(){
 
       // ⏳ Date Check
       const today = new Date();
-      if(today < ADMIT_OPEN_DATE){
+      if (today < ADMIT_OPEN_DATE) {
         setMessage("⏳ Admit Card अभी जारी नहीं हुआ है");
         setData(null);
         return;
       }
 
       // 💰 Payment Check
-      if(result.status.toLowerCase() !== "paid"){
+      if (result.status.toLowerCase() !== "paid") {
         setMessage("❌ आपने अभी तक फीस जमा नहीं की है");
         setData(null);
         return;
@@ -50,7 +56,7 @@ export default function AdmitCard(){
       setData(result);
       setMessage("");
 
-    }catch{
+    } catch {
       setMessage("❌ Server Error, फिर से प्रयास करें");
     }
   };
@@ -64,7 +70,7 @@ export default function AdmitCard(){
       <input
         placeholder="Enter Form Number (ex: GRF-0005)"
         value={formNo}
-        onChange={(e)=>setFormNo(e.target.value)}
+        onChange={(e) => setFormNo(e.target.value)}
       />
 
       <button onClick={getAdmit}>Get Admit Card</button>
@@ -72,31 +78,82 @@ export default function AdmitCard(){
       {message && <p className="error">{message}</p>}
 
       {data && (
-        <div className="admit-card" id="printArea">
-          <h3 style={{color:"red"}}><b>Roll No: </b>{data.rollno}</h3>
-          {/* LOGO */}
-          <img
-            src={process.env.PUBLIC_URL + "/logo.webp"}
-            alt="Logo"
-            className="admit-logo"
-          />
+        <div className="admit-wrapper" id="printArea">
 
-          <h2>गुलशन-ए-रज़ा सोसाइटी, डूंगरपुर</h2>
-          <h3>Quiz & Islamic Competition 2026</h3>
+          {/* HEADER */}
+          <div className="admit-header">
+            <img
+              src="/logo.webp"
+              className="logos"
+              alt="Gulshan-e-Raza Society Logo"
+            />
+            <div className="title">
+              <h1>गुलशन-ए-रज़ा सोसाइटी, डूंगरपुर</h1>
+              <h3>Quiz & Islamic Competition 2026</h3>
+              <p className="sub">ADMIT CARD</p>
+            </div>
+             {/* QR CODE */}
+              <div className="qr-box">
+                <QRCodeSVG
+                  value={getQRValue(data)}
+                  size={90}
+                  includeMargin={true}
+                  aria-label={`Verification QR code for Form Number ${data.formNo}`}
+                />
 
-          <div className="admit-details">
-            <p><b>Form No:</b> {data.formNo}</p>
-            <p><b>Name:</b> {data.name}</p>
-            <p><b>Father:</b> {data.father}</p>
-            <p><b>Address:</b> {data.address}</p>
-            <p><b>Age:</b> {data.age} years</p>
-            <p><b>Group:</b> {data.ageGroup}</p>
-            <p><b>Competition:</b> {data.competition}</p>
-            <p className="paid">Status: PAID ✔️</p>
-            <p className="paid"><b>Exam Center :</b> {data.examcent}</p>
+                <p className="qr-text">Scan for Verification</p>
+              </div>
           </div>
 
-          <button onClick={()=>window.print()}>
+
+          {/* INFO BAR */}
+          <div className="info-bar">
+            <div><b>Form No:</b> {data.formNo}</div>
+            <div><b>Roll No:</b> {data.rollno}</div>
+            <div><b>Group:</b> {data.ageGroup}</div>
+          </div>
+
+          {/* BODY */}
+          <div className="admit-body">
+
+            {/* LEFT */}
+            <div className="left">
+              <p><b>Name:</b> {data.name}</p>
+              <p><b>Father’s Name:</b> {data.father}</p>
+              <p><b>Address:</b> {data.address}</p>
+              <p><b>Age:</b> {data.age}</p>
+              <p><b>Competition:</b> {data.competition}</p>
+              <p><b>Exam Center:</b> {data.examcent}</p>
+              <p className="paid">Status: PAID ✔</p>
+            </div>
+
+            {/* RIGHT */}
+            <div className="right">
+
+              {/* PHOTO */}
+              <img
+                src={data.photo}
+                className="photo"
+                alt={`${data.name} Photograph`}
+              />
+
+             
+
+              {/* SIGN */}
+              <div className="sign-box">
+                <p>Controller of Examination</p>
+              </div>
+
+            </div>
+
+          </div>
+
+          {/* FOOTER */}
+          <div className="admit-footer">
+            <p>📌 Admit Card परीक्षा केंद्र पर लाना अनिवार्य है</p>
+          </div>
+
+          <button onClick={() => window.print()} className="print-btn">
             Print / Download PDF
           </button>
 

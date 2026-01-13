@@ -9,6 +9,7 @@ import Admin from "./pages/Admin";
 import Participants from "./pages/Participants";
 import AdmitCard from "./pages/AdmitCard";
 import UploadDocuments from "./pages/UploadDocuments"
+import VerifyAdmit from "./pages/VerifyAdmit";
 
 function App() {
   return (
@@ -47,7 +48,7 @@ function App() {
         <Route path="/participants" element={<Participants />} />
         <Route path="/admit-card" element={<AdmitCard />} />
         <Route path="/upload-documents" element={<UploadDocuments />} />
-
+        <Route path="/verify" element={<VerifyAdmit />} />
 
       </Routes>
   </HashRouter>

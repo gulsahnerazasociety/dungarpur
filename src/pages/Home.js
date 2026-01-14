@@ -92,6 +92,9 @@ export default function Home() {
         <Link to="/payment" className="big-card">
           💰 Payment / Fees Details
         </Link>
+         <Link to="/view" className="big-card">
+          🧾 आप अपना भरा हुआ फोर्म यहा से निकाल सकते हैा
+        </Link>
       </section>
 
       <footer>

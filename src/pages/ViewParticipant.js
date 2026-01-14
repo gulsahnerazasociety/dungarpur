@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 const API =
-  "https://script.google.com/macros/s/AKfycbzxs4qvSUQ3Z284umiiezn8zIiSp9DhonOhwo-28OkI4ClODTEufkVZPqZ_5EYmIYtW/exec";
+  "https://script.google.com/macros/s/AKfycbyLSS0hpDi5xGPf43Ac-FM4C2TElFEhVcWki5DPLDyRn1qv-ud6xJe5FGcBC_w55zJZ/exec";
 
 // 🔹 Date formatter
 const formatDate = (date) => {
@@ -100,7 +100,7 @@ export default function ViewParticipant() {
               <img src="/logo.webp" className="logos" alt="Society logo" />
 
               <div className="title">
-                <h1>गुलशन-ए-रज़ा सोसाइटी</h1>
+                <h1>गुलशन-ए-रज़ा सोसाइटी, डूंगरपुर</h1>
                 <h3>Quiz & Islamic Competition 2026</h3>
                 <p className="sub">SUBMITTED FORM</p>
               </div>
@@ -133,6 +133,11 @@ export default function ViewParticipant() {
                 <img
                   src={data.photo}
                   alt={`${data.name} photograph`}
+                  onError={(e) => {
+                    e.target.src = "/placeholder.jpg";
+                    console.warn("Photo failed:", data.photo);
+                  }}
+                  style={{ objectFit: "cover" }}
                 />
                 <p>Passport Size Photo</p>
               </div>

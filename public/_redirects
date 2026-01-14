@@ -1,0 +1,5 @@
+# Redirect old domain to new domain
+https://gulshanerazadungarpur.aetmyweb.com/* https://gulshanerazasociety.aetmyweb.com/:splat 301!
+
+# Single page app redirect (HashRouter ke liye)
+/* /index.html 200

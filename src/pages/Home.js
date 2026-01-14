@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
-
+import NoticeBoard from "../components/NoticeBoard";
 export default function Home() {
   return (
     <>
   
       {/* HERO SECTION */}
+
       <section className="hero-section">
 
         <img 
@@ -16,10 +17,10 @@ export default function Home() {
             borderRadius:"50%"
           }}
         />
-
+        
         <h1>गुलशन-ए-रज़ा सोसाइटी</h1>
         <h2>Quiz & Islamic Competition 2026</h2>
-
+{<NoticeBoard />}
         <p>
           शिक्षा • दीन • जागरूकता  
           बच्चों और युवाओं के लिए सुनहरा अवसर!
@@ -30,6 +31,7 @@ export default function Home() {
           <Link to="/receipt" className="btn secondary">Check Receipt</Link>
         </div>
       </section>
+      
       {/* PRIZE SECTION */}
       <section className="info">
         <h2>🎯 प्रतियोगिता के 🏆 पुरस्कार व इनआमात</h2>

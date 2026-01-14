@@ -1,0 +1,41 @@
+.noticeboard {
+  border: 8px solid #dfa427;
+  border-style: double;
+  box-shadow: 0 0.4rem 1.5rem rgba(0, 0, 0, 0.5);
+  background: black;
+  color: white;
+  padding: 10px 5px 30px;
+}
+
+.noticeboard h2 {
+  text-align: center;
+}
+
+.noticeboard h5 {
+  text-align: right;
+  padding-right: 20px;
+}
+
+.console-container {
+  font-size: 18px;
+  min-height: 60px;
+}
+
+.console-underscore {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+.console-container span {
+  white-space: pre-line;
+}

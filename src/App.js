@@ -11,6 +11,7 @@ import AdmitCard from "./pages/AdmitCard";
 import UploadDocuments from "./pages/UploadDocuments"
 import VerifyAdmit from "./pages/VerifyAdmit";
 import ViewParticipant from "./pages/ViewParticipant"
+
 function App() {
   return (
    <HashRouter basename="/">
@@ -50,6 +51,7 @@ function App() {
         <Route path="/upload-documents" element={<UploadDocuments />} />
         <Route path="/verify" element={<VerifyAdmit />} />
         <Route path="/view" element={<ViewParticipant />} />
+        
 
       </Routes>
   </HashRouter>

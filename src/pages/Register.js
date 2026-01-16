@@ -168,7 +168,7 @@ export default function Register() {
         <label>विद्यार्थी का नाम</label>
         <input name="name" required onChange={handleChange} />
 
-        <label>पिता / अभिभावक का नाम</label>
+        <label>पिता / सरपरस्‍त का नाम</label>
         <input name="father" required onChange={handleChange} />
 
         <label>आधार कार्ड नंबर</label>

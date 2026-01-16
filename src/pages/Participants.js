@@ -12,15 +12,47 @@ export default function Participants() {
   const sheetURL =
     "https://script.google.com/macros/s/AKfycbwXcIMjOOhmX2VtIKFQFNZQiXU_ZiwQ10qhd315BPDzo4j8wP3O2uyqfzM4cxNTbxye/exec?action=getAll";
 
-  // ================= FETCH DATA =================
+  // ================= FETCH DATA WITH CACHE =================
   useEffect(() => {
+    const CACHE_KEY = "participantsData";
+    const CACHE_DURATION = 1 * 60 * 60 * 1000; // 1 घंटा
+
+    // Cached data को check करो
+    const cachedData = localStorage.getItem(CACHE_KEY);
+    if (cachedData) {
+      const { data: cachedRows, timestamp } = JSON.parse(cachedData);
+      const now = new Date().getTime();
+
+      // अगर cache 1 घंटे से पुराना नहीं है तो use करो
+      if (now - timestamp < CACHE_DURATION) {
+        setData(cachedRows);
+        setLoading(false);
+        return;
+      }
+    }
+
+    // Cache expired या नहीं है - Google Sheet से fetch करो
     fetch(sheetURL)
       .then(res => res.json())
       .then(result => {
-        if (result.success) setData(result.data);
+        if (result.success) {
+          const dataToStore = {
+            data: result.data,
+            timestamp: new Date().getTime()
+          };
+          localStorage.setItem(CACHE_KEY, JSON.stringify(dataToStore));
+          setData(result.data);
+        }
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch(() => {
+        // अगर API fail हो तो पुराना cache use करो
+        if (cachedData) {
+          const { data: cachedRows } = JSON.parse(cachedData);
+          setData(cachedRows);
+        }
+        setLoading(false);
+      });
   }, []);
 
   // ================= MASK HELPERS =================
@@ -78,6 +110,26 @@ export default function Participants() {
       <p style={{ color: "red" }}>
         नोट :- यदि किसी का पेमेन्‍ट स्‍टेटस गलत है तो रसीद WhatsApp करें:
         <b> 94147 23722</b>
+      </p>
+
+      <p style={{ 
+        color: "white", 
+        background: "#2196F3", 
+        padding: "12px", 
+        borderRadius: "5px",
+        marginBottom: "15px"
+      }}>
+        ℹ️ <b>महत्वपूर्ण:</b> यदि आपने अभी रजिस्ट्रेशन किया है, तो आपका डेटा इस सूची में <b>1 घंटे बाद</b> दिखाई देगा। कृपया कुछ समय प्रतीक्षा करें।
+      </p>
+      <p style={{ 
+        color: "white", 
+        background: "#4ca51d", 
+        padding: "12px", 
+        borderRadius: "5px",
+        marginBottom: "15px"
+      }}>
+        ℹ️ <b>नोट:</b> यदि आपने अपना फोटो एवं डोक्‍युमेट अपलोड नही किया है तो "Not Uploaded ❌" बटन पर क्लिक करके, कर सकते है।
+        फोटो एवं डोक्‍युमेंट अपलोड करने के आप अपना फोर्म नम्‍बर एवं आधार नंबर का उपयाेग करेंगे, जिसके आधार नंबर इस लिस्‍ट में अपडेट नही है वे सब व्‍हॉटस नंबर पर संपंर्क कर अपना आधार नंबर या कोई और डिटेल बदलवा सकते हैा
       </p>
 
       {loading ? (

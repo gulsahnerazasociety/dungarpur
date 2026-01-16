@@ -138,8 +138,7 @@ export default function UploadDocuments() {
             <hr />
 
             <div className="file-hint">
-              📷 Photo (JPG / PNG) <br />
-              📄 Document (PDF / Image)
+              📷 Photo (JPG / PNG) नोट:- यहा पर आप अपना पासपोर्ट साईज फोटो ही अपलोड करे<br />
             </div>
 
             <input
@@ -148,7 +147,9 @@ export default function UploadDocuments() {
               disabled={uploading}
               onChange={(e) => setPhoto(e.target.files[0])}
             />
-
+            <div className="file-hint">
+              📄 Document (PDF / Image) यहा पर अपना हार्ड कॉपी फार्म या आधार कार्ड अपलोड करे
+            </div>
             <input
               type="file"
               accept=".pdf,.jpg,.png"

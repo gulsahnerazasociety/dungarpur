@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import NoticeBoard from "../components/NoticeBoard";
 export default function Home() {
   return (
     <>
@@ -20,7 +19,6 @@ export default function Home() {
         
         <h1>गुलशन-ए-रज़ा सोसाइटी</h1>
         <h2>Quiz & Islamic Competition 2026</h2>
-{<NoticeBoard />}
         <p>
           शिक्षा • दीन • जागरूकता  
           बच्चों और युवाओं के लिए सुनहरा अवसर!

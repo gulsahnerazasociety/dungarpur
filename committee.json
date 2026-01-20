@@ -1,0 +1,219 @@
+[
+  {
+    "title": "Committee Office Bearers",
+    "members": [
+      {
+        "post": "President",
+        "name": "Raees Ahmed",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "MewaFarosh, Shastri Colony",
+        "photo": "/images/committee/President(Buisnessment).jpg"
+      },
+      {
+        "post": "Vice President",
+        "name": "Abdul Hakim Qureshi",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Amir Colony",
+        "photo": "/images/committee/VicePresident(Buisnessment).jpg"
+      },
+      {
+        "post": "General Secretary",
+        "name": "Vahid Hussain",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Hajipura (Ghanti)",
+        "photo": "/images/committee/GeneralSecretary(MBA).jpg"
+      },
+      {
+        "post": "Joint Secretary",
+        "name": "Abid Hussain Malik",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Sheikhwada (Ghanti)",
+        "photo": "/images/committee/JoinSecretary(NRI).jpg"
+      },
+      {
+        "post": "Treasurer (Cashier)",
+        "name": "Mukammil Ahmed Qureshi",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Kandharwadi",
+        "photo": "/images/committee/JoinSecretary(NRI).jpg"
+      },
+      {
+        "post": "Joint Cashier",
+        "name": "Mahfooz Hussain Sheikh",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Shastri Colony",
+        "photo": "/images/committee/JoinSecretary(NRI).jpg"
+      }
+    ]
+  },
+  {
+    "title": "Program Management",
+    "members": [
+      {
+        "name": "Hasinuddin Qureshi",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Lalpura",
+        "photo": "https://gulshanerazasociety.aetmyweb.com/logo.webp"
+      },
+      {
+        "name": "Javed Khan Pathan",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Chamanpura",
+        "photo": "https://example.com/aslam.jpg"
+      }
+    ]
+  },
+  {
+    "title": "Audit / Accounts Members",
+    "members": [
+      {
+        "name": "Zakir Hussain",
+        "place": "Madar Fali (Kuwait)",
+        "photo": "https://example.com/aslam.jpg"
+      },
+      {
+        "name": "Mustakim Gouri",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Alipura (Kuwait)",
+        "photo": "https://example.com/aslam.jpg"
+      },
+      {
+        "name": "Dr. Kalim",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Udaipur (Ghanti) (Kuwait)",
+        "photo": "https://example.com/aslam.jpg"
+      },
+      {
+        "name": "Mohammed Ayyub",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Madaar Colony (Kuwait)",
+        "photo": "https://example.com/aslam.jpg"
+      },
+      {
+        "name": "Mohammed Irfan",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Hasni Gali (Kuwait)",
+        "photo": "https://example.com/aslam.jpg"
+      },
+      {
+        "name": "Mohammed Julfikar",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Amir Colony (Kuwait)",
+        "photo": "https://example.com/aslam.jpg"
+      },
+      {
+        "name": "Abdul Zahid Hussain",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Amir Colony (Kuwait)",
+        "photo": "https://example.com/aslam.jpg"
+      },
+      {
+        "name": "Ziauddin Qureshi",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Amir Colony (Kuwait)",
+        "photo": "https://example.com/aslam.jpg",
+        "new": true
+      },
+      {
+        "name": "Saddam Hussain (Mudassar)",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Faraswara",
+        "photo": "https://example.com/aslam.jpg"
+      },
+      {
+        "name": "Mohammad Rizwan Malik",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Patela, Dungarpur",
+        "photo": "https://example.com/aslam.jpg"
+      },
+      {
+        "name": "Mohammed Aasif",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Hajipura (Ghanti)",
+        "photo": "https://example.com/aslam.jpg",
+        "new": true
+      }
+    ]
+  },
+  {
+    "title": "Media / Publicity In-Charge",
+    "members": [
+      {
+        "name": "Mohammed Mohshin",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Madar Colony (Kuwait)",
+        "photo": "https://example.com/aslam.jpg"
+      },
+      {
+        "name": "Anwar Mukhtar",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Kandharwadi (Kuwait)",
+        "photo": "https://example.com/aslam.jpg"
+      },
+      {
+        "name": "Mohammed Ali",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Shastri Colony",
+        "photo": "https://example.com/aslam.jpg"
+      }
+    ]
+  },
+  {
+    "title": "Advisory Board",
+    "members": [
+      {
+        "name": "Janab Asrar Ahmed Ji (Advocate)",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Lalpura",
+        "photo": "https://example.com/aslam.jpg"
+      },
+      {
+        "name": "Janab Riyaz Ahmed Qureshi",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Madar Colony, Ghanti",
+        "photo": "https://example.com/aslam.jpg"
+      },
+      {
+        "name": "Janab Mohammed Irfan Makrani",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Shastri Colony",
+        "photo": "https://example.com/aslam.jpg"
+      },
+      {
+        "name": "Janab Sayyed Zabir Ali",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Kandharwadi",
+        "photo": "https://example.com/aslam.jpg"
+      },
+      {
+        "name": "Janab Maqbool Hussain Pathan",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Madar Colony, Ghanti",
+        "photo": "https://example.com/aslam.jpg"
+      },
+      {
+        "name": "Janab Rahamatullah Khan",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Garibnawaz Colony",
+        "photo": "https://example.com/aslam.jpg"
+      },
+      {
+        "name": "Janab Mohammed Rafiq Ji",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Mewafarosh",
+        "photo": "https://example.com/aslam.jpg"
+      }
+    ]
+  },
+  {
+    "title": "Religious Advisor",
+    "members": [
+      {
+        "name": "Janab Qari Mohammed Irfan",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Huseni Chowk",
+        "photo": "https://example.com/aslam.jpg"
+      }
+    ]
+  }
+]

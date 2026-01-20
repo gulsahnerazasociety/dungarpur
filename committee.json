@@ -1,0 +1,244 @@
+[
+  {
+    "title": "Committee Office Bearers",
+    "members": [
+      {
+        "post": "President",
+        "name": "Raees Ahmed",
+        "qualification": "Buisness Man",
+        "place": "MewaFarosh, Shastri Colony",
+        "photo": "/images/committee/President(Buisnessment).jpg"
+      },
+      {
+        "post": "Vice President",
+        "name": "Abdul Hakim Qureshi",
+        "qualification": "Buisness Man",
+        "place": "Amir Colony",
+        "photo": "/images/committee/VicePresident(Buisnessment).jpg"
+      },
+      {
+        "post": "General Secretary",
+        "name": "Vahid Hussain",
+        "qualification": "M.B.A.",
+        "place": "Hajipura (Ghanti)",
+        "photo": "/images/committee/GeneralSecretary(MBA).jpg"
+      },
+      {
+        "post": "Joint Secretary",
+        "name": "Abid Hussain Malik",
+        "qualification": "N.R.I.",
+        "place": "Sheikhwada (Ghanti)",
+        "photo": "/images/committee/JoinSecretary(NRI).jpg"
+      },
+      {
+        "post": "Treasurer (Cashier)",
+        "name": "Mukammil Ahmed Qureshi",
+        "qualification": "Cashier",
+        "place": "Kandharwadi",
+        "photo": "/images/committee/mukammilCashior.jpg"
+      },
+      {
+        "post": "Joint Cashier",
+        "name": "Mahfooz Hussain Sheikh",
+        "qualification": "-",
+        "place": "Shastri Colony",
+        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
+      }
+    ]
+  },
+  {
+    "title": "Program Management",
+    "members": [
+      {
+        "post": "Program Management",
+        "name": "Hasinuddin Qureshi",
+        "qualification": "-",
+        "place": "Lalpura",
+        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
+      },
+      {
+        "post": "Program Management",
+        "name": "Javed Khan Pathan",
+        "qualification": "Buisness Man",
+        "place": "Chamanpura",
+        "photo": "/images/committee/mukammilCashior.jpg"
+      }
+    ]
+  },
+  {
+    "title": "Audit / Accounts Members",
+    "members": [
+      {
+        "post": "Audit / Accounts Members",
+        "name": "Zakir Hussain",
+        "qualification": "-",
+        "place": "Madar Fali (Kuwait)",
+        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
+      },
+      {
+        "post": "Audit Members",
+        "name": "Mustakim Gouri",
+        "qualification": "N.R.I.",
+        "place": "Alipura (Kuwait)",
+        "photo": "/images/committee/mustakimAudit(NRI).jpg"
+      },
+      {
+        "post": "Audit / Accounts Members",
+        "name": "Dr. Kalim",
+        "qualification": "-",
+        "place": "Udaipur (Ghanti) (Kuwait)",
+        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
+      },
+      {
+        "post": "Audit / Accounts Members",
+        "name": "Mohammed Ayyub",
+        "qualification": "N.R.I.",
+        "place": "Madaar Colony (Kuwait)",
+        "photo": "/images/committee/mohammedayub(NRI).jpg"
+      },
+      {
+        "post": "Audit / Accounts Members",
+        "name": "Mohammed Irfan",
+        "qualification": "-",
+        "place": "Hasni Gali (Kuwait)",
+        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
+      },
+      {
+        "post": "Audit / Accounts Members",
+        "name": "Mohammed Julfikar",
+        "qualification": "N.R.I.",
+        "place": "Amir Colony (Kuwait)",
+        "photo": "/images/committee/zulfiqarAuditNRI.jpg"
+      },
+      {
+        "post": "Audit / Accounts Members",
+        "name": "Abdul Zahid Hussain",
+        "qualification": "-",
+        "place": "Amir Colony (Kuwait)",
+        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
+      },
+      {
+        "post": "Audit / Accounts Members",
+        "name": "Ziauddin Qureshi",
+        "qualification": "-",
+        "place": "Amir Colony (Kuwait)",
+        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp",
+        "new": true
+      },
+      {
+        "post": "Audit / Accounts Members",
+        "name": "Saddam Hussain (Mudassar)",
+        "qualification": "NRI",
+        "place": "Faraswara",
+        "photo": "/images/committee/mudassirAudi(NRI).jpg"
+      },
+      {
+        "post": "Audit / Accounts Members",
+        "name": "Mohammad Rizwan Malik",
+        "qualification": "-",
+        "place": "Patela, Dungarpur",
+        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
+      },
+      {
+        "post": "Audit / Accounts Members",
+        "name": "Mohammed Aasif",
+        "qualification": "-",
+        "place": "Hajipura (Ghanti)",
+        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp",
+        "new": true
+      }
+    ]
+  },
+  {
+    "title": "Media / Publicity In-Charge",
+    "members": [
+      {
+        "post": "Media / Publicity In-Charge",
+        "name": "Mohammed Mohshin",
+        "qualification": "-",
+        "place": "Madar Colony (Kuwait)",
+        "photo": "/images/committee/mohsinMediapublicity.jpg"
+      },
+      {
+        "post": "Media / Publicity In-Charge",
+        "name": "Anwar Mukhtar",
+        "qualification": "-",
+        "place": "Kandharwadi (Kuwait)",
+        "photo": "/images/committee/anwarussainMediapublicity.jpg"
+      },
+      {
+        "post": "Media / Publicity In-Charge",
+        "name": "Mohammed Ali",
+        "qualification": "-",
+        "place": "Shastri Colony",
+        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
+      }
+    ]
+  },
+  {
+    "title": "Advisory Board",
+    "members": [
+      {
+        "post": "Advisory Board",
+        "name": "Janab Asrar Ahmed Ji (Advocate)",
+        "qualification": "L.L.B.",
+        "place": "Lalpura",
+        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
+      },
+      {
+        "post": "Advisory Board",
+        "name": "Janab Riyaz Ahmed Qureshi",
+        "qualification": "-",
+        "place": "Madar Colony, Ghanti",
+        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
+      },
+      {
+        "post": "Advisory Board",
+        "name": "Janab Mohammed Irfan Makrani",
+        "qualification": "Est. Officer of Govt. College",
+        "place": "Shastri Colony",
+        "photo": "/images/committee/irfanmakraniAdvisorGOVTCollegeEstOfficer.jpg"
+      },
+      {
+        "post": "Advisory Board",
+        "name": "Janab Sayyed Zabir Ali",
+        "qualification": "N.R.I.",
+        "place": "Kandharwadi",
+        "photo": "/images/committee/sayyadJabirAliAuditorNRI.jpg"
+      },
+      {
+        "post": "Advisory Board",
+        "name": "Janab Maqbool Hussain Pathan",
+        "qualification": "Advisor",
+        "place": "Madar Colony, Ghanti",
+        "photo": "/images/committee/maqboolAdviser.jpg"
+      },
+      {
+        "post": "Advisory Board",
+        "name": "Janab Rahamatullah Khan",
+        "qualification": "-",
+        "place": "Garibnawaz Colony",
+        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
+      },
+      {
+        "post": "Advisory Board",
+        "name": "Janab Mohammed Rafiq Ji",
+        "qualification": "-",
+        "place": "Mewafarosh",
+        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
+      }
+    ]
+  },
+  {
+    "title": "Religious Advisor",
+    "members": [
+      {
+        "post": "Religious Advisor",
+        "name": "Janab Qari Mohammed Irfan",
+        "qualification": "Molana Sahab",
+        "place": "Huseni Chowk",
+        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
+      }
+    ]
+  }
+]

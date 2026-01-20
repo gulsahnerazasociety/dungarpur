@@ -5,44 +5,44 @@
       {
         "post": "President",
         "name": "Raees Ahmed",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "Buisness Man",
         "place": "MewaFarosh, Shastri Colony",
         "photo": "/images/committee/President(Buisnessment).jpg"
       },
       {
         "post": "Vice President",
         "name": "Abdul Hakim Qureshi",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "Buisness Man",
         "place": "Amir Colony",
         "photo": "/images/committee/VicePresident(Buisnessment).jpg"
       },
       {
         "post": "General Secretary",
         "name": "Vahid Hussain",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "M.B.A.",
         "place": "Hajipura (Ghanti)",
         "photo": "/images/committee/GeneralSecretary(MBA).jpg"
       },
       {
         "post": "Joint Secretary",
         "name": "Abid Hussain Malik",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "N.R.I.",
         "place": "Sheikhwada (Ghanti)",
         "photo": "/images/committee/JoinSecretary(NRI).jpg"
       },
       {
         "post": "Treasurer (Cashier)",
         "name": "Mukammil Ahmed Qureshi",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "Cashier",
         "place": "Kandharwadi",
-        "photo": "/images/committee/JoinSecretary(NRI).jpg"
+        "photo": "/images/committee/mukammilCashior.jpg"
       },
       {
         "post": "Joint Cashier",
         "name": "Mahfooz Hussain Sheikh",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "",
         "place": "Shastri Colony",
-        "photo": "/images/committee/JoinSecretary(NRI).jpg"
+        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
       }
     ]
   },
@@ -59,9 +59,9 @@
       {
         "post": "Program Management",
         "name": "Javed Khan Pathan",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "Buisness Man",
         "place": "Chamanpura",
-        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
+        "photo": "/images/committee/mukammilCashior.jpg"
       }
     ]
   },
@@ -71,56 +71,56 @@
       {
         "post": "Audit / Accounts Members",
         "name": "Zakir Hussain",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "",
         "place": "Madar Fali (Kuwait)",
         "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
       },
       {
-        "post": "Audit / Accounts Members",
+        "post": "Audit Members",
         "name": "Mustakim Gouri",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "N.R.I.",
         "place": "Alipura (Kuwait)",
-        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
+        "photo": "/images/committee/mustakimAudit(NRI).jpg"
       },
       {
         "post": "Audit / Accounts Members",
         "name": "Dr. Kalim",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "",
         "place": "Udaipur (Ghanti) (Kuwait)",
         "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
       },
       {
         "post": "Audit / Accounts Members",
         "name": "Mohammed Ayyub",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "N.R.I.",
         "place": "Madaar Colony (Kuwait)",
-        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
+        "photo": "/images/committee/mohammedayub(NRI).jpg"
       },
       {
         "post": "Audit / Accounts Members",
         "name": "Mohammed Irfan",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "",
         "place": "Hasni Gali (Kuwait)",
         "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
       },
       {
         "post": "Audit / Accounts Members",
         "name": "Mohammed Julfikar",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "N.R.I.",
         "place": "Amir Colony (Kuwait)",
-        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
+        "photo": "/images/committee/zulfiqarAuditNRI.jpg"
       },
       {
         "post": "Audit / Accounts Members",
         "name": "Abdul Zahid Hussain",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "",
         "place": "Amir Colony (Kuwait)",
         "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
       },
       {
         "post": "Audit / Accounts Members",
         "name": "Ziauddin Qureshi",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "",
         "place": "Amir Colony (Kuwait)",
         "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp",
         "new": true
@@ -128,21 +128,21 @@
       {
         "post": "Audit / Accounts Members",
         "name": "Saddam Hussain (Mudassar)",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": NRI",
         "place": "Faraswara",
-        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
+        "photo": "/images/committee/mudassirAudi(NRI).jpg"
       },
       {
         "post": "Audit / Accounts Members",
         "name": "Mohammad Rizwan Malik",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "",
         "place": "Patela, Dungarpur",
         "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
       },
       {
         "post": "Audit / Accounts Members",
         "name": "Mohammed Aasif",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "",
         "place": "Hajipura (Ghanti)",
         "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp",
         "new": true
@@ -155,21 +155,21 @@
       {
         "post": "Media / Publicity In-Charge",
         "name": "Mohammed Mohshin",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "",
         "place": "Madar Colony (Kuwait)",
-        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
+        "photo": "/images/committee/mohsinMediapublicity.jpg"
       },
       {
         "post": "Media / Publicity In-Charge",
         "name": "Anwar Mukhtar",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "",
         "place": "Kandharwadi (Kuwait)",
-        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
+        "photo": "/images/committee/anwarussainMediapublicity"
       },
       {
         "post": "Media / Publicity In-Charge",
         "name": "Mohammed Ali",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "",
         "place": "Shastri Colony",
         "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
       }
@@ -181,49 +181,49 @@
       {
         "post": "Advisory Board",
         "name": "Janab Asrar Ahmed Ji (Advocate)",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "L.L.B.",
         "place": "Lalpura",
         "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
       },
       {
         "post": "Advisory Board",
         "name": "Janab Riyaz Ahmed Qureshi",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "",
         "place": "Madar Colony, Ghanti",
         "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
       },
       {
         "post": "Advisory Board",
         "name": "Janab Mohammed Irfan Makrani",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "Est. Officer of Govt. College",
         "place": "Shastri Colony",
-        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
+        "photo": "/images/committee/irfanmakraniAdvisorGOVTCollegeEstOfficer.jpg"
       },
       {
         "post": "Advisory Board",
         "name": "Janab Sayyed Zabir Ali",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "N.R.I.",
         "place": "Kandharwadi",
-        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
+        "photo": "/images/committee/sayyadJabirAliAuditorNRI.jpg"
       },
       {
         "post": "Advisory Board",
         "name": "Janab Maqbool Hussain Pathan",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "Advisor",
         "place": "Madar Colony, Ghanti",
-        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
+        "photo": "/images/committee/maqboolAdviser.jpg"
       },
       {
         "post": "Advisory Board",
         "name": "Janab Rahamatullah Khan",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "",
         "place": "Garibnawaz Colony",
         "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
       },
       {
         "post": "Advisory Board",
         "name": "Janab Mohammed Rafiq Ji",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "",
         "place": "Mewafarosh",
         "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
       }
@@ -235,7 +235,7 @@
       {
         "post": "Religious Advisor",
         "name": "Janab Qari Mohammed Irfan",
-        "qualification": "M.A. (Islamic Studies)",
+        "qualification": "Molana Sahab",
         "place": "Huseni Chowk",
         "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp"
       }

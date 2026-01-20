@@ -50,12 +50,14 @@
     "title": "Program Management",
     "members": [
       {
+        "post": "Program Management",
         "name": "Hasinuddin Qureshi",
         "qualification": "M.A. (Islamic Studies)",
         "place": "Lalpura",
         "photo": "https://gulshanerazasociety.aetmyweb.com/logo.webp"
       },
       {
+        "post": "Program Management",
         "name": "Javed Khan Pathan",
         "qualification": "M.A. (Islamic Studies)",
         "place": "Chamanpura",
@@ -67,47 +69,56 @@
     "title": "Audit / Accounts Members",
     "members": [
       {
+        "post": "Audit / Accounts Members",
         "name": "Zakir Hussain",
+        "qualification": "M.A. (Islamic Studies)",
         "place": "Madar Fali (Kuwait)",
         "photo": "https://example.com/aslam.jpg"
       },
       {
+        "post": "Audit / Accounts Members",
         "name": "Mustakim Gouri",
         "qualification": "M.A. (Islamic Studies)",
         "place": "Alipura (Kuwait)",
         "photo": "https://example.com/aslam.jpg"
       },
       {
+        "post": "Audit / Accounts Members",
         "name": "Dr. Kalim",
         "qualification": "M.A. (Islamic Studies)",
         "place": "Udaipur (Ghanti) (Kuwait)",
         "photo": "https://example.com/aslam.jpg"
       },
       {
+        "post": "Audit / Accounts Members",
         "name": "Mohammed Ayyub",
         "qualification": "M.A. (Islamic Studies)",
         "place": "Madaar Colony (Kuwait)",
         "photo": "https://example.com/aslam.jpg"
       },
       {
+        "post": "Audit / Accounts Members",
         "name": "Mohammed Irfan",
         "qualification": "M.A. (Islamic Studies)",
         "place": "Hasni Gali (Kuwait)",
         "photo": "https://example.com/aslam.jpg"
       },
       {
+        "post": "Audit / Accounts Members",
         "name": "Mohammed Julfikar",
         "qualification": "M.A. (Islamic Studies)",
         "place": "Amir Colony (Kuwait)",
         "photo": "https://example.com/aslam.jpg"
       },
       {
+        "post": "Audit / Accounts Members",
         "name": "Abdul Zahid Hussain",
         "qualification": "M.A. (Islamic Studies)",
         "place": "Amir Colony (Kuwait)",
         "photo": "https://example.com/aslam.jpg"
       },
       {
+        "post": "Audit / Accounts Members",
         "name": "Ziauddin Qureshi",
         "qualification": "M.A. (Islamic Studies)",
         "place": "Amir Colony (Kuwait)",
@@ -115,18 +126,21 @@
         "new": true
       },
       {
+        "post": "Audit / Accounts Members",
         "name": "Saddam Hussain (Mudassar)",
         "qualification": "M.A. (Islamic Studies)",
         "place": "Faraswara",
         "photo": "https://example.com/aslam.jpg"
       },
       {
+        "post": "Audit / Accounts Members",
         "name": "Mohammad Rizwan Malik",
         "qualification": "M.A. (Islamic Studies)",
         "place": "Patela, Dungarpur",
         "photo": "https://example.com/aslam.jpg"
       },
       {
+        "post": "Audit / Accounts Members",
         "name": "Mohammed Aasif",
         "qualification": "M.A. (Islamic Studies)",
         "place": "Hajipura (Ghanti)",
@@ -139,18 +153,21 @@
     "title": "Media / Publicity In-Charge",
     "members": [
       {
+        "post": "Media / Publicity In-Charge",
         "name": "Mohammed Mohshin",
         "qualification": "M.A. (Islamic Studies)",
         "place": "Madar Colony (Kuwait)",
         "photo": "https://example.com/aslam.jpg"
       },
       {
+        "post": "Media / Publicity In-Charge",
         "name": "Anwar Mukhtar",
         "qualification": "M.A. (Islamic Studies)",
         "place": "Kandharwadi (Kuwait)",
         "photo": "https://example.com/aslam.jpg"
       },
       {
+        "post": "Media / Publicity In-Charge",
         "name": "Mohammed Ali",
         "qualification": "M.A. (Islamic Studies)",
         "place": "Shastri Colony",
@@ -162,42 +179,49 @@
     "title": "Advisory Board",
     "members": [
       {
+        "post": "Advisory Board",
         "name": "Janab Asrar Ahmed Ji (Advocate)",
         "qualification": "M.A. (Islamic Studies)",
         "place": "Lalpura",
         "photo": "https://example.com/aslam.jpg"
       },
       {
+        "post": "Advisory Board",
         "name": "Janab Riyaz Ahmed Qureshi",
         "qualification": "M.A. (Islamic Studies)",
         "place": "Madar Colony, Ghanti",
         "photo": "https://example.com/aslam.jpg"
       },
       {
+        "post": "Advisory Board",
         "name": "Janab Mohammed Irfan Makrani",
         "qualification": "M.A. (Islamic Studies)",
         "place": "Shastri Colony",
         "photo": "https://example.com/aslam.jpg"
       },
       {
+        "post": "Advisory Board",
         "name": "Janab Sayyed Zabir Ali",
         "qualification": "M.A. (Islamic Studies)",
         "place": "Kandharwadi",
         "photo": "https://example.com/aslam.jpg"
       },
       {
+        "post": "Advisory Board",
         "name": "Janab Maqbool Hussain Pathan",
         "qualification": "M.A. (Islamic Studies)",
         "place": "Madar Colony, Ghanti",
         "photo": "https://example.com/aslam.jpg"
       },
       {
+        "post": "Advisory Board",
         "name": "Janab Rahamatullah Khan",
         "qualification": "M.A. (Islamic Studies)",
         "place": "Garibnawaz Colony",
         "photo": "https://example.com/aslam.jpg"
       },
       {
+        "post": "Advisory Board",
         "name": "Janab Mohammed Rafiq Ji",
         "qualification": "M.A. (Islamic Studies)",
         "place": "Mewafarosh",
@@ -209,10 +233,11 @@
     "title": "Religious Advisor",
     "members": [
       {
+        "post": "Religious Advisor",
         "name": "Janab Qari Mohammed Irfan",
         "qualification": "M.A. (Islamic Studies)",
         "place": "Huseni Chowk",
-        "photo": "https://example.com/aslam.jpg"
+        "photo": "https://gulshanerazasociety.aetmyweb.com/logo.webp"
       }
     ]
   }

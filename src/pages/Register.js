@@ -4,6 +4,10 @@ import { useState } from "react";
 export default function Register() {
   const navigate = useNavigate();
 
+  // ⛔ Registration deadline
+  const REGISTRATION_END_DATE = new Date("2026-03-31T23:59:59");
+  const isRegistrationClosed = new Date() > REGISTRATION_END_DATE;
+
   const [formData, setFormData] = useState({
     name: "",
     father: "",
@@ -19,7 +23,7 @@ export default function Register() {
   });
 
   const [ageError, setAgeError] = useState("");
-  const [loading, setLoading] = useState(false); // 🔒 submit lock
+  const [loading, setLoading] = useState(false);
 
   // ---------------------------
   // Handle Input Change
@@ -40,69 +44,65 @@ export default function Register() {
   // ---------------------------
   // Age Calculation
   // ---------------------------
- const calculateAgeAndGroup = (dob) => {
-  const birthDate = new Date(dob);
-  const today = new Date();
+  const calculateAgeAndGroup = (dob) => {
+    const birthDate = new Date(dob);
+    const today = new Date();
 
-  let years = today.getFullYear() - birthDate.getFullYear();
-  let months = today.getMonth() - birthDate.getMonth();
-  let days = today.getDate() - birthDate.getDate();
+    let years = today.getFullYear() - birthDate.getFullYear();
+    let months = today.getMonth() - birthDate.getMonth();
+    let days = today.getDate() - birthDate.getDate();
 
-  // 🔧 दिन adjust
-  if (days < 0) {
-    months--;
-    const prevMonth = new Date(
-      today.getFullYear(),
-      today.getMonth(),
-      0
-    ).getDate();
-    days += prevMonth;
-  }
+    if (days < 0) {
+      months--;
+      const prevMonthDays = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        0
+      ).getDate();
+      days += prevMonthDays;
+    }
 
-  // 🔧 महीना adjust
-  if (months < 0) {
-    years--;
-    months += 12;
-  }
+    if (months < 0) {
+      years--;
+      months += 12;
+    }
 
-  // 🔹 Running age (Indian rule)
-  const runningAge = years + 1;
+    const runningAge = years + 1;
 
-  let group = "";
-  let fees = "";
+    let group = "";
+    let fees = "";
 
-  if (runningAge >= 8 && runningAge <= 12) {
-  group = "Group A (8–12 वर्ष)";
-  fees = 350;
-} else if (runningAge >= 13 && runningAge <= 17) {
-  group = "Group B (13–17 वर्ष)";
-  fees = 350;
-} else if (runningAge >= 18 && runningAge <= 22) {
-  group = "Group C (18–22 वर्ष)";
-  fees = 350;
-} else if (runningAge >= 23 && runningAge <= 70) {
-  group = "Group D (23–70 वर्ष)";
-  fees = 500;
-} else {
-    setAgeError("❌ Not Participating in this Competition");
+    if (runningAge >= 8 && runningAge <= 12) {
+      group = "Group A (8–12 वर्ष)";
+      fees = 350;
+    } else if (runningAge >= 13 && runningAge <= 17) {
+      group = "Group B (13–17 वर्ष)";
+      fees = 350;
+    } else if (runningAge >= 18 && runningAge <= 22) {
+      group = "Group C (18–22 वर्ष)";
+      fees = 350;
+    } else if (runningAge >= 23 && runningAge <= 70) {
+      group = "Group D (23–70 वर्ष)";
+      fees = 500;
+    } else {
+      setAgeError("❌ Not Participating in this Competition");
+      setFormData((prev) => ({
+        ...prev,
+        age: "",
+        ageGroup: "",
+        fees: ""
+      }));
+      return;
+    }
+
+    setAgeError("");
     setFormData((prev) => ({
       ...prev,
-      age: "",
-      ageGroup: "",
-      fees: ""
+      age: `${years} वर्ष ${months} महीने ${days} दिन`,
+      ageGroup: group,
+      fees: fees
     }));
-    return;
-  }
-
-  setAgeError("");
-  setFormData((prev) => ({
-    ...prev,
-    age: `${years} वर्ष ${months} महीने ${days} दिन`,
-    ageGroup: group,
-    fees: fees
-  }));
-};
-
+  };
 
   // ---------------------------
   // Submit Form
@@ -110,7 +110,13 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (loading) return; // 🚫 double click block
+    // ⛔ Deadline block
+    if (isRegistrationClosed) {
+      alert("❌ पंजीकरण की समय सीमा समाप्त हो गई है");
+      return;
+    }
+
+    if (loading) return;
 
     if (ageError) {
       alert("यह आयु इस प्रतियोगिता के लिए मान्य नहीं है ❌");
@@ -118,13 +124,13 @@ export default function Register() {
     }
 
     const aadhaar = formData.aadhaar.trim();
-    if (aadhaar.length !== 12 || !/^[0-9]{12}$/.test(aadhaar)) {
+    if (!/^[0-9]{12}$/.test(aadhaar)) {
       alert("आधार नंबर 12 अंकों का होना चाहिए ❗");
       return;
     }
 
     try {
-      setLoading(true); // 🔒 button disable
+      setLoading(true);
 
       const response = await fetch(
         "https://script.google.com/macros/s/AKfycbybdpcSfdkxIjPVtRlNAyMPoPg4DQ_XTCTdZ-VvzNdURKCWMyrdGvCFHOwegZAz2_zu/exec",
@@ -152,7 +158,7 @@ export default function Register() {
     } catch (err) {
       alert("Network Error ❗");
     } finally {
-      setLoading(false); // 🔓 unlock after response
+      setLoading(false);
     }
   };
 
@@ -163,6 +169,22 @@ export default function Register() {
     <div className="registration-box">
       <h1>गुलशन-ए-रज़ा सोसाइटी</h1>
       <h2>प्रतियोगिता पंजीकरण फॉर्म</h2>
+
+      {isRegistrationClosed && (
+        <div
+          style={{
+            background: "#ffe6e6",
+            color: "#b30000",
+            padding: "10px",
+            marginBottom: "15px",
+            borderRadius: "5px",
+            fontWeight: "bold",
+            textAlign: "center"
+          }}
+        >
+          ⛔ पंजीकरण की समय सीमा 31 मार्च 2025 को समाप्त हो चुकी है
+        </div>
+      )}
 
       <form onSubmit={handleSubmit}>
         <label>विद्यार्थी का नाम</label>
@@ -184,21 +206,13 @@ export default function Register() {
         <input type="date" name="dob" required onChange={handleChange} />
 
         <label>आयु</label>
-        <input
-          value={formData.age ? `${formData.age}` : ""}
-          readOnly
-        />
-        <p style={{ fontSize: "12px", color: "gray" }}>
-          *आयु गणना चल रहे वर्ष के अनुसार की गई है
-        </p>
+        <input value={formData.age} readOnly />
 
         <label>आयु समूह</label>
         <input value={formData.ageGroup} readOnly />
 
         {ageError && (
-          <p style={{ color: "red", fontWeight: "bold" }}>
-            {ageError}
-          </p>
+          <p style={{ color: "red", fontWeight: "bold" }}>{ageError}</p>
         )}
 
         <label>मोबाइल नंबर</label>
@@ -219,16 +233,20 @@ export default function Register() {
         <button
           type="submit"
           className="register-btn"
-          disabled={loading}
+          disabled={loading || isRegistrationClosed}
           style={{
-            opacity: loading ? 0.6 : 1,
-            cursor: loading ? "not-allowed" : "pointer"
+            opacity: loading || isRegistrationClosed ? 0.6 : 1,
+            cursor:
+              loading || isRegistrationClosed ? "not-allowed" : "pointer"
           }}
         >
-          {loading ? "Submitting..." : "पंजीकरण जमा करें"}
+          {isRegistrationClosed
+            ? "पंजीकरण बंद है"
+            : loading
+            ? "Submitting..."
+            : "पंजीकरण जमा करें"}
         </button>
       </form>
     </div>
   );
 }
-

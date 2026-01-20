@@ -12,7 +12,7 @@ export default function AdmitCard() {
     "https://script.google.com/macros/s/AKfycbwy0SyeywJvofF294F3iSdwEsJaZM3LsnFa_ETCLpuwYoiBejHmMkHK7xm2D-9FnvE/exec";
 
   // 🔒 Admit Card Open Date
-  const ADMIT_OPEN_DATE = new Date("2026-03-05");
+  const ADMIT_OPEN_DATE = new Date("2026-05-05");
 
   // 🔲 QR Value
   const getQRValue = (data) =>

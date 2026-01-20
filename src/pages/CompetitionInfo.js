@@ -67,7 +67,7 @@ export default function CompetitionInfo() {
       {/* DATES */}
       <section className="card date-card">
         <h2>📅 प्रतियोगिता अवधि</h2>
-        <p>🗓 Sunday 28 December 2025 से 31 January 2026 तक</p>
+        <p>🗓 Sunday 28 December 2025 से 31 March 2026 तक</p>
 
         <div className="admit-date">
           🎫 <b>Exam and Admit Card जारी होने की तिथि आपको इस वेबसाईट पर जारी कर दी जाएगी</b><br/>

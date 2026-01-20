@@ -1238,7 +1238,7 @@ ul li{
 .committee-block h3 {
   text-align: center;
   margin-bottom: 15px;
-  color: #0b5ed7;
+  color: #15803d;
 }
 
 .committee-card {
@@ -1272,7 +1272,226 @@ ul li{
   text-align: center;
   font-style: italic;
 }
+.committee-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
 
+/* PHOTO BOX */
+.photo-box {
+  width: 140px;
+  height: 160px;
+  margin: 0 auto 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f2f2f2;
+  position: relative;
+}
+
+/* IMAGE HIDDEN INITIALLY */
+.photo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.2);
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+/* HOVER EFFECT */
+.committee-card:hover .photo-box img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* NAME & POST */
+.committee-card h4 {
+  margin: 8px 0 4px;
+  font-size: 16px;
+  color: #222;
+}
+
+.committee-card p {
+  font-weight: bold;
+  margin: 4px 0;
+}
+
+.committee-card small {
+  color: #666;
+}
+
+/* NEW BADGE */
+.new-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: crimson;
+  color: #fff;
+  font-size: 10px;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+.photo-box {
+  width: 140px;
+  height: 160px;
+  margin: 0 auto 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f2f2f2;
+  position: relative;
+}
+
+/* IMAGE */
+.photo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+/* GREEN INFO BOARD */
+.photo-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 6px;
+  background: rgba(255, 255, 255, 0.92);
+  border-top: 3px solid #1f9d55;   /* GREEN BORDER */
+  text-align: center;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+}
+
+/* POST */
+.photo-info strong {
+  display: block;
+  font-size: 12px;
+  color: #1f9d55;
+}
+
+/* QUALIFICATION */
+.photo-info span {
+  font-size: 11px;
+  color: #333;
+}
+
+/* HOVER EFFECT */
+.committee-card:hover .photo-info {
+  transform: translateY(0);
+}
+
+.committee-card:hover .photo-box img {
+  transform: scale(1.05);
+}
+
+.hint-icon {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: rgba(31,157,85,0.9);
+  color: #fff;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 1.5s infinite;
+}
+
+/* subtle pulse */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.15); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.committee-card {
+  cursor: pointer;
+}
+
+.committee-card:hover .photo-box {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+.tap-hint {
+  display: block;
+  font-size: 11px;
+  color: #1f9d55;
+  margin-top: 4px;
+  text-align: center;
+}
+.member-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 2.5;   /* ✅ passport size */
+  border-radius: 14px;
+  overflow: hidden;
+  background: #eaeaea;
+  cursor: pointer;
+}
+
+
+/* FRONT VIEW */
+.member-front {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.4s ease;
+  z-index: 2;
+}
+
+.member-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.tap-hint {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/* HOVER VIEW */
+.member-hover {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.member-hover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.member-info {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  background: rgba(0, 128, 0, 0.85);
+  color: #fff;
+  padding: 8px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* 🔁 SWITCH ON HOVER */
+.member-box:hover .member-front {
+  opacity: 0;
+}
+
+.member-box:hover .member-hover {
+  opacity: 1;
+}
 
 /* SOCIAL & COMMUNITY LINKS */
 .social-links-section {

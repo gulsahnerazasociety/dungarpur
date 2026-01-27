@@ -240,5 +240,18 @@
         "new": true
       }
     ]
+  },
+  {
+    "title": "Team Members",
+    "members": [
+      {
+        "post": "Member",
+        "name": "Mohammed Asif",
+        "qualification": "Buisness Man",
+        "place": "Ghanti",
+        "photo": "https://jahid6292.github.io/aetmyweb/lakharasamaj/images/members/male.webp",
+        "new": true
+      }
+    ]
   }
 ]

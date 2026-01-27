@@ -18,7 +18,7 @@ export default function CompetitionInfo() {
           <span>Part A : 🟢 08 – 12 वर्ष</span>
           <span>Part B : 🟢 13 – 17 वर्ष</span>
           <span>Part C : 🟢 18 – 22 वर्ष</span>
-          <span>Part D : 🟠 23 – 70 वर्ष</span>
+          <span>Part D : 🟠 23 वर्ष से ज्‍यादा</span>
         </div>
       </section>
 
@@ -26,8 +26,8 @@ export default function CompetitionInfo() {
       <section className="card">
         <h2>💰 रजिस्ट्रेशन फीस</h2>
         <div className="grid">
-          <span>08 – 22 वर्ष : <b>₹350</b></span>
-          <span>23 – 70 वर्ष : <b>₹500</b></span>
+          <span>08 – 22 वर्ष: <b>₹350</b></span>
+          <span>23 वर्ष से ज्‍यादा: <b>₹500</b></span>
         </div>
       </section>
 

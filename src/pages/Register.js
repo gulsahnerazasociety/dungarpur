@@ -81,8 +81,8 @@ export default function Register() {
     } else if (runningAge >= 18 && runningAge <= 22) {
       group = "Group C (18–22 वर्ष)";
       fees = 350;
-    } else if (runningAge >= 23 && runningAge <= 70) {
-      group = "Group D (23–70 वर्ष)";
+    } else if (runningAge >= 23) {
+      group = "Group D (23 वर्ष से ज्‍यादा)";
       fees = 500;
     } else {
       setAgeError("❌ Not Participating in this Competition");

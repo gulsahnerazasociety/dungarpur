@@ -80,7 +80,9 @@ fetch("https://raw.githubusercontent.com/gulsahnerazasociety/dungarpur/main/comm
       {/* INFO SECTION */}
       <section className="info">
         <h2>🎯 प्रतियोगिता की जानकारी</h2>
-
+        <Link to="/competition" className="big-card">
+          🎯 प्रतियोगिता किस प्रकार होगी?
+        </Link>
         <div className="info-grid">
           <div className="card">
             📖 कुरआन प्रश्नोत्तरी
@@ -114,6 +116,7 @@ fetch("https://raw.githubusercontent.com/gulsahnerazasociety/dungarpur/main/comm
          <Link to="/view" className="big-card">
           🧾 आप अपना भरा हुआ फोर्म यहा से निकाल सकते हैा
         </Link>
+       
       </section>
 
 {/* COMMITTEE SWIPER SECTION */}
@@ -127,7 +130,7 @@ fetch("https://raw.githubusercontent.com/gulsahnerazasociety/dungarpur/main/comm
       <Swiper
         modules={[Autoplay, Pagination]}
         spaceBetween={20}
-        autoplay={{ delay: 2500 }}
+        autoplay={{ delay: 5000 }}
         pagination={{ clickable: true }}
         breakpoints={{
           0: { slidesPerView: 1 },

@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Committee Office Bearers",
+    "members": [
+      {
+        "post": "President",
+        "name": "Raees Ahmed",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "MewaFarosh, Shastri Colony",
+        "photo": "/images/committee/President.jpg"
+      },
+      {
+        "post": "Vice President",
+        "name": "Abdul Hakim Qureshi",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Amir Colony",
+        "photo": "/images/committee/VicePresident.jpg"
+      }
+    ]
+  },
+  {
+    "title": "Program Management",
+    "members": [
+      {
+        "name": "Hasinuddin Qureshi",
+        "qualification": "M.A. (Islamic Studies)",
+        "place": "Lalpura",
+        "photo": "/images/committee/hasin.jpg"
+      }
+    ]
+  }
+]

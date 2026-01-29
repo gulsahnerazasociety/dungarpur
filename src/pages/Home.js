@@ -127,17 +127,18 @@ fetch("https://raw.githubusercontent.com/gulsahnerazasociety/dungarpur/main/comm
     <div key={index} className="committee-block">
       <h3>{group.title}</h3>
 
-      <Swiper
-        modules={[Autoplay, Pagination]}
-        spaceBetween={20}
-        autoplay={{ delay: 5000 }}
-        pagination={{ clickable: true }}
-        breakpoints={{
-          0: { slidesPerView: 1 },
-          768: { slidesPerView: 2 },
-          1024: { slidesPerView: 3 },
-        }}
-      >
+        <Swiper
+          modules={[Autoplay, Pagination]}
+          spaceBetween={20}
+          autoplay={{ delay: 10000, disableOnInteraction: false }}
+          pagination={{ clickable: true }}
+          breakpoints={{
+            0: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+        >
+
         {group.members.map((m, i) => (
        <SwiperSlide key={i}>
         <div className="committee-card">

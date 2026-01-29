@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import NoticeBoard from "../components/NoticeBoard";
+import GAStats from "../components/GAStats";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { useEffect, useState } from "react";
@@ -211,7 +212,7 @@ fetch("https://raw.githubusercontent.com/gulsahnerazasociety/dungarpur/main/comm
 
   </div>
 </section>
-
+< GAStats />
 
       <footer>
         © December 2022 Gulshan-E-Raza Society | Dungarpur

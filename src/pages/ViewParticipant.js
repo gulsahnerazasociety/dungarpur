@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+
 const API =
   "https://script.google.com/macros/s/AKfycbyLSS0hpDi5xGPf43Ac-FM4C2TElFEhVcWki5DPLDyRn1qv-ud6xJe5FGcBC_w55zJZ/exec";
 
@@ -24,6 +24,8 @@ export default function ViewParticipant() {
     }
 
     setLoading(true);
+    setData(null);
+
     try {
       const res = await fetch(
         `${API}?action=getByFormAadhaar&formNo=${formNo}&aadhaar=${aadhaar}`
@@ -31,13 +33,12 @@ export default function ViewParticipant() {
       const json = await res.json();
 
       if (!json.success) {
-        alert(json.message);
-        setData(null);
+        alert(json.message || "रिकॉर्ड नहीं मिला");
         return;
       }
 
       setData(json);
-    } catch {
+    } catch (err) {
       alert("Server Error");
     } finally {
       setLoading(false);
@@ -47,7 +48,7 @@ export default function ViewParticipant() {
   return (
     <div className="exam-container">
 
-      {/* SEARCH */}
+      {/* 🔍 SEARCH BOX */}
       <div className="search-box no-print">
         <input
           placeholder="Form No"
@@ -65,25 +66,20 @@ export default function ViewParticipant() {
         </button>
       </div>
 
-      {/* ⚠️ PHOTO NOT UPLOADED MESSAGE */}
-      {data && !data.photo && (
-        <div className="photo-warning">
+      {/* ⚠️ WARNING (INFO ONLY – FORM NOT BLOCKED) */}
+      {/* {data && !data.photo && (
+        <div className="photo-warning no-print">
           <h3>⚠️ फोटो अपलोड नहीं मिली</h3>
           <p>
-            कृपया पहले अपनी <strong>Passport Size Photo</strong> और
-            आवश्यक <strong>Documents</strong> अपलोड करें।
+            कृपया अपनी <strong>Passport Size Photo</strong> और आवश्यक
+            <strong> Documents</strong> जल्द अपलोड करें।
           </p>
-          <p>
-            फोटो अपलोड होने के बाद ही आप अपना फॉर्म देख और डाउनलोड कर सकते हैं।
-          </p>
-          <Link to="/upload-documents">
-                Please Upload Your Photo and Document as a adhar card
-          </Link>
+      
         </div>
-      )}
+      )} */}
 
-      {/* ✅ FORM ONLY WHEN PHOTO EXISTS */}
-      {data && data.photo && (
+      {/* ✅ FORM (ALWAYS VISIBLE WHEN DATA EXISTS) */}
+      {data && (
         <>
           {/* DOWNLOAD BUTTON */}
           <div className="download-wrap no-print">
@@ -92,7 +88,7 @@ export default function ViewParticipant() {
             </button>
           </div>
 
-          {/* PRINTABLE AREA */}
+          {/* PRINT AREA */}
           <div className="print-area">
 
             {/* HEADER */}
@@ -110,7 +106,7 @@ export default function ViewParticipant() {
               </div>
             </div>
 
-            {/* FORM */}
+            {/* FORM BODY */}
             <div className="exam-form">
               <div className="form-left">
                 <div className="row"><span>Form No</span><strong>{data.formNo}</strong></div>
@@ -120,7 +116,7 @@ export default function ViewParticipant() {
                 <div className="row"><span>Age</span><strong>{data.age}</strong></div>
                 <div className="row"><span>Address</span><strong>{data.address}</strong></div>
                 <div className="row"><span>Mobile</span><strong>{data.phone}</strong></div>
-                <div className="row"><span>Aadhaar No.</span><strong>{String(data.aadhaar)}</strong></div>
+                <div className="row"><span>Aadhaar No.</span><strong>{data.aadhaar}</strong></div>
 
                 <h3>Competition Details</h3>
                 <div className="row">
@@ -129,21 +125,30 @@ export default function ViewParticipant() {
                 </div>
               </div>
 
+              {/* PHOTO SECTION */}
               <div className="form-right">
-                <img
-                  src={data.photo}
-                  alt={`${data.name} photograph`}
-                  onError={(e) => {
-                    e.target.src = "/placeholder.jpg";
-                    console.warn("Photo failed:", data.photo);
-                  }}
-                  style={{ objectFit: "cover" }}
-                />
+                {data.photo ? (
+                  <img
+                    src={data.photo}
+                    alt={`${data.name} photograph`}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = "/placeholder.jpg";
+                    }}
+                    style={{ objectFit: "cover" }}
+                  />
+                ) : (
+                  <div className="photo-placeholder">
+                    <div className="photo-frame">
+                      Affixed<br />Your<br />Photo
+                    </div>
+                  </div>
+                )}
                 <p>Passport Size Photo</p>
               </div>
             </div>
 
-            {/* SIGNATURE TABLE */}
+            {/* SIGNATURES */}
             <table className="signature-table">
               <tbody>
                 <tr>
@@ -157,9 +162,7 @@ export default function ViewParticipant() {
                   </td>
                   <td>
                     <strong>Date</strong>
-                    <div className="signature-box">
-                     
-                    </div>
+                    <div className="signature-box"></div>
                   </td>
                 </tr>
               </tbody>
@@ -182,9 +185,7 @@ export default function ViewParticipant() {
                   </td>
                   <td>
                     <strong>Date</strong>
-                    <div className="signature-box">
-                    
-                    </div>
+                    <div className="signature-box"></div>
                   </td>
                 </tr>
               </tbody>

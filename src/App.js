@@ -11,6 +11,8 @@ import AdmitCard from "./pages/AdmitCard";
 import UploadDocuments from "./pages/UploadDocuments"
 import VerifyAdmit from "./pages/VerifyAdmit";
 import ViewParticipant from "./pages/ViewParticipant"
+import AboutUs from "./pages/AboutUs"
+import PrivacyPolicy from "./pages/PrivacyPolicy"
 
 function App() {
   return (
@@ -33,8 +35,9 @@ function App() {
           <li><Link to="/register">Register</Link></li>
           <li><Link to="/payment">Payment</Link></li>
           <li><Link to="/receipt">Receipt</Link></li>
-          <li><Link to="/upload-documents">Photo & Docs Upload</Link></li>
           <li><Link to="/admin">Admin</Link></li>
+          <li><Link to="/privacy-policy">Privacy Policy</Link></li>
+          <li><Link to="/about">About Us</Link></li>
         </ul>
       </nav>
 
@@ -51,6 +54,9 @@ function App() {
         <Route path="/upload-documents" element={<UploadDocuments />} />
         <Route path="/verify" element={<VerifyAdmit />} />
         <Route path="/view" element={<ViewParticipant />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+
         
 
       </Routes>

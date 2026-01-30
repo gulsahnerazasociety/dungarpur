@@ -1,110 +1,118 @@
 import { useState } from "react";
 import { QRCodeSVG } from "qrcode.react";
 
-
 export default function AdmitCard() {
-
   const [formNo, setFormNo] = useState("");
+  const [aadhaar, setAadhaar] = useState("");
   const [data, setData] = useState(null);
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
+ // https://script.google.com/macros/s/AKfycbwu5IRrz-Z4PZopQZRG6IlNikKGX9aWCnlMUdt5evyi23glJ5jxT_KLPh40tcQEZPSD/exec  this api is without cache api
+
+  
   const scriptURL =
-    "https://script.google.com/macros/s/AKfycbwy0SyeywJvofF294F3iSdwEsJaZM3LsnFa_ETCLpuwYoiBejHmMkHK7xm2D-9FnvE/exec";
+    "https://script.google.com/macros/s/AKfycbwOsXsAveNj588Mh9poVZJNwAYAIehvkeyt0WEo_Kx3CuiL8YhzKaJJOO8xs0Lb2fo/exec";
 
-  // 🔒 Admit Card Open Date
-  const ADMIT_OPEN_DATE = new Date("2026-05-05");
+  // 🔒 Admit Card Open Date (LOCK)
+  const ADMIT_OPEN_DATE = new Date("2026-01-05");
 
-  // 🔲 QR Value
+  // 🔲 QR Value (safe – no aadhaar)
   const getQRValue = (data) =>
     `https://gulshanerazasociety.aetmyweb.com/verify?formNo=${data.formNo}`;
 
   const getAdmit = async () => {
-
-    if (!formNo) {
-      setMessage("❌ कृपया Form Number दर्ज करें");
+    // 🔐 Basic Validation
+    if (!formNo || aadhaar.length !== 12) {
+      setMessage("❌ Form No और 12 अंकों का Aadhaar जरूरी है");
       return;
     }
 
+    // ⏳ Date Lock Check
+    const today = new Date();
+    if (today < ADMIT_OPEN_DATE) {
+      setMessage("⏳ Admit Card अभी जारी नहीं हुआ है");
+      return;
+    }
+
+    setLoading(true);
+    setMessage("");
+    setData(null);
+
     try {
       const res = await fetch(
-        `${scriptURL}?action=getAdmit&formNo=${formNo}`
+        `${scriptURL}?action=getAdmit&formNo=${formNo}&aadhaar=${aadhaar}`
       );
+
       const result = await res.json();
 
       if (!result.success) {
-        setMessage("❌ रिकॉर्ड नहीं मिला");
-        setData(null);
+        setMessage(result.message || "❌ रिकॉर्ड नहीं मिला");
         return;
       }
 
-      // ⏳ Date Check
-      const today = new Date();
-      if (today < ADMIT_OPEN_DATE) {
-        setMessage("⏳ Admit Card अभी जारी नहीं हुआ है");
-        setData(null);
-        return;
-      }
-
-      // 💰 Payment Check
-      if (result.status.toLowerCase() !== "paid") {
-        setMessage("❌ आपने अभी तक फीस जमा नहीं की है");
-        setData(null);
-        return;
-      }
-
-      // ✅ All OK
+      // ✅ Backend already verified:
+      // - FormNo
+      // - Aadhaar
+      // - Payment
       setData(result);
-      setMessage("");
 
-    } catch {
-      setMessage("❌ Server Error, फिर से प्रयास करें");
+    } catch (err) {
+      console.error(err);
+      setMessage("❌ Network / Server Error");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="admit-box">
-
       <h1>Admit Card Download</h1>
-      <p>Form Number डालकर Admit Card प्राप्त करें</p>
+      <p>Form Number और Aadhaar डालकर Admit Card प्राप्त करें</p>
 
       <input
-        placeholder="Enter Form Number (ex: GRF-0005)"
+        placeholder="Enter Form Number (ex: GRF-0011)"
         value={formNo}
         onChange={(e) => setFormNo(e.target.value)}
       />
 
-      <button onClick={getAdmit}>Get Admit Card</button>
+      <input
+        placeholder="Enter Aadhaar Number"
+        value={aadhaar}
+        maxLength={12}
+        onChange={(e) => setAadhaar(e.target.value.replace(/\D/g, ""))}
+      />
+
+      <button onClick={getAdmit} disabled={loading}>
+        {loading ? "Loading..." : "Get Admit Card"}
+      </button>
 
       {message && <p className="error">{message}</p>}
 
+      {/* 🔄 Loading Indicator */}
+      {loading && (
+        <div className="loader">
+          ⏳ Admit Card लोड हो रहा है...
+        </div>
+      )}
+
       {data && (
         <div className="admit-wrapper" id="printArea">
-
           {/* HEADER */}
           <div className="admit-header">
-            <img
-              src="/logo.webp"
-              className="logos"
-              alt="Gulshan-e-Raza Society Logo"
-            />
+            <img src="/logo.webp" className="logos" alt="Logo" />
+
             <div className="title">
               <h1>गुलशन-ए-रज़ा सोसाइटी, डूंगरपुर</h1>
               <h3>Quiz & Islamic Competition 2026</h3>
               <p className="sub">ADMIT CARD</p>
             </div>
-             {/* QR CODE */}
-              <div className="qr-box">
-                <QRCodeSVG
-                  value={getQRValue(data)}
-                  size={90}
-                  includeMargin={true}
-                  aria-label={`Verification QR code for Form Number ${data.formNo}`}
-                />
 
-                <p className="qr-text">Scan for Verification</p>
-              </div>
+            <div className="qr-box">
+              <QRCodeSVG value={getQRValue(data)} size={90} />
+              <p className="qr-text">Scan for Verification</p>
+            </div>
           </div>
-
 
           {/* INFO BAR */}
           <div className="info-bar">
@@ -115,8 +123,6 @@ export default function AdmitCard() {
 
           {/* BODY */}
           <div className="admit-body">
-
-            {/* LEFT */}
             <div className="left">
               <p><b>Name:</b> {data.name}</p>
               <p><b>Father’s Name:</b> {data.father}</p>
@@ -127,25 +133,38 @@ export default function AdmitCard() {
               <p className="paid">Status: PAID ✔</p>
             </div>
 
-            {/* RIGHT */}
             <div className="right">
+              {data.photo ? (
+                    <img
+                      src={data.photo}
+                      className="photo"
+                      alt={data.name}
+                      onError={(e) => {
+                        e.target.style.display = "none";
+                        e.target.nextSibling.style.display = "flex";
+                      }}
+                    />
+                  ) : null}
 
-              {/* PHOTO */}
-              <img
-                src={data.photo}
-                className="photo"
-                alt={`${data.name} Photograph`}
-              />
+                  {/* PHOTO PLACEHOLDER */}
+                  <div
+                    className="photo-placeholder"
+                    style={{
+                      display: data.photo ? "none" : "flex"
+                    }}
+                  >
+                    AFFIXED  
+                    <br />
+                    YOUR
+                    <br />
+                    PHOTO
+                  </div>
 
-             
 
-              {/* SIGN */}
               <div className="sign-box">
                 <p>Controller of Examination</p>
               </div>
-
             </div>
-
           </div>
 
           {/* FOOTER */}
@@ -156,10 +175,8 @@ export default function AdmitCard() {
           <button onClick={() => window.print()} className="print-btn">
             Print / Download PDF
           </button>
-
         </div>
       )}
-
     </div>
   );
 }

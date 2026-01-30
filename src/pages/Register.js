@@ -11,6 +11,7 @@ export default function Register() {
   const [formData, setFormData] = useState({
     name: "",
     father: "",
+    gender: "",        // ✅ ADDED
     aadhaar: "",
     dob: "",
     age: "",
@@ -133,7 +134,7 @@ export default function Register() {
       setLoading(true);
 
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbybdpcSfdkxIjPVtRlNAyMPoPg4DQ_XTCTdZ-VvzNdURKCWMyrdGvCFHOwegZAz2_zu/exec",
+        "https://script.google.com/macros/s/AKfycbzk2istRmboIKkOACb10EbYTcSc5CTYnDZnBwUG1qNPMQ58Qm0i1auMc25Pq--xl4XL/exec",
         {
           method: "POST",
           body: JSON.stringify(formData)
@@ -192,6 +193,14 @@ export default function Register() {
 
         <label>पिता / सरपरस्‍त का नाम</label>
         <input name="father" required onChange={handleChange} />
+
+        <label>लिंग (Gender)</label>
+          <select name="gender" required onChange={handleChange}>
+            <option value="">चुनें</option>
+            <option value="Male">पुरुष (Male)</option>
+            <option value="Female">महिला (Female)</option>
+          </select>
+
 
         <label>आधार कार्ड नंबर</label>
         <input

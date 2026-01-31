@@ -10,7 +10,7 @@ export default function Participants() {
   const [filterStatus, setFilterStatus] = useState("");
 
   const sheetURL =
-    "https://script.google.com/macros/s/AKfycbwXcIMjOOhmX2VtIKFQFNZQiXU_ZiwQ10qhd315BPDzo4j8wP3O2uyqfzM4cxNTbxye/exec?action=getAll";
+    "https://script.google.com/macros/s/AKfycbxeQeC3sQD9WUr5Ky_YVmcVoJC-iiUe_Y8mqqRoaGd-SiKaHx2G6xGbSIzFInhQ_G6A/exec?action=getAll";
 
   // ================= FETCH DATA WITH CACHE =================
   useEffect(() => {
@@ -62,13 +62,7 @@ export default function Participants() {
     return "XXXXXX" + str.slice(-4);
   };
 
-  const maskAadhaar = (aadhaar) => {
-    if (!aadhaar) return "";
-    const str = aadhaar.toString();
-    return "XXXXXXXX" + str.slice(-4);
-  };
-
-  // ================= FILTER (useMemo) =================
+   // ================= FILTER (useMemo) =================
   const filtered = useMemo(() => {
     return data.filter((item) => {
 
@@ -201,7 +195,8 @@ export default function Participants() {
                       <td>{row.father}</td>
                       <td>{row.age}</td>
                       <td>{row.address}</td>
-                      <td>{maskAadhaar(row.aadhaar)}</td>
+                      <td style={{width: "150px"}}>{row.aadhaar}</td>
+
                       <td>{maskPhone(row.phone)}</td>
                       <td>{row.ageGroup}</td>
                       <td>{row.competition}</td>

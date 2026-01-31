@@ -1,6 +1,18 @@
 import { useState } from "react";
 import { QRCodeSVG } from "qrcode.react";
 
+// ✅ PHOTO VALIDATION HELPER
+const hasValidPhoto = (photo) => {
+  return (
+    photo &&
+    typeof photo === "string" &&
+    photo.trim() !== "" &&
+    photo !== "NA" &&
+    photo !== "Not Uploaded"
+  );
+};
+
+
 export default function AdmitCard() {
   const [formNo, setFormNo] = useState("");
   const [aadhaar, setAadhaar] = useState("");
@@ -15,7 +27,7 @@ export default function AdmitCard() {
     "https://script.google.com/macros/s/AKfycbwOsXsAveNj588Mh9poVZJNwAYAIehvkeyt0WEo_Kx3CuiL8YhzKaJJOO8xs0Lb2fo/exec";
 
   // 🔒 Admit Card Open Date (LOCK)
-  const ADMIT_OPEN_DATE = new Date("2026-01-05");
+  const ADMIT_OPEN_DATE = new Date("2026-04-10");
 
   // 🔲 QR Value (safe – no aadhaar)
   const getQRValue = (data) =>
@@ -133,33 +145,32 @@ export default function AdmitCard() {
               <p className="paid">Status: PAID ✔</p>
             </div>
 
-            <div className="right">
-              {data.photo ? (
-                    <img
-                      src={data.photo}
-                      className="photo"
-                      alt={data.name}
-                      onError={(e) => {
-                        e.target.style.display = "none";
-                        e.target.nextSibling.style.display = "flex";
-                      }}
-                    />
-                  ) : null}
+           <div className="right">
+              {hasValidPhoto(data.photo) && (
+                <img
+                  src={data.photo}
+                  className="photo"
+                  alt={data.name}
+                  onError={(e) => {
+                    e.target.style.display = "none";
+                    e.target.nextSibling.style.display = "flex";
+                  }}
+                />
+              )}
 
-                  {/* PHOTO PLACEHOLDER */}
-                  <div
-                    className="photo-placeholder"
-                    style={{
-                      display: data.photo ? "none" : "flex"
-                    }}
-                  >
-                    AFFIXED  
-                    <br />
-                    YOUR
-                    <br />
-                    PHOTO
-                  </div>
-
+              {/* PHOTO PLACEHOLDER */}
+              <div
+                className="photo-placeholder"
+                style={{
+                  display: hasValidPhoto(data.photo) ? "none" : "flex"
+                }}
+              >
+                AFFIXED  
+                <br />
+                YOUR
+                <br />
+                PHOTO
+              </div>
 
               <div className="sign-box">
                 <p>Controller of Examination</p>

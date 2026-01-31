@@ -110,6 +110,16 @@ export default function Register() {
   // ---------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
+      // ✅ Gender validation
+      if (!formData.gender) {
+        alert("कृपया अपना लिंग (Gender) चुनें ❗");
+        return;
+      }
+
+      if (!["Male", "Female"].includes(formData.gender)) {
+        alert("अमान्य Gender चयन ❌");
+        return;
+      }
 
     // ⛔ Deadline block
     if (isRegistrationClosed) {

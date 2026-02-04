@@ -1477,3 +1477,68 @@ ul li{
   color: #555;
   line-height: 1.4;
 }
+
+/* kabrisatan css */
+/* Section */
+.kabristan-section {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: auto;
+  text-align: center;
+}
+
+/* Title */
+.section-title {
+  font-size: 26px;
+  margin-bottom: 30px;
+  color: #1f2937;
+}
+
+/* Grid */
+.kabristan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* Card */
+.kabristan-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 30px 20px;
+  text-decoration: none;
+  color: #111827;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.kabristan-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+  background: #f0fdf4;
+}
+
+/* Icon */
+.kabristan-card .icon {
+  font-size: 36px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Text */
+.kabristan-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Mobile optimization */
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 22px;
+  }
+
+  .kabristan-card {
+    padding: 24px 16px;
+  }
+}

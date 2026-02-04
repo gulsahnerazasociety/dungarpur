@@ -119,7 +119,42 @@ fetch("https://raw.githubusercontent.com/gulsahnerazasociety/dungarpur/main/comm
         </Link>
        
       </section>
+      {/* <section className="kabristan-section">
+      <h2 className="section-title">आप हमारें कार्यो का हिसाब व किताब यहा से देख सकते है</h2>
 
+      <div className="kabristan-grid">
+        <Link to="/dashboard/K1" className="kabristan-card">
+          <span className="icon">🕌</span>
+          <h3>1st - डूंगरपुर शहर कब्रस्‍तान </h3><p>(डूंगरपुर शहर कब्रस्‍तान)</p>
+        
+        </Link>
+
+        <Link to="/dashboard/K2" className="kabristan-card">
+          <span className="icon">🕌</span>
+            <h3>2nd -मेवा फरोश कब्रस्‍तान </h3><p>(मेवा फरोश कब्रस्‍तान)</p>
+         
+        </Link>
+
+        <Link to="/dashboard/K3" className="kabristan-card">
+          <span className="icon">🕌</span>
+           <h3>3rd - निचला कब्रस्‍तान </h3><p>(आशिक अली शाह बाबा)</p>
+          
+        </Link>
+
+        <Link to="/dashboard/K4" className="kabristan-card">
+          <span className="icon">🕌</span>
+          <h3>4th - उपर वाला कब्रस्‍तान </h3><p>(मस्‍तान शाह बाबा)</p>
+        </Link>
+        <Link to="/dashboard/K5" className="kabristan-card">
+          <span className="icon">🕌</span>
+          <h3>5th - सामाजिक कार्य </h3><p>(डूंगरपुर)</p>
+        </Link>
+        <Link to="/dashboard/K6" className="kabristan-card">
+          <span className="icon">🕌</span>
+          <h3>6th - मुकाबलाती इम्तिहान </h3><p>(2025-26)</p>
+        </Link>
+      </div>
+    </section> */}
 {/* COMMITTEE SWIPER SECTION */}
 <section className="committee-section">
   <h2>🕌 Committee Details</h2>

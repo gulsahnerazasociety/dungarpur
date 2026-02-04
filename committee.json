@@ -4,9 +4,9 @@
     "members": [
       {
         "post": "President",
-        "name": "Raees Ahmed",
+        "name": "Raees Ahmed Mewfarosh",
         "qualification": "President (Buisness Man)",
-        "place": "MewaFarosh, Shastri Colony",
+        "place": "Shastri Colony",
         "photo": "https://gulshanerazasociety.aetmyweb.com/images/committee/1.jpg"
       },
       {
@@ -33,7 +33,7 @@
       {
         "post": "Treasurer (Cashier)",
         "name": "Mukammil Ahmed Qureshi",
-        "qualification": "Cashier (Buisness Man)",
+        "qualification": "Cashier (BCA) (Buisness Man)",
         "place": "Kandharwadi",
         "photo": "https://gulshanerazasociety.aetmyweb.com/images/committee/5.jpg"
       },
@@ -196,6 +196,13 @@
         "qualification": "Advisor",
         "place": "Garibnawaz Colony",
         "photo": "https://gulshanerazasociety.aetmyweb.com/images/committee/28.jpg"
+      },
+      {
+        "post": "Advisory Board",
+        "name": "Mohammed Rafiq",
+        "qualification": "Member  (NRI)",
+        "place": "Madar Colony Ghanti ",
+        "photo": "https://gulshanerazasociety.aetmyweb.com/images/committee/31.jpg"
       }
     ]
   },
@@ -252,3 +259,4 @@
     ]
   }
 ]
+

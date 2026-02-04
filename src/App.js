@@ -13,6 +13,8 @@ import VerifyAdmit from "./pages/VerifyAdmit";
 import ViewParticipant from "./pages/ViewParticipant"
 import AboutUs from "./pages/AboutUs"
 import PrivacyPolicy from "./pages/PrivacyPolicy"
+import KabristanDashboard from "./components/KabristanDashboard";
+
 
 function App() {
   return (
@@ -36,6 +38,7 @@ function App() {
           <li><Link to="/payment">Payment</Link></li>
           <li><Link to="/receipt">Receipt</Link></li>
           <li><Link to="/admin">Admin</Link></li>
+          <li><Link to="/admit-card">Admit Card</Link></li>
           <li><Link to="/privacy-policy">Privacy Policy</Link></li>
           <li><Link to="/about">About Us</Link></li>
         </ul>
@@ -56,8 +59,10 @@ function App() {
         <Route path="/view" element={<ViewParticipant />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        {/* Dynamic Kabristan ID */}
+        <Route path="/dashboard/:kabristanId" element={<KabristanDashboard />} />
+     
 
-        
 
       </Routes>
   </HashRouter>

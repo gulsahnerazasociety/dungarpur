@@ -1,0 +1,284 @@
+/* ===== Global ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  background: #f4f6f8;
+  color: #222;
+}
+
+.dashboard {
+  max-width: 1100px;
+  margin: auto;
+  padding: 15px;
+}
+
+/* ===== Header ===== */
+.header {
+  background: linear-gradient(135deg, #0f766e, #115e59);
+  color: #fff;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.header small {
+  opacity: 0.9;
+}
+
+/* ===== Summary Cards ===== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.1);
+}
+
+.card.income {
+  border-left: 6px solid #16a34a;
+}
+
+.card.expense {
+  border-left: 6px solid #dc2626;
+}
+
+.card.balance {
+  border-left: 6px solid #2563eb;
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 15px;
+  color: #555;
+}
+
+.card .amount {
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+/* ===== List View ===== */
+.list {
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+.list h3 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+.list-item {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.list-item:hover {
+  background: #f9fafb;
+}
+
+.amount-tag {
+  font-weight: 600;
+  color: #0f766e;
+}
+
+/* ===== Detail ===== */
+.detail {
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+.detail-item {
+  padding: 10px 0;
+  border-bottom: 1px dashed #ddd;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+/* ===== Back Button ===== */
+.back-btn {
+  margin-top: 15px;
+  background: #0f766e;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: #115e59;
+}
+.video-box iframe {
+  width: 100%;
+  height: 220px;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+.detail-table th,
+.detail-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.detail-table th {
+  background: #f2f2f2;
+}
+
+.detail-table iframe {
+  width: 160px;
+  height: 90px;
+  border-radius: 8px;
+  border: none;
+}
+
+.no-video {
+  color: #888;
+  font-size: 13px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .detail-table iframe {
+    width: 120px;
+    height: 70px;
+  }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+  .header h2 {
+    font-size: 18px;
+  }
+
+  .card .amount {
+    font-size: 20px;
+  }
+
+  .list-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
+
+
+/* ===== DETAIL TABLE ===== */
+.detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.detail-table thead {
+  background: #2f855a;
+}
+
+.detail-table th {
+  color: #09480f;
+  border: 1px solid #ddd;
+}
+
+.detail-table td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.video-btn {
+  background: #e53e3e;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.no-video {
+  color: #888;
+  font-size: 13px;
+}
+
+/* MODAL */
+.video-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.video-box {
+  background: #000;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  border-radius: 10px;
+}
+
+.video-box iframe {
+  width: 100%;
+  height: 280px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  background: red;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 5px 9px;
+  cursor: pointer;
+}

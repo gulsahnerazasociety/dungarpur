@@ -13,7 +13,7 @@ import VerifyAdmit from "./pages/VerifyAdmit";
 import ViewParticipant from "./pages/ViewParticipant"
 import AboutUs from "./pages/AboutUs"
 import PrivacyPolicy from "./pages/PrivacyPolicy"
-import KabristanDashboard from "./components/KabristanDashboard";
+import KabristanDashboard from "./pages/KabristanDashboad";
 
 
 function App() {
@@ -61,7 +61,7 @@ function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         {/* Dynamic Kabristan ID */}
         <Route path="/dashboard/:kabristanId" element={<KabristanDashboard />} />
-     
+
 
 
       </Routes>

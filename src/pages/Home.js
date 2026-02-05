@@ -119,7 +119,7 @@ fetch("https://raw.githubusercontent.com/gulsahnerazasociety/dungarpur/main/comm
         </Link>
        
       </section>
-      {/* <section className="kabristan-section">
+      <section className="kabristan-section">
       <h2 className="section-title">आप हमारें कार्यो का हिसाब व किताब यहा से देख सकते है</h2>
 
       <div className="kabristan-grid">
@@ -154,7 +154,7 @@ fetch("https://raw.githubusercontent.com/gulsahnerazasociety/dungarpur/main/comm
           <h3>6th - मुकाबलाती इम्तिहान </h3><p>(2025-26)</p>
         </Link>
       </div>
-    </section> */}
+    </section>
 {/* COMMITTEE SWIPER SECTION */}
 <section className="committee-section">
   <h2>🕌 Committee Details</h2>

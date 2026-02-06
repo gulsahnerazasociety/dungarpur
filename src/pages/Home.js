@@ -6,12 +6,14 @@ import { Autoplay, Pagination } from "swiper/modules";
 import { useEffect, useState } from "react";
 import "swiper/css";
 import "swiper/css/pagination";
-
-
+import useKabristanData from "../hooks/useKabristanData";
+import FundPieChart from "../components/FundPieChart";
+import "./home.css";
 
 export default function Home() {
+  const formatAmount = (num) => Number(num || 0).toFixed(2);
   const [committeeData, setCommitteeData] = useState([]);
-
+ const { allRows, loading } = useKabristanData();
 
 useEffect(() => {
 fetch("https://raw.githubusercontent.com/gulsahnerazasociety/dungarpur/main/committee.json?"+Date.now())
@@ -20,6 +22,35 @@ fetch("https://raw.githubusercontent.com/gulsahnerazasociety/dungarpur/main/comm
 .then(data => setCommitteeData(data))
 .catch(err => console.error("Committee JSON error:", err));
 }, []);
+
+ if (loading) {
+    return <p>Loading data...</p>;
+  }
+const sumBy = (id, type) =>
+  allRows
+    .filter(r => r.Kabristan_ID === id && r.Type === type)
+    .reduce((s, r) => s + r.Amount, 0);
+
+
+
+
+// if (allRows.length > 0) {
+//     console.log("K1 Total IN:", inK1);
+//     console.log("K1 Total OUT:", outK1);
+//   }
+
+
+
+
+  const totalReceived = allRows
+    .filter(r => r.Type === "IN")
+    .reduce((sum, r) => sum + r.Amount, 0);
+
+  const totalExpense = allRows
+    .filter(r => r.Type === "OUT")
+    .reduce((sum, r) => sum + r.Amount, 0);
+
+  const availableFund = totalReceived - totalExpense;
   return (
     <>
 
@@ -119,42 +150,68 @@ fetch("https://raw.githubusercontent.com/gulsahnerazasociety/dungarpur/main/comm
         </Link>
        
       </section>
-      <section className="kabristan-section">
-      <h2 className="section-title">आप हमारें कार्यो का हिसाब व किताब यहा से देख सकते है</h2>
 
-      <div className="kabristan-grid">
+    <section className="notice-section">
+     <div className="home-dashboard">
+      <h2>📊 Fund Overview</h2>
+
+      <div className="cardsing">
+        <div className="carding green">₹{formatAmount(totalReceived)}<span>Received</span></div>
+        <div className="carding red">₹{formatAmount(totalExpense)}<span>Expense</span></div>
+        <div className="carding blue">₹{formatAmount(availableFund)}<span>Available</span></div>
+      </div>
+
+      <div className="chart-box">
+        <FundPieChart
+          received={totalReceived}
+          expense={totalExpense}
+          available={availableFund}
+        />
+      </div>
+    </div>
+    </section>
+
+      <section className="kabristan-section">
+      <h2 className="section-title">उपरोक्‍त फण्‍ड का उपयोग किस प्रकार हुआ है, उसे आप यहा से देख सकते हैा</h2>
+
+      <div className="kabristan-grid" id="kabristanGrid">
         <Link to="/dashboard/K1" className="kabristan-card">
           <span className="icon">🕌</span>
           <h3>1st - डूंगरपुर शहर कब्रस्‍तान </h3><p>(डूंगरपुर शहर कब्रस्‍तान)</p>
-        
+          <p>Utilised Fund: {formatAmount(sumBy("K1", "OUT"))}</p>
+          {/* <span>{sumBy("K1", "OUT")}</span> */}
         </Link>
 
         <Link to="/dashboard/K2" className="kabristan-card">
           <span className="icon">🕌</span>
             <h3>2nd -मेवा फरोश कब्रस्‍तान </h3><p>(मेवा फरोश कब्रस्‍तान)</p>
-         
+         <p>Utilised Fund: {formatAmount(sumBy("K2", "OUT"))}</p>
         </Link>
 
         <Link to="/dashboard/K3" className="kabristan-card">
           <span className="icon">🕌</span>
            <h3>3rd - निचला कब्रस्‍तान </h3><p>(आशिक अली शाह बाबा)</p>
-          
+          <p>Utilised Fund: {formatAmount(sumBy("K3", "OUT"))}</p>
         </Link>
 
         <Link to="/dashboard/K4" className="kabristan-card">
           <span className="icon">🕌</span>
           <h3>4th - उपर वाला कब्रस्‍तान </h3><p>(मस्‍तान शाह बाबा)</p>
+          <p>Utilised Fund: {formatAmount(sumBy("K4", "OUT"))}</p>
         </Link>
         <Link to="/dashboard/K5" className="kabristan-card">
           <span className="icon">🕌</span>
           <h3>5th - सामाजिक कार्य </h3><p>(डूंगरपुर)</p>
+          <p>Utilised Fund: {formatAmount(sumBy("K5", "OUT"))}</p>
         </Link>
         <Link to="/dashboard/K6" className="kabristan-card">
           <span className="icon">🕌</span>
           <h3>6th - मुकाबलाती इम्तिहान </h3><p>(2025-26)</p>
+          <p>Utilised Fund: {formatAmount(sumBy("K6", "OUT"))}</p>
         </Link>
       </div>
     </section>
+
 {/* COMMITTEE SWIPER SECTION */}
 <section className="committee-section">
   <h2>🕌 Committee Details</h2>

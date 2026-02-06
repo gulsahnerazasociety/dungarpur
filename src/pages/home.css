@@ -1,0 +1,39 @@
+.home-dashboard {
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.cardsing {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.carding {
+  padding: 15px;
+  border-radius: 12px;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.carding span {
+  display: block;
+  font-size: 14px;
+  opacity: 0.9;
+  margin-top: 5px;
+}
+
+.green { background: #4CAF50; }
+.red   { background: #F44336; }
+.blue  { background: #2196F3; }
+
+.chart-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}

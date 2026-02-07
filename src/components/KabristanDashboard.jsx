@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./dashboard.css";
 import KABRISTAN_MAP from "../data/kabristanMap.json";
+import KABRISTAN_CONFIG from "../data/kabristanConfig";
 
 const MONTH_NAMES = [
   "Jan","Feb","Mar","Apr","May","Jun",
@@ -44,6 +45,11 @@ const [allRows, setAllRows] = useState([]); // dono properly define hain
 
   const [showVideo, setShowVideo] = useState(false);
   const [videoUrl, setVideoUrl] = useState("");
+
+// YouTube URL → Embed Playlist Video Configure 
+const playlistId = KABRISTAN_CONFIG[KABRISTAN_ID]?.playlistId;
+const getPlaylistEmbedUrl = (playlistId) =>
+  `https://www.youtube.com/embed/videoseries?list=${playlistId}`;
 
   /* ================= FETCH & CACHE ================= */
 useEffect(() => {
@@ -291,6 +297,35 @@ useEffect(() => {
           </div>
         </div>
       )}
+{/* yaha per YouTube PlayList dikhegi */}
+{playlistId && (
+  <div className="playlist-wrapper">
+    <h3 className="playlist-title">
+      🎥 Kabristan {KABRISTAN_ID} – Video Updates
+    </h3>
+
+    <div className="playlist-frame">
+      <iframe
+        src={getPlaylistEmbedUrl(playlistId)}
+        title="Kabristan Playlist"
+        allow="autoplay; encrypted-media"
+        allowFullScreen
+      />
+        
+
+        </div>
+        <a
+      href={`https://www.youtube.com/playlist?list=${playlistId}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="youtube-link"
+    >
+      ▶️ View Full Playlist on YouTube
+    </a>
+      </div>
+    )}
+
+
  <br></br>
 <button onClick={() => navigate("/")}>
   Go to Home Page

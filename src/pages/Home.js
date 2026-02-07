@@ -4,10 +4,11 @@ import GAStats from "../components/GAStats";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { useEffect, useState } from "react";
-import "swiper/css";
-import "swiper/css/pagination";
 import useKabristanData from "../hooks/useKabristanData";
 import FundPieChart from "../components/FundPieChart";
+
+import "swiper/css";
+import "swiper/css/pagination";
 import "./home.css";
 
 export default function Home() {

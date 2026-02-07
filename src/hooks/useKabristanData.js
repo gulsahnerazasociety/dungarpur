@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
 
 const CACHE_KEY = "kabristan_all_data";
-const CACHE_DURATION = 12 * 60 * 60 * 1000; // 12 hour
+const CACHE_DURATION = 30 * 60 * 1000; // 30 minutes
 
-// | Duration         | Value in code (ms)    |
-// | ---------------- | --------------------- |
-// | 1 hour           | `1 * 60 * 60 * 1000`  |
-// | 6 hours          | `6 * 60 * 60 * 1000`  |
-// | 12 hours         | `12 * 60 * 60 * 1000` |
-// | 24 hours (1 day) | `24 * 60 * 60 * 1000` |
+// | Duration        | Value in code (ms)     |
+// | --------------- | ---------------------- |
+// | 5 minutes       | 5 * 60 * 1000          |
+// | 10 minutes      | 10 * 60 * 1000         |
+// 30 minutes  → 30 * 60 * 1000 = 1800000
+// | 1 hour          | 1 * 60 * 60 * 1000     |
+// | 6 hours         | 6 * 60 * 60 * 1000     |
+// | 12 hours        | 12 * 60 * 60 * 1000    |
+// | 24 hours        | 24 * 60 * 60 * 1000    |
+
 
 // 🎥 YouTube URL → Embed
 const getEmbedUrl = (url) => {

@@ -31,6 +31,17 @@ const sumBy = (id, type) =>
     .filter(r => r.Kabristan_ID === id && r.Type === type)
     .reduce((s, r) => s + r.Amount, 0);
 
+// latest record निकालो
+const latestRecord = allRows.length
+  ? [...allRows].sort(
+      (a, b) => new Date(b.Date) - new Date(a.Date)
+    )[0]
+  : null;
+
+const lastEntryDate = latestRecord
+  ? latestRecord.DisplayDate
+  : "—";
+
 
 
 
@@ -153,12 +164,12 @@ const sumBy = (id, type) =>
 
     <section className="notice-section">
      <div className="home-dashboard">
-      <h2>📊 Fund Overview</h2>
+      <h2>📊 Fund Overview <span>Last Updated Data: {lastEntryDate}</span></h2>
 
       <div className="cardsing">
-        <div className="carding green">₹{formatAmount(totalReceived)}<span>Received</span></div>
-        <div className="carding red">₹{formatAmount(totalExpense)}<span>Expense</span></div>
-        <div className="carding blue">₹{formatAmount(availableFund)}<span>Available</span></div>
+        <div className="carding green">₹{formatAmount(totalReceived)}<span>Received </span><span>(कुल इम्‍दाद राशि)</span></div>
+        <div className="carding red">₹{formatAmount(totalExpense)}<span>Expense</span><span>(कुल उपयोग की गई राशि)</span></div>
+        <div className="carding blue">₹{formatAmount(availableFund)}<span>Available</span><span>(कुल बचत इम्‍दाद राशि)</span></div>
       </div>
 
       <div className="chart-box">
@@ -178,36 +189,59 @@ const sumBy = (id, type) =>
         <Link to="/dashboard/K1" className="kabristan-card">
           <span className="icon">🕌</span>
           <h3>1st - डूंगरपुर शहर कब्रस्‍तान </h3><p>(डूंगरपुर शहर कब्रस्‍तान)</p>
-          <p>Utilised Fund: {formatAmount(sumBy("K1", "OUT"))}</p>
-          {/* <span>{sumBy("K1", "OUT")}</span> */}
+          <div style={{fontSize:'12px'}}>
+            <p style={{color:'green'}}>कुल इम्‍दाद राशि: {formatAmount(sumBy("K1", "IN"))}</p>
+            <span style={{color:'red'}}>कुल उपयोग की गई राशि: {formatAmount(sumBy("K1", "OUT"))}</span>
+            <p style={{color:'blue'}}>कुल बचत इम्‍दाद राशि: {formatAmount(sumBy("K1", "IN")- sumBy("K1", "OUT"))}</p>
+          </div>
         </Link>
 
         <Link to="/dashboard/K2" className="kabristan-card">
           <span className="icon">🕌</span>
             <h3>2nd -मेवा फरोश कब्रस्‍तान </h3><p>(मेवा फरोश कब्रस्‍तान)</p>
-         <p>Utilised Fund: {formatAmount(sumBy("K2", "OUT"))}</p>
+         <div style={{fontSize:'12px'}}>
+            <p style={{color:'green'}}>कुल इम्‍दाद राशि: {formatAmount(sumBy("K2", "IN"))}</p>
+            <span style={{color:'red'}}>कुल उपयोग की गई राशि: {formatAmount(sumBy("K2", "OUT"))}</span>
+            <p style={{color:'blue'}}>कुल बचत इम्‍दाद राशि: {formatAmount(sumBy("K2", "IN")- sumBy("K2", "OUT"))}</p>
+          </div>
         </Link>
 
         <Link to="/dashboard/K3" className="kabristan-card">
           <span className="icon">🕌</span>
            <h3>3rd - निचला कब्रस्‍तान </h3><p>(आशिक अली शाह बाबा)</p>
-          <p>Utilised Fund: {formatAmount(sumBy("K3", "OUT"))}</p>
+          <div style={{fontSize:'12px'}}>
+            <p style={{color:'green'}}>कुल इम्‍दाद राशि: {formatAmount(sumBy("K3", "IN"))}</p>
+            <span style={{color:'red'}}>कुल उपयोग की गई राशि: {formatAmount(sumBy("K3", "OUT"))}</span>
+            <p style={{color:'blue'}}>कुल बचत इम्‍दाद राशि: {formatAmount(sumBy("K3", "IN")- sumBy("K3", "OUT"))}</p>
+          </div>
         </Link>
 
         <Link to="/dashboard/K4" className="kabristan-card">
           <span className="icon">🕌</span>
           <h3>4th - उपर वाला कब्रस्‍तान </h3><p>(मस्‍तान शाह बाबा)</p>
-          <p>Utilised Fund: {formatAmount(sumBy("K4", "OUT"))}</p>
+          <div style={{fontSize:'12px'}}>
+            <p style={{color:'green'}}>कुल इम्‍दाद राशि: {formatAmount(sumBy("K4", "IN"))}</p>
+            <span style={{color:'red'}}>कुल उपयोग की गई राशि: {formatAmount(sumBy("K4", "OUT"))}</span>
+            <p style={{color:'blue'}}>कुल बचत इम्‍दाद राशि: {formatAmount(sumBy("K4", "IN")- sumBy("K4", "OUT"))}</p>
+          </div>
         </Link>
         <Link to="/dashboard/K5" className="kabristan-card">
           <span className="icon">🕌</span>
           <h3>5th - सामाजिक कार्य </h3><p>(डूंगरपुर)</p>
-          <p>Utilised Fund: {formatAmount(sumBy("K5", "OUT"))}</p>
+           <div style={{fontSize:'12px'}}>
+            <p style={{color:'green'}}>कुल इम्‍दाद राशि: {formatAmount(sumBy("K5", "IN"))}</p>
+            <span style={{color:'red'}}>कुल उपयोग की गई राशि: {formatAmount(sumBy("K5", "OUT"))}</span>
+            <p style={{color:'blue'}}>कुल बचत इम्‍दाद राशि: {formatAmount(sumBy("K5", "IN")- sumBy("K5", "OUT"))}</p>
+          </div>
         </Link>
         <Link to="/dashboard/K6" className="kabristan-card">
           <span className="icon">🕌</span>
           <h3>6th - मुकाबलाती इम्तिहान </h3><p>(2025-26)</p>
-          <p>Utilised Fund: {formatAmount(sumBy("K6", "OUT"))}</p>
+           <div style={{fontSize:'12px'}}>
+            <p style={{color:'green'}}>कुल इम्‍दाद राशि: {formatAmount(sumBy("K6", "IN"))}</p>
+            <span style={{color:'red'}}>कुल उपयोग की गई राशि: {formatAmount(sumBy("K6", "OUT"))}</span>
+            <p style={{color:'blue'}}>कुल बचत इम्‍दाद राशि: {formatAmount(sumBy("K6", "IN")- sumBy("K6", "OUT"))}</p>
+          </div>
         </Link>
       </div>
     </section>

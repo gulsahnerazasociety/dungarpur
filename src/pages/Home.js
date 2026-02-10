@@ -99,16 +99,16 @@ const lastEntryDate = latestRecord
 
         <div className="info-grid">
           <div className="card">
-            <span style={{fontSize:"50px"}}>🥇</span> FREE UMRAH (शर्तों के साथ)
+            <span style={{fontSize:"60px"}}> 🕋</span> FREE UMRAH (शर्तों के साथ)
           </div>
           <div className="card">
-            <span style={{fontSize:"50px"}}>🥈</span> Laptop
+            <span style={{fontSize:"50px"}}> 💻</span> Laptop
           </div>
           <div className="card">
-             <span style={{fontSize:"50px"}}>🥉</span> Tablet
+             <span style={{fontSize:"50px"}}> 📱</span> Tablet
           </div>
           <div className="card">
-             <span style={{fontSize:"50px"}}>🏅</span> Bicycle
+             <span style={{fontSize:"50px"}}> 🚴🏿‍♂️</span> Bicycle
           </div><div className="card">
              <span style={{fontSize:"50px"}}>💵</span> ₹3100
           </div><div className="card">

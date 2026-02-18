@@ -26,6 +26,11 @@ const KABRISTAN_CONFIG = {
     name: "Kabristan 6th",
     playlistId: "PLugsKQXajiMN9h-3y9IIWKD0vpPiruISu"
 
+  },
+  K7: {
+    name: "Zakat 7th",
+    playlistId: "PLugsKQXajiMNrrWkNWpSWwbru4B1zKJOS"
+
   }
 };
 

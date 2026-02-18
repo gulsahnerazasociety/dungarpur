@@ -6,6 +6,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import { useEffect, useState } from "react";
 import useKabristanData from "../hooks/useKabristanData";
 import FundPieChart from "../components/FundPieChart";
+import DonorsTicker from "../components/DonorsTicker";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -65,7 +66,7 @@ const lastEntryDate = latestRecord
   const availableFund = totalReceived - totalExpense;
   return (
     <>
-
+<DonorsTicker />
       {/* HERO SECTION */}
 
       <section className="hero-section">
@@ -93,6 +94,7 @@ const lastEntryDate = latestRecord
         </div>
       </section>
 < NoticeBoard />
+
       {/* PRIZE SECTION */}
       <section className="info">
         <h2>🎯 प्रतियोगिता के 🏆 पुरस्कार व इनआमात</h2>
@@ -242,6 +244,16 @@ const lastEntryDate = latestRecord
             <p style={{color:'green'}}>कुल इम्‍दाद राशि: {formatAmount(sumBy("K6", "IN"))}</p>
             <span style={{color:'red'}}>कुल उपयोग की गई राशि: {formatAmount(sumBy("K6", "OUT"))}</span>
             <p style={{color:'blue'}}>कुल बचत इम्‍दाद राशि: {formatAmount(sumBy("K6", "IN")- sumBy("K6", "OUT"))}</p>
+          </div>
+        </Link>
+
+        <Link to="/dashboard/K7" className="kabristan-card">
+          <span className="icon">🕌</span>
+          <h3>7th - जकात से प्राप्‍त आवक </h3><p>(2025-26)</p>
+           <div style={{fontSize:'12px'}}>
+            <p style={{color:'green'}}>कुल इम्‍दाद राशि: {formatAmount(sumBy("K7", "IN"))}</p>
+            <span style={{color:'red'}}>कुल उपयोग की गई राशि: {formatAmount(sumBy("K7", "OUT"))}</span>
+            <p style={{color:'blue'}}>कुल बचत इम्‍दाद राशि: {formatAmount(sumBy("K7", "IN")- sumBy("K7", "OUT"))}</p>
           </div>
         </Link>
       </div>

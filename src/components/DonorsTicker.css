@@ -1,0 +1,249 @@
+/* --- Main Container --- */
+.donors-ticker-container {
+  background: #0b2239;
+  border-bottom: 3px solid #1ea14f;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  height: 65px;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* --- Green Badge (Latest Donation) --- */
+.ticker-badge {
+  background: #1ea14f;
+  color: white;
+  padding: 0 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 1px;
+  z-index: 10;
+  white-space: nowrap;
+  box-shadow: 5px 0 15px rgba(0,0,0,0.3);
+  flex-shrink: 0;
+}
+
+/* --- Ticker Window & Track --- */
+.ticker-window {
+  overflow-x: hidden;
+  cursor: grab;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.ticker-window.active {
+  cursor: grabbing;
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-left 40s linear infinite;
+  align-items: center;
+}
+
+.ticker-track.paused {
+  animation-play-state: paused;
+}
+
+/* --- Donor Card Item --- */
+.donor-card-item {
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* --- Avatar Style --- */
+.donor-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #f1c40f;
+  overflow: hidden;
+  margin-right: 12px;
+  background: #fff;
+  flex-shrink: 0;
+  cursor: zoom-in;
+  transition: transform 0.2s ease;
+}
+
+.donor-avatar:hover {
+  transform: scale(1.1);
+}
+
+.donor-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Info & Amount Highlight --- */
+.donor-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.donor-name {
+  color: #f1c40f;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.donor-amt-highlight {
+  background: linear-gradient(45deg, #1ea14f, #2ecc71);
+  color: white;
+  padding: 1px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 12px;
+  width: fit-content;
+  box-shadow: 0 0 8px rgba(46, 204, 113, 0.4);
+}
+
+.ticker-separator {
+  margin-left: 30px;
+  color: #1ea14f;
+  font-size: 18px;
+  opacity: 0.5;
+}
+
+/* --- Modal Styles (Popup) --- */
+.donor-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.donor-modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  position: relative;
+  max-width: 320px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  animation: zoomIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.donor-modal-content img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #1ea14f;
+  margin-bottom: 15px;
+}
+
+.donor-modal-content h3 {
+  margin: 0;
+  color: #0b2239;
+  font-size: 22px;
+}
+
+.modal-amt {
+  font-size: 24px;
+  font-weight: 800;
+  color: #1ea14f;
+  margin: 15px 0;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 30px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #999;
+}
+
+/* --- Responsive View (Mobile) --- */
+@media (max-width: 768px) {
+  .donors-ticker-container {
+    flex-direction: column;
+    height: auto;
+    padding: 12px 0;
+  }
+
+  .ticker-badge {
+    height: 32px;
+    margin-bottom: 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    box-shadow: none;
+  }
+
+  .donor-card-item {
+    padding: 0 20px;
+  }
+}
+
+/* --- Animations --- */
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.donor-modal-overlay {
+  backdrop-filter: blur(8px); /* Piche ka area dhundhla ho jayega */
+  background: rgba(0, 0, 0, 0.7); /* Thoda transparent black */
+}
+
+
+.wa-share-btn {
+  background-color: #25D366;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 15px 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.wa-share-btn:hover {
+  transform: scale(1.05);
+  background-color: #128C7E;
+}
+
+/* Glass effect for Modal Overlay */
+.donor-modal-overlay {
+  backdrop-filter: blur(5px);
+  background: rgba(0,0,0,0.7);
+}
+
+.donor-modal-overlay {
+  z-index: 9999; /* Isse kam hona chahiye confetti ke zIndex se */
+  backdrop-filter: blur(5px);
+  background: rgba(0,0,0,0.7);
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  display: flex; justify-content: center; align-items: center;
+}
+

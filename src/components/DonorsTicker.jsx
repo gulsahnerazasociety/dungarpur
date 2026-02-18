@@ -137,8 +137,9 @@ const DonorsTicker = () => {
                 <img src={d.photo || "https://cdn-icons-png.flaticon.com/512/149/149071.png"} alt={d.name} loading="lazy" />
               </div>
               <div className="donor-details">
-                <span className="donor-name">{d.name}</span>
+                <span className="donor-name">{d.name} <span style={{color:"white"}}>{d.cause}</span></span>
                 <p className="donor-amt-highlight">₹{d.amount}</p>
+                
               </div>
               <span className="ticker-separator">•</span>
             </div>

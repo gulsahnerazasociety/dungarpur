@@ -14,7 +14,7 @@ import ViewParticipant from "./pages/ViewParticipant"
 import AboutUs from "./pages/AboutUs"
 import PrivacyPolicy from "./pages/PrivacyPolicy"
 import KabristanDashboard from "./pages/KabristanDashboad";
-
+import DonorsTicker from "./components/DonorsTicker";
 
 function App() {
   return (
@@ -43,8 +43,11 @@ function App() {
           <li><Link to="/about">About Us</Link></li>
         </ul>
       </nav>
-
+      <div className="donor-fixed">
+        <DonorsTicker />
+      </div>
       {/* ROUTES */}
+      <div className="main-content">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/competition" element={<CompetitionInfo />} />
@@ -61,11 +64,11 @@ function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         {/* Dynamic Kabristan ID */}
         <Route path="/dashboard/:kabristanId" element={<KabristanDashboard />} />
-
-
-
       </Routes>
+      </div>
+      
   </HashRouter>
+  
   );
 }
 

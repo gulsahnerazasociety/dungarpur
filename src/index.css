@@ -86,7 +86,8 @@ code {
   padding:10px 20px;
   position:sticky;
   top:0;
-  z-index:999;
+  z-index:3000;  
+  /* pehle 999 ye tha */
 }
 
 .logo{
@@ -294,6 +295,9 @@ footer{
   color:white;
   padding:10px;
   text-align:center;
+}
+footer a {
+    color: #00E5FF;
 }
 .pattern-box,
 .team-box,
@@ -1541,4 +1545,21 @@ ul li{
   .kabristan-card {
     padding: 24px 16px;
   }
+}
+
+
+
+
+
+.donor-fixed {
+  position: fixed;
+  top: 48px;
+  width: 100%;
+  z-index: 2000;
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.8);
+}
+
+.main-content {
+  margin-top: 110px;
 }

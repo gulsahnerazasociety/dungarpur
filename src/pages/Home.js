@@ -6,7 +6,6 @@ import { Autoplay, Pagination } from "swiper/modules";
 import { useEffect, useState } from "react";
 import useKabristanData from "../hooks/useKabristanData";
 import FundPieChart from "../components/FundPieChart";
-import DonorsTicker from "../components/DonorsTicker";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -66,7 +65,8 @@ const lastEntryDate = latestRecord
   const availableFund = totalReceived - totalExpense;
   return (
     <>
-<DonorsTicker />
+
+
       {/* HERO SECTION */}
 
       <section className="hero-section">
@@ -354,7 +354,9 @@ const lastEntryDate = latestRecord
 < GAStats />
 
       <footer>
-        © December 2022 Gulshan-E-Raza Society | Dungarpur
+        © December 2022 Gulshan-E-Raza Society, Dungarpur |
+        Developed by <a href="https://www.aetmyweb.com" target="_blank" rel="noopener noreferrer">AR Expert Team</a>  
+  
       </footer>
     </>
   );

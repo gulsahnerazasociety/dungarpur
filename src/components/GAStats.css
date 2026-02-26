@@ -5,7 +5,7 @@
 .ga-card {
   background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
   color: #ffffff;
-  padding: 16px;
+  padding: 16px 0 40px;
   border-radius: 14px;
   width: 100%;
   max-width: 360px;
@@ -188,7 +188,8 @@
   .live-footer {
     width: 92%;
     right: 4%;
-    bottom: 10px;
+    bottom: 60px;
+    opacity: 0.9;
   }
 
   .live-ring {

@@ -5,7 +5,7 @@ export default function Register() {
   const navigate = useNavigate();
 
   // ⛔ Registration deadline
-  const REGISTRATION_END_DATE = new Date("2026-03-31T23:59:59");
+  const REGISTRATION_END_DATE = new Date("2026-05-31T23:59:59");
   const isRegistrationClosed = new Date() > REGISTRATION_END_DATE;
 
   const [formData, setFormData] = useState({

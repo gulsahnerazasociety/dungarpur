@@ -8,9 +8,10 @@ export default function Participants() {
   const [search, setSearch] = useState("");
   const [filterGroup, setFilterGroup] = useState("");
   const [filterStatus, setFilterStatus] = useState("");
+  const [filterGender, setFilterGender] = useState("");
 
   const sheetURL =
-    "https://script.google.com/macros/s/AKfycbxeQeC3sQD9WUr5Ky_YVmcVoJC-iiUe_Y8mqqRoaGd-SiKaHx2G6xGbSIzFInhQ_G6A/exec?action=getAll";
+    "https://script.google.com/macros/s/AKfycbza1v6_uGNtq24xVowyL65lh0JIoeENwtWjL0cbNgrwLCKSR0nk5Xwzi8wYQGpqK9Wu/exec?action=getAll";
 
   // ================= FETCH DATA WITH CACHE =================
   useEffect(() => {
@@ -63,25 +64,62 @@ export default function Participants() {
   };
 
    // ================= FILTER (useMemo) =================
-  const filtered = useMemo(() => {
-    return data.filter((item) => {
+const filtered = useMemo(() => {
+  return data.filter((item) => {
 
-      const textMatch =
-        item.name?.toLowerCase().includes(search.toLowerCase()) ||
-        item.formNo?.toLowerCase().includes(search.toLowerCase()) ||
-        String(item.phone || "").includes(search) ||
-        String(item.aadhaar || "").includes(search);
+    const textMatch =
+      item.name?.toLowerCase().includes(search.toLowerCase()) ||
+      item.formNo?.toLowerCase().includes(search.toLowerCase()) ||
+      String(item.phone || "").includes(search) ||
+      String(item.aadhaar || "").includes(search);
 
-      const groupMatch =
-        filterGroup === "" || item.ageGroup === filterGroup;
+    const groupMatch =
+      filterGroup === "" || item.ageGroup === filterGroup;
 
-      const statusMatch =
-        filterStatus === "" || item.status === filterStatus;
+    const statusMatch =
+      filterStatus === "" || item.status === filterStatus;
 
-      return textMatch && groupMatch && statusMatch;
-    });
-  }, [data, search, filterGroup, filterStatus]);
+    const genderMatch =
+      filterGender === "" || item.gender === filterGender;
 
+    return textMatch && groupMatch && statusMatch && genderMatch;
+  });
+}, [data, search, filterGroup, filterStatus, filterGender]);
+
+// ================= COUNTING RECORDS =================
+const dynamicCounts = useMemo(() => {
+  const counts = {
+    gender: {},
+    group: {},
+    status: {}
+  };
+
+  data.forEach((item) => {
+
+    // 👉 search filter apply करो (बाकी ignore करके)
+    const textMatch =
+      item.name?.toLowerCase().includes(search.toLowerCase()) ||
+      item.formNo?.toLowerCase().includes(search.toLowerCase()) ||
+      String(item.phone || "").includes(search) ||
+      String(item.aadhaar || "").includes(search);
+
+    if (!textMatch) return;
+
+    // 👉 gender count (बाकी filters ignore करके)
+    counts.gender[item.gender] =
+      (counts.gender[item.gender] || 0) + 1;
+
+    // 👉 group count
+    counts.group[item.ageGroup] =
+      (counts.group[item.ageGroup] || 0) + 1;
+
+    // 👉 status count
+    counts.status[item.status] =
+      (counts.status[item.status] || 0) + 1;
+  });
+
+  return counts;
+}, [data, search]);
   // ================= EXPORT =================
   const exportExcel = () => {
     const table = document.getElementById("participantsTable").outerHTML;
@@ -139,18 +177,29 @@ export default function Participants() {
 
           {/* FILTERS */}
           <select className="search" onChange={(e) => setFilterGroup(e.target.value)}>
-            <option value="">All Groups</option>
-            <option value="Group A">Group A</option>
-            <option value="Group B">Group B</option>
-            <option value="Group C">Group C</option>
-            <option value="Group D">Group D</option>
+            <option value="">All Groups ({filtered.length})</option>
+            <option value="Group A (8–12 वर्ष)">Group A ({dynamicCounts.group["Group A (8–12 वर्ष)"] || 0})</option>
+            <option value="Group B (13–17 वर्ष)">Group B ({dynamicCounts.group["Group B (13–17 वर्ष)"] || 0})</option>
+            <option value="Group C (18–22 वर्ष)">Group C ({dynamicCounts.group["Group C (18–22 वर्ष)"] || 0})</option>
+            <option value="Group D (23–70 वर्ष)">Group D ({dynamicCounts.group["Group D (23–70 वर्ष)"] || 0})</option>
           </select>
 
-          <select className="search" onChange={(e) => setFilterStatus(e.target.value)}>
-            <option value="">All Status</option>
-            <option value="Paid">Paid</option>
-            <option value="Pending">Pending</option>
+          <select className="search" onChange={(e) => setFilterGender(e.target.value)}>
+            <option value="">All Gender ({filtered.length})</option>
+            <option value="Male">Male ({dynamicCounts.gender["Male"] || 0})</option>
+            <option value="Female">Female ({dynamicCounts.gender["Female"] || 0})</option>
           </select>
+
+
+       
+
+          <select className="search" onChange={(e) => setFilterStatus(e.target.value)}>
+            <option value="">All Status ({filtered.length})</option>
+            <option value="Paid">Paid ({dynamicCounts.status["Paid"] || 0})</option>
+            <option value="Pending">Pending ({dynamicCounts.status["Pending"] || 0})</option>
+          </select>
+
+<p><b>Total Records:</b> {filtered.length}</p>
 
           {/* EXPORT */}
           <div style={{ marginTop: 10 }}>
@@ -168,6 +217,7 @@ export default function Participants() {
                   <th>Form No</th>
                   <th>Name</th>
                   <th>Father</th>
+                  <th>Gender</th>
                   <th>Age</th>
                   <th>Address</th>
                   <th>Aadhaar</th>
@@ -193,6 +243,7 @@ export default function Participants() {
                       <td>{row.formNo}</td>
                       <td>{row.name}</td>
                       <td>{row.father}</td>
+                      <td>{row.gender}</td>
                       <td>{row.age}</td>
                       <td>{row.address}</td>
                       <td style={{width: "150px"}}>{row.aadhaar}</td>

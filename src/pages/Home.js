@@ -130,15 +130,18 @@ const lastEntryDate = latestRecord
           🎯 प्रतियोगिता किस प्रकार होगी?
         </Link>
         <div className="info-grid">
-          <div className="card">
-            📖 कुरआन प्रश्नोत्तरी
-          </div>
-          <div className="card">
-            📖 हदीस प्रश्नोत्तरी
-          </div>
-          <div className="card">
-            🎤 दीनी मालुमात प्रतियोगिता
-          </div>
+          
+        <div
+          className="card"
+          onClick={() =>
+            window.open(
+              "https://drive.google.com/uc?id=1S6heQOjSP4sZhbr4WOewBG3hURUsTkM7&export=download",
+              "_blank"
+            )
+          }
+        >
+          🎤 दीनी मालुमात प्रतियोगिता (Syllabus Book) Download
+        </div>
         </div>
 
         <p className="note">

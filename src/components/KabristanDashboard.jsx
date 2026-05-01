@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./dashboard.css";
 import KABRISTAN_MAP from "../data/kabristanMap.json";
 import KABRISTAN_CONFIG from "../data/kabristanConfig";
+import AdBanner from "./AdBanner";
 
 const MONTH_NAMES = [
   "Jan","Feb","Mar","Apr","May","Jun",
@@ -287,7 +288,7 @@ useEffect(() => {
           <button className="back-btn" onClick={()=>setView("month")}>⬅ Back</button>
         </div>
       )}
-
+    <AdBanner />
       {/* VIDEO MODAL */}
       {showVideo && (
         <div className="video-modal">

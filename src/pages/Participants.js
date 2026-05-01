@@ -1,5 +1,6 @@
 import { useEffect, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
+import AdBanner from "../components/AdBanner.jsx";
 
 export default function Participants() {
 
@@ -143,7 +144,7 @@ const dynamicCounts = useMemo(() => {
         नोट :- यदि किसी का पेमेन्‍ट स्‍टेटस गलत है तो रसीद WhatsApp करें:
         <b> 94147 23722</b>
       </p>
-
+    <AdBanner />
       <p style={{ 
         color: "white", 
         background: "#2196F3", 

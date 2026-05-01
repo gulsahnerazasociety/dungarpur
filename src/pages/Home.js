@@ -6,6 +6,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import { useEffect, useState } from "react";
 import useKabristanData from "../hooks/useKabristanData";
 import FundPieChart from "../components/FundPieChart";
+import AdBanner from "../components/AdBanner.jsx";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -93,6 +94,7 @@ const lastEntryDate = latestRecord
           <Link to="/receipt" className="btn secondary">Check Receipt</Link>
         </div>
       </section>
+      <AdBanner />
 < NoticeBoard />
 
       {/* PRIZE SECTION */}
@@ -187,7 +189,7 @@ const lastEntryDate = latestRecord
       </div>
     </div>
     </section>
-
+<AdBanner />
       <section className="kabristan-section">
       <h2 className="section-title">उपरोक्‍त फण्‍ड का उपयोग किस प्रकार हुआ है, उसे आप यहा से देख सकते हैा</h2>
 
@@ -355,7 +357,7 @@ const lastEntryDate = latestRecord
   </div>
 </section>
 < GAStats />
-
+<AdBanner />
       <footer>
         © December 2022 Gulshan-E-Raza Society, Dungarpur |
         Developed by <a href="https://www.aetmyweb.com" target="_blank" rel="noopener noreferrer">AR Expert Team</a>  

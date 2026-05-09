@@ -137,12 +137,12 @@ const lastEntryDate = latestRecord
           className="card"
           onClick={() =>
             window.open(
-              "https://drive.google.com/uc?id=1S6heQOjSP4sZhbr4WOewBG3hURUsTkM7&export=download",
+              "https://drive.google.com/uc?id=1QCoxJ8Rfns9KPYBOxq2BobU-q47k8ZpE&export=download",
               "_blank"
             )
           }
         >
-          🎤 दीनी मालुमात प्रतियोगिता (Syllabus Book) Download
+          🎤 दीनी मालुमात प्रतियोगिता (Syllabus Book Part-1) Download
         </div>
         </div>
 

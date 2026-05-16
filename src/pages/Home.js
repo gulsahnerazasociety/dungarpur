@@ -6,11 +6,13 @@ import { Autoplay, Pagination } from "swiper/modules";
 import { useEffect, useState } from "react";
 import useKabristanData from "../hooks/useKabristanData";
 import FundPieChart from "../components/FundPieChart";
-import AdBanner from "../components/AdBanner.jsx";
+import SponsorAds from "../components/SponsorAds";
+import AdvertisementPlans from "../components/AdvertisementPlans";
 
 import "swiper/css";
 import "swiper/css/pagination";
 import "./home.css";
+
 
 export default function Home() {
   const formatAmount = (num) => Number(num || 0).toFixed(2);
@@ -94,9 +96,10 @@ const lastEntryDate = latestRecord
           <Link to="/receipt" className="btn secondary">Check Receipt</Link>
         </div>
       </section>
-      <AdBanner />
-< NoticeBoard />
 
+< NoticeBoard />
+<SponsorAds />
+<AdvertisementPlans />
       {/* PRIZE SECTION */}
       <section className="info">
         <h2>🎯 प्रतियोगिता के 🏆 पुरस्कार व इनआमात</h2>
@@ -189,7 +192,7 @@ const lastEntryDate = latestRecord
       </div>
     </div>
     </section>
-<AdBanner />
+
       <section className="kabristan-section">
       <h2 className="section-title">उपरोक्‍त फण्‍ड का उपयोग किस प्रकार हुआ है, उसे आप यहा से देख सकते हैा</h2>
 
@@ -357,7 +360,7 @@ const lastEntryDate = latestRecord
   </div>
 </section>
 < GAStats />
-<AdBanner />
+<SponsorAds />
       <footer>
         © December 2022 Gulshan-E-Raza Society, Dungarpur |
         Developed by <a href="https://www.aetmyweb.com" target="_blank" rel="noopener noreferrer">AR Expert Team</a>  

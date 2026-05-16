@@ -1,0 +1,207 @@
+.sponsor-section{
+  padding:40px 15px;
+  background:#fff;
+}
+
+.sponsor-header{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.sponsor-header h2{
+  font-size:30px;
+  margin-bottom:5px;
+  font-weight:700;
+}
+
+.sponsor-header p{
+  color:#666;
+  font-size:15px;
+}
+
+/* CARD */
+
+.sponsor-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:22px;
+  display:block;
+  background:#fff;
+
+  height:260px;
+
+  box-shadow:0 8px 25px rgba(0,0,0,0.12);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  cursor:pointer;
+}
+
+.sponsor-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 12px 30px rgba(0,0,0,0.18);
+}
+
+/* IMAGE */
+
+.sponsor-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+
+  transition:transform 0.4s ease;
+}
+
+.sponsor-card:hover img{
+  transform:scale(1.04);
+}
+
+/* OVERLAY */
+
+.sponsor-overlay{
+  position:absolute;
+  left:0;
+  bottom:0;
+
+  width:100%;
+
+  padding:18px;
+
+  background:linear-gradient(
+    transparent,
+    rgba(0,0,0,0.88)
+  );
+
+  color:#fff;
+}
+
+.sponsor-overlay h3{
+  margin:0;
+  font-size:20px;
+}
+
+.sponsor-overlay span{
+  font-size:13px;
+  opacity:0.9;
+}
+
+/* MODAL */
+
+.ad-modal{
+  position:fixed;
+  inset:0;
+
+  background:rgba(0,0,0,0.8);
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  z-index:9999;
+
+  padding:15px;
+}
+
+.ad-modal-content{
+  position:relative;
+
+  max-width:900px;
+  width:100%;
+
+  background:#fff;
+
+  border-radius:20px;
+
+  overflow:hidden;
+
+  animation:popupShow 0.3s ease;
+  display:flex;
+    flex-direction:column;
+}
+
+.ad-modal-content img{
+  width:100%;
+  height:auto;
+
+  max-height:80vh;
+
+  object-fit:contain;
+
+  display:block;
+
+  background:#fff;
+}
+
+.ad-modal-info{
+  padding:20px;
+  text-align:center;
+}
+
+.ad-modal-info h2{
+  margin-bottom:15px;
+}
+
+.visit-btn{
+  display:inline-block;
+
+  padding:12px 25px;
+
+  background:#111;
+  color:#fff;
+
+  border-radius:10px;
+
+  text-decoration:none;
+
+  font-weight:600;
+}
+
+.close-btn{
+  position:absolute;
+  top:10px;
+  right:10px;
+
+  width:40px;
+  height:40px;
+
+  border:none;
+  border-radius:50%;
+
+  background:#fff;
+
+  font-size:18px;
+  cursor:pointer;
+}
+
+/* ANIMATION */
+
+@keyframes popupShow{
+
+  from{
+    transform:scale(0.9);
+    opacity:0;
+  }
+
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  .sponsor-card{
+    height:180px;
+  }
+
+  .sponsor-header h2{
+    font-size:24px;
+  }
+
+}

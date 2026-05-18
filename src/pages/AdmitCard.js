@@ -27,7 +27,7 @@ export default function AdmitCard() {
     "https://script.google.com/macros/s/AKfycbwOsXsAveNj588Mh9poVZJNwAYAIehvkeyt0WEo_Kx3CuiL8YhzKaJJOO8xs0Lb2fo/exec";
 
   // 🔒 Admit Card Open Date (LOCK)
-  const ADMIT_OPEN_DATE = new Date("2026-04-10");
+  const ADMIT_OPEN_DATE = new Date("2026-08-10");
 
   // 🔲 QR Value (safe – no aadhaar)
   const getQRValue = (data) =>

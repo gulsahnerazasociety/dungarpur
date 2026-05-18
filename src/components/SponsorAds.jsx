@@ -22,29 +22,101 @@ export default function SponsorAds() {
   // FETCH ADS FROM GOOGLE SHEET API
   // =========================
 
-  useEffect(() => {
+useEffect(() => {
 
-    fetch(
-      "https://script.google.com/macros/s/AKfycbwD2kAzoAx_YnQAu5VlDUTW9ANy4NqQrc--JDgh7trWXmtxZ3sY5lZ7bzhfMlWKfgtS/exec"
-    )
-      .then((res) => res.json())
+  const CACHE_KEY = "sponsor_ads_cache";
 
-      .then((data) => {
+  const CACHE_TIME_KEY =
+    "sponsor_ads_cache_time";
 
-        setAds(data);
+  const CACHE_DURATION =
+    1000 * 60 * 60 * 12;
+  // 12 HOURS
 
-      })
+  // =====================
+  // LOAD CACHE FIRST
+  // =====================
 
-      .catch((err) => {
+  const cachedAds =
+    localStorage.getItem(CACHE_KEY);
 
-        console.error(
-          "Ads Fetch Error:",
-          err
-        );
+  const cacheTime =
+    localStorage.getItem(
+      CACHE_TIME_KEY
+    );
 
-      });
+  const isCacheValid =
 
-  }, []);
+    cachedAds &&
+    cacheTime &&
+    (
+      Date.now() - Number(cacheTime)
+      <
+      CACHE_DURATION
+    );
+
+  // =====================
+  // SHOW CACHE INSTANTLY
+  // =====================
+
+  if (isCacheValid) {
+
+    try {
+
+      const parsedAds =
+        JSON.parse(cachedAds);
+
+      setAds(parsedAds);
+
+    } catch (err) {
+
+      console.error(
+        "Cache Parse Error:",
+        err
+      );
+
+    }
+
+  }
+
+  // =====================
+  // ALWAYS FETCH FRESH DATA
+  // =====================
+
+  fetch(
+    "https://script.google.com/macros/s/AKfycbwD2kAzoAx_YnQAu5VlDUTW9ANy4NqQrc--JDgh7trWXmtxZ3sY5lZ7bzhfMlWKfgtS/exec"
+  )
+
+    .then((res) => res.json())
+
+    .then((data) => {
+
+      setAds(data);
+
+      // SAVE CACHE
+
+      localStorage.setItem(
+        CACHE_KEY,
+        JSON.stringify(data)
+      );
+
+      localStorage.setItem(
+        CACHE_TIME_KEY,
+        Date.now()
+      );
+
+    })
+
+    .catch((err) => {
+
+      console.error(
+        "Ads Fetch Error:",
+        err
+      );
+
+    });
+
+}, []);
 
   // =========================
   // REMOVE EXPIRED & INACTIVE ADS

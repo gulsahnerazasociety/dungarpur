@@ -1,6 +1,11 @@
 import { useEffect, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
+
 import AdBanner from "../components/AdBanner.jsx";
+import "../utils/hindiFont";
+
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 export default function Participants() {
 
@@ -132,7 +137,91 @@ const dynamicCounts = useMemo(() => {
     a.click();
   };
 
-  const exportPDF = () => window.print();
+const exportPDF = () => {
+
+  const pdf = new jsPDF(
+    "l",
+    "mm",
+    "a4"
+  );
+  
+pdf.setFont("NotoSansDevanagari-Regular",
+  "normal");
+  // TITLE
+
+  pdf.setFontSize(16);
+
+  pdf.text(
+    "Registered Participants",
+    14,
+    15
+  );
+
+  // TABLE HEADERS
+
+  const tableColumn = [
+
+    "Form No",
+    "Name",
+    "Father",
+    "Gender",
+    "Age",
+    "Address",
+    "Phone",
+    "Group",
+    "Status"
+
+  ];
+
+  // TABLE ROWS
+
+  const tableRows = filtered.map(
+    (row) => [
+
+      row.formNo,
+      row.name,
+      row.father,
+      row.gender,
+      row.age,
+      row.address,
+      maskPhone(row.phone),
+      row.ageGroup,
+      row.status
+
+    ]
+  );
+
+  // AUTOTABLE
+
+  autoTable(pdf, {
+
+    head: [tableColumn],
+
+    body: tableRows,
+
+    startY: 25,
+
+    styles: {
+
+      fontSize: 8
+
+    },
+
+    headStyles: {
+
+      fillColor: [33, 150, 243]
+
+    }
+
+  });
+
+  // SAVE
+
+  pdf.save(
+    "participants.pdf"
+  );
+
+};
 
   return (
     <div className="participant-box">

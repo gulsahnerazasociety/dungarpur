@@ -11,7 +11,7 @@ export default function AdvertisementPlans() {
       id: 1,
       title: "👑 Platinum Sponsor",
       price: "₹2000+",
-      duration: "12 Months",
+      duration: "6 Months",
       visibility: "Homepage First Position",
       description:
         "सबसे पहले दिखाई देगा और सबसे ज्यादा visibility मिलेगी।",
@@ -22,7 +22,7 @@ export default function AdvertisementPlans() {
       id: 2,
       title: "🥇 Gold Sponsor",
       price: "₹1500+",
-      duration: "6 Months",
+      duration: "4 Months",
       visibility: "Top Rotation Visibility",
       description:
         "High priority sponsor rotation और बेहतर reach।",
@@ -33,7 +33,7 @@ export default function AdvertisementPlans() {
       id: 3,
       title: "⭐ Premium Sponsor",
       price: "₹1000+",
-      duration: "3 Months",
+      duration: "2 Months",
       visibility: "Featured Placement",
       description:
         "Highlighted sponsor section में display होगा।",
